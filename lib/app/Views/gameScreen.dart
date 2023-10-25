@@ -39,10 +39,10 @@ class GameScreenMain extends StatelessWidget {
                     controller: wheelSpinController,
                     pathImage: 'assets/images/spin2.png',
                     withWheel: 300,
-                    pieces: 6,
-                    // speed: 500,//defuaft is 500
+                    pieces: 15,
+                      speed: 500,//defuaft is 500
                     isShowTextTest: true,
-                    // offset: 1 / (10 * 6), //random 1/10 pieces defuaft is zero
+                      offset: 1 / (10 * 6), //random 1/10 pieces defuaft is zero
                   ),
                   TextButton(
                       onPressed: () {

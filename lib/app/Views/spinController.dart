@@ -44,7 +44,7 @@ class _WheelSpinState extends State<WheelSpin> with TickerProviderStateMixin {
     vsync: this,
   );
   late final AnimationController _controllerFinish = AnimationController(
-    duration: Duration(milliseconds: widget.speed * 2),
+    duration: Duration(milliseconds: widget.speed * 5),
     vsync: this,
   );
 
