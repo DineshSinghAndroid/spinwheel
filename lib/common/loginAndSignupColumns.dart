@@ -16,7 +16,9 @@ class LoginColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+
         child: Container(
+
           height: 400,
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: Column(

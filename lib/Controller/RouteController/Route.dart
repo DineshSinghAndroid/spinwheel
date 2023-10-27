@@ -16,11 +16,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case onboardingScreen:
       return MaterialPageRoute(builder: (context) => OnBoardingScreen());
 
-    ///Game screen
-    case gameScreen:
-      return MaterialPageRoute(builder: (context) => GameScreenMain());
+    // ///Game screen
+    // case gameScreen:
+    //   return MaterialPageRoute(builder: (context) => GameScreenMain());
 
 /*Admin codes */
+
     ///Game screen
     case adminDashboardScreen:
       return MaterialPageRoute(builder: (context) => AdminDashboardScreeen());

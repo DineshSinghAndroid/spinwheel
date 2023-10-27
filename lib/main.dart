@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:spinwheel/app/Views/gameScreen.dart';
-import 'package:spinwheel/responsive_widget.dart';
 import 'Controller/RouteController/RouteNames.dart';
 import 'Controller/Utils/CustomFileds/ButtonCustom.dart';
 import 'Controller/Utils/StringDefine/StringDefine.dart';
 import 'package:spinwheel/Controller/RouteController/Route.dart' as router;
+
+import 'app/Views/gameScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
       );
     };
     return GetMaterialApp(
-      // initialRoute: onboardingScreen,
+      initialRoute: onboardingScreen,
       home: GameScreenMain(),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,

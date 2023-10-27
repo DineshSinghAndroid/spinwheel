@@ -145,14 +145,19 @@ const String kLoading1Lottie = 'assets/lottie/loading.json';
 const String kLoadingLottie = 'assets/lottie/loading1.json';
 const String kNodatafoundLottie = 'assets/lottie/nodatafound.json';
 const String kErrorLottie = 'assets/lottie/error.json';
+const String kBackgoundhomeLottie = 'assets/lottie/backgoundhome.json';
+const String kSpinthatwheelLottie = 'assets/lottie/spinthatwheel.json';
+const String kWheellottieLottie = 'assets/lottie/wheellottie.json';
+const String kCoinrainanimationLottie = 'assets/lottie/coinrainanimation.json';
+const String kCoinsLottie = 'assets/lottie/coins.json';
 
 ///Images
 
 const String kLogo = 'assets/wheel.png';
 const String kPlainImgHome = 'assets/images/plainImg.png';
 const String kHomeBack = 'assets/images/20d098.jpg';
+const String kHomeBack1 = 'assets/images/backk.png';
 const String kScreenshotHome = 'assets/images/section-2-image.png';
 
 ///testing
 const String kSpinWheel = 'assets/spinWheel.gif';
-

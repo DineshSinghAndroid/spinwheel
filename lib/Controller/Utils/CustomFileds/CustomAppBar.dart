@@ -20,6 +20,7 @@ AppBar CustomAppBar({
     //     Get.back();
     //   },
     // ),
+
     backgroundColor: AppColors.blueColorApp,
     title: BuildText.buildText(
         text: text, size: 16, weight: FontWeight.w500, color: Colors.white),

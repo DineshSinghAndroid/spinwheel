@@ -6,7 +6,7 @@ class WheelSpinController {
   // late void Function() startWheel;
   // late void Function(int index) stopWheel;
   late Function startWheel;
-  late Function stopWheel;
+  late Function(int index) stopWheel;
 }
 
 class WheelSpin extends StatefulWidget {
@@ -40,7 +40,7 @@ class _WheelSpinState extends State<WheelSpin> with TickerProviderStateMixin {
   }
 
   late final AnimationController _controllerStart = AnimationController(
-    duration: Duration(milliseconds: widget.speed),
+    duration: Duration(milliseconds: widget.speed * 2),
     vsync: this,
   );
   late final AnimationController _controllerFinish = AnimationController(
@@ -83,7 +83,7 @@ class _WheelSpinState extends State<WheelSpin> with TickerProviderStateMixin {
 
     _controllerStart.addStatusListener((status) {
       if (!isStart) return;
-      print("status" + status.toString());
+      print("status$status");
       if (status == AnimationStatus.completed) {
         if (!isNhanKetQua) {
           _controllerStart.reset();
@@ -120,7 +120,6 @@ class _WheelSpinState extends State<WheelSpin> with TickerProviderStateMixin {
     _controllerMiddle.reset();
     _controllerFinish.reset();
     _controllerStart.reset();
-
     isNhanKetQua = false;
   }
 

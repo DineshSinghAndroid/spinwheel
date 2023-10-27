@@ -33,6 +33,7 @@ class OnBoardingController extends GetxController {
 
   Widget cardWithBodyOnly({required BuildContext context}) => XenPopupCard(
           body: DefaultTabController(
+initialIndex: 1,
         length: 2,
         child: Scaffold(
           body: Container(
