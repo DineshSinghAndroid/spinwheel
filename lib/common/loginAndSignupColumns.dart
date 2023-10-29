@@ -6,19 +6,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:neopop/widgets/buttons/neopop_tilted_button/neopop_tilted_button.dart';
 
 import '../Controller/Helper/BuildText/BuildText.dart';
-import '../Controller/ProjectController/common/OnboardingController/onboarding_controller.dart';
+import '../Controller/ProjectController/SpinnerControllers/OnboardingController/spinner_onboarding_controller.dart';
 
 class LoginColumn extends StatelessWidget {
   LoginColumn({super.key});
-  final OnBoardingController _onBdCtrl = Get.put(OnBoardingController());
+
+  final SpinnerOnBoardingController _onBdCtrl =
+  Get.put(SpinnerOnBoardingController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-
         child: Container(
-
           height: 400,
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: Column(
@@ -131,7 +131,9 @@ class LoginColumn extends StatelessWidget {
 
 class RegisterColumn extends StatelessWidget {
   RegisterColumn({super.key});
-  final OnBoardingController _onBdCtrl = Get.put(OnBoardingController());
+
+  final SpinnerOnBoardingController _onBdCtrl =
+  Get.put(SpinnerOnBoardingController());
 
   @override
   Widget build(BuildContext context) {

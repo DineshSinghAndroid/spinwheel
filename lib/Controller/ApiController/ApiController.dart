@@ -1,15 +1,14 @@
 import 'dart:convert';
 
-import 'package:spinwheel/common/onboarding_screen.dart';
+import 'package:spinwheel/app/Spinner/spinner_onboarding_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart' as G;
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 import '../../../main.dart';
- import '../../Models/CommonModels/RegisterModel.dart';
+import '../../Models/CommonModels/RegisterModel.dart';
 import '../Helper/ConnectionValidator/ConnectionValidator.dart';
 import '../Utils/StringDefine/StringDefine.dart';
 import '../Utils/Utils.dart';
@@ -19,40 +18,37 @@ import 'package:dio/dio.dart';
 class ApiController {
   final Dio _dio = Dio();
 
+  Future<RegisterModel?> registerApiHit({
+    context,
+    required String url,
+    required dictData,
+    String? token,
+  }) async {
+    RegisterModel? result;
 
-
-
-
-
-  Future<RegisterModel?> registerApiHit({  context, required String url, required dictData, String? token,})
-  async {RegisterModel? result;
-
-  if (await ConnectionValidator().check()) {
-    try {
-      final response = await requestPostApi(context: context, url: url, dictData: dictData, token: token);
-      if (response?.data != null && response?.statusCode == 200) {
-        result = RegisterModel.fromJson(response?.data);
-        return result;
-      } else {
+    if (await ConnectionValidator().check()) {
+      try {
+        final response = await requestPostApi(
+            context: context, url: url, dictData: dictData, token: token);
+        if (response?.data != null && response?.statusCode == 200) {
+          result = RegisterModel.fromJson(response?.data);
+          return result;
+        } else {
+          return result;
+        }
+      } catch (e) {
+        Utils.printLog("Exception_main1: $e");
         return result;
       }
-    } catch (e) {
-      Utils.printLog("Exception_main1: $e");
-      return result;
+    } else {
+      Fluttertoast.showToast(
+          msg: "Please check network connection and try again!");
     }
-  } else {
-    Fluttertoast.showToast(msg: "Please check network connection and try again!");
-  }
-  return result;
+    return result;
   }
 
-
-
-
-
-
-
-  Future<Response?> requestPostApi({required context, String? url, required dictData, String? token}) async {
+  Future<Response?> requestPostApi(
+      {required context, String? url, required dictData, String? token}) async {
     Dio _dio = Dio();
     try {
       Map<String, String> headers = {
@@ -67,7 +63,9 @@ class ApiController {
       Utils.printLog("formData: $dictData");
 
       BaseOptions options = BaseOptions(
-          baseUrl: WebApiConstant.BASE_URL_DOMAIN, receiveTimeout: Duration(seconds: 5), connectTimeout: Duration(seconds: 5),
+          baseUrl: WebApiConstant.BASE_URL_DOMAIN,
+          receiveTimeout: Duration(seconds: 5),
+          connectTimeout: Duration(seconds: 5),
           headers: headers);
 
       _dio.options = options;
@@ -111,9 +109,6 @@ class ApiController {
       return null;
     }
   }
-
-
-
 
   Future<Response?> requestGetForApi(
       {required context,
@@ -212,7 +207,7 @@ class ApiController {
         response1.toString().contains("Expired token") || statusCode == 401;
     if (isTokenExpired) {
       SharedPreferences.getInstance().then((value) {
-         value.clear();
+        value.clear();
         ToastCustom.showToastWithLength(
             msg: "You need to login back to use app",
             toastLength: Toast.LENGTH_LONG);

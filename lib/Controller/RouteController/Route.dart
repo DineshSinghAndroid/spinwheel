@@ -5,22 +5,23 @@ import 'package:spinwheel/adminviews/admin_usermanagement_screen.dart';
 import 'package:spinwheel/adminviews/admin_widthdrawalHistory_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../../../common/onboarding_screen.dart';
+import '../../app/Spinner/spinner_onboarding_screen.dart';
 import '../../adminviews/admin_dashboard_screen.dart';
-import '../../app/Views/gameScreen.dart';
+import '../../app/Spinner/gameScreen.dart';
+import '../../common/app_onboarding_screen.dart';
 import 'RouteNames.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     ///Onboarding
     case onboardingScreen:
-      return MaterialPageRoute(builder: (context) => OnBoardingScreen());
+      return MaterialPageRoute(builder: (context) => AppOnBoardingScreen());
 
     // ///Game screen
     // case gameScreen:
     //   return MaterialPageRoute(builder: (context) => GameScreenMain());
 
-/*Admin codes */
+    /****************************************************************** Admin codes *********************************************/
 
     ///Game screen
     case adminDashboardScreen:
@@ -48,8 +49,13 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     ///Game screen
     case adminbankDetailsScreen:
       return MaterialPageRoute(builder: (context) => AdminBankDetailsScreen());
+    /****************************************************************** spinner routes *********************************************/
+
+    ///Game screen
+    case adminbankDetailsScreen:
+      return MaterialPageRoute(builder: (context) => SpinnerHomeScreen());
 
     default:
-      return MaterialPageRoute(builder: (context) => OnBoardingScreen());
+      return MaterialPageRoute(builder: (context) => SpinnerOnboardingScreen());
   }
 }

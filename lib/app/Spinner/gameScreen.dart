@@ -3,18 +3,20 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:spinwheel/Controller/Utils/CustomFileds/CustomAppBar.dart';
 import 'package:spinwheel/adminviews/sideDrawer.dart';
-import 'package:spinwheel/app/Views/ProfileScreen.dart';
-import 'package:spinwheel/app/Views/spinController.dart';
+import 'package:spinwheel/app/Spinner/ProfileScreen.dart';
+import 'package:spinwheel/app/Spinner/spinController.dart';
 
 import '../../Controller/Helper/BuildText/BuildText.dart';
-import '../../Controller/ProjectController/GameScreenMainController/game_screen_main_controller.dart';
+import '../../Controller/ProjectController/SpinnerControllers/GameScreenMainController/game_screen_main_controller.dart';
 import '../../Controller/Utils/Colors/custom_color.dart';
 import '../../Controller/Utils/StringDefine/StringDefine.dart';
+import 'ProfileScreen.dart';
 
-class GameScreenMain extends StatelessWidget {
-  GameScreenMain({super.key});
+class SpinnerHomeScreen extends StatelessWidget {
+  SpinnerHomeScreen({super.key});
 
-  GameScreenMainController _gameCtrl = Get.put(GameScreenMainController());
+  SpinnerHomeScreenController _gameCtrl =
+      Get.put(SpinnerHomeScreenController());
   WheelSpinController wheelSpinController = WheelSpinController();
 
   @override
@@ -24,7 +26,6 @@ class GameScreenMain extends StatelessWidget {
       builder: (controller) {
         return SafeArea(
             child: Scaffold(
-          drawer: Container(width: Get.width / 1.1, child: ProfileScreen()),
           appBar: AppBar(
             backgroundColor: AppColors.blueColorApp,
             title: BuildText.buildText(text: "Satish Ji Ludo"),

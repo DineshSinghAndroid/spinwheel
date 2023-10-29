@@ -1,0 +1,113 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:lottie/lottie.dart';
+import 'package:spinwheel/Controller/ProjectController/common/app_onboarding_controller.dart';
+import 'package:spinwheel/Controller/Utils/Colors/custom_color.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:neopop/widgets/buttons/neopop_tilted_button/neopop_tilted_button.dart';
+
+import '../Controller/Helper/BuildText/BuildText.dart';
+import '../Controller/Utils/StringDefine/StringDefine.dart';
+import '../app/Spinner/ProfileScreen.dart';
+
+class AppOnBoardingScreen extends StatelessWidget {
+  AppOnBoardingScreen({super.key});
+
+  final AppOnboardingControlller _appCtrl = Get.put(AppOnboardingControlller());
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder(
+      init: _appCtrl,
+      builder: (controller) {
+        return Scaffold(
+          appBar: AppBar(
+            backgroundColor: AppColors.blueColorApp,
+            title: BuildText.buildText(text: "Player Ultimate"),
+            centerTitle: true,
+            actions: [
+              IconButton(onPressed: () {}, icon: Icon(Icons.volume_down)),
+              buildSizeBox(0.0, 5.0),
+              IconButton(onPressed: () {}, icon: Icon(Icons.info_outline)),
+              buildSizeBox(0.0, 5.0),
+            ],
+          ),
+          drawer: Container(width: Get.width / 1.1, child: ProfileScreen()),
+          backgroundColor: AppColors.scaffoldBackgroundColor,
+          body: SingleChildScrollView(
+            child: SafeArea(
+              child: Stack(
+                children: [
+                  Container(
+                    height: Get.height,
+                    width: Get.width,
+                    child:
+                        Lottie.asset(kBackgoundhomeLottie, fit: BoxFit.cover),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: CarouselSlider(
+                      options: CarouselOptions(
+                          enlargeCenterPage: false,
+                          viewportFraction: 1.0,
+                          enableInfiniteScroll: true,
+                          autoPlay: true,
+                          pageSnapping: true,
+                          aspectRatio: 6 / 3),
+                      items: _appCtrl.topSliderImages.map((i) {
+                        return Builder(
+                          builder: (BuildContext context) {
+                            return Container(
+                              // height: 250,
+
+                              width: Get.width,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(i), fit: BoxFit.cover)),
+                            );
+                          },
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 250, right: 10, left: 10),
+                    child: GridView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: _appCtrl.gameImages.length,
+                      shrinkWrap: true,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 15,
+                          mainAxisSpacing: 10),
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () => _appCtrl.onGameTap(index: index + 1),
+                          child: Container(
+                            height: 160,
+                            width: 230,
+                            decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                image: DecorationImage(
+                                    image:
+                                        AssetImage(_appCtrl.gameImages[index]),
+                                    fit: BoxFit.cover)),
+                            child: Center(
+                              child: BuildText.buildText(text: "", size: 33),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}

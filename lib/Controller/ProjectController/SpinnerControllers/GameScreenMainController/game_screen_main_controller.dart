@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class GameScreenMainController extends GetxController {
+class SpinnerHomeScreenController extends GetxController {
   List amountList = [
     "5",
     "10",

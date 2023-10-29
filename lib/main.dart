@@ -6,7 +6,7 @@ import 'Controller/Utils/CustomFileds/ButtonCustom.dart';
 import 'Controller/Utils/StringDefine/StringDefine.dart';
 import 'package:spinwheel/Controller/RouteController/Route.dart' as router;
 
-import 'app/Views/gameScreen.dart';
+import 'app/Spinner/gameScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
     };
     return GetMaterialApp(
       initialRoute: onboardingScreen,
-      home: GameScreenMain(),
+      // home: GameScreenMain(),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
     );

@@ -140,24 +140,29 @@ const String errorText = "Something went wrong";
 
 ///Lotties
 
-const String kLogoutSvg = 'assets/svg/profile/logout.svg';
-const String kLoading1Lottie = 'assets/lottie/loading.json';
-const String kLoadingLottie = 'assets/lottie/loading1.json';
-const String kNodatafoundLottie = 'assets/lottie/nodatafound.json';
-const String kErrorLottie = 'assets/lottie/error.json';
-const String kBackgoundhomeLottie = 'assets/lottie/backgoundhome.json';
-const String kSpinthatwheelLottie = 'assets/lottie/spinthatwheel.json';
-const String kWheellottieLottie = 'assets/lottie/wheellottie.json';
-const String kCoinrainanimationLottie = 'assets/lottie/coinrainanimation.json';
-const String kCoinsLottie = 'assets/lottie/coins.json';
+const String kLoading1Lottie = 'assets/spinner/lottie/loading.json';
+const String kLoadingLottie = 'assets/spinner/lottie/loading1.json';
+const String kNodatafoundLottie = 'assets/spinner/lottie/nodatafound.json';
+const String kErrorLottie = 'assets/spinner/lottie/error.json';
+const String kBackgoundhomeLottie = 'assets/spinner/lottie/backgoundhome.json';
+const String kSpinthatwheelLottie = 'assets/spinner/lottie/spinthatwheel.json';
+const String kWheellottieLottie = 'assets/spinner/lottie/wheellottie.json';
+const String kCoinrainanimationLottie =
+    'assets/spinner/lottie/coinrainanimation.json';
+const String kCoinsLottie = 'assets/spinner/lottie/coins.json';
 
 ///Images
 
-const String kLogo = 'assets/wheel.png';
-const String kPlainImgHome = 'assets/images/plainImg.png';
-const String kHomeBack = 'assets/images/20d098.jpg';
-const String kHomeBack1 = 'assets/images/backk.png';
-const String kScreenshotHome = 'assets/images/section-2-image.png';
+const String kLogo = 'assets/common/ludoBoard.png';
+const String kPlainImgHome = 'assets/spinner/images/plainImg.png';
+const String kHomeBack = 'assets/spinner/images/20d098.jpg';
+const String kHomeBack1 = 'assets/spinner/images/backk.png';
+const String kScreenshotHome = 'assets/spinner/images/section-2-image.png';
 
-///testing
-const String kSpinWheel = 'assets/spinWheel.gif';
+///app
+const String kLudoBoard = 'assets/common/ludoBoard.png';
+const String kSnackladde = 'assets/common/snackladder.png';
+const String kSpinwheel = 'assets/common/spinwheel.png';
+const String kColorPrediction = 'assets/common/colorPrediction.jpg';
+
+const String kPlayAndWiin = 'assets/common/spinWheelBanner.jpg';

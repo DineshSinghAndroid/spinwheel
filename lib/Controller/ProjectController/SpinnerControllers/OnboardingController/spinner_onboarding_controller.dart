@@ -11,7 +11,7 @@ import '../../../RouteController/RouteNames.dart';
 import '../../../Utils/Colors/custom_color.dart';
 import '../../../Utils/Utils.dart';
 
-class OnBoardingController extends GetxController {
+class SpinnerOnBoardingController extends GetxController {
   ApiController _apiCtrl = ApiController();
 
   TextEditingController userNameCtrl = TextEditingController();
@@ -33,7 +33,7 @@ class OnBoardingController extends GetxController {
 
   Widget cardWithBodyOnly({required BuildContext context}) => XenPopupCard(
           body: DefaultTabController(
-initialIndex: 1,
+        initialIndex: 1,
         length: 2,
         child: Scaffold(
           body: Container(
@@ -41,16 +41,30 @@ initialIndex: 1,
             width: Get.width,
             child: Column(
               children: [
-                TabBar(isScrollable: false, indicatorPadding: const EdgeInsets.only(top: 20), padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15), indicatorColor: AppColors.primaryColor, unselectedLabelColor: Colors.grey, labelColor: AppColors.primaryColor, automaticIndicatorColorAdjustment: true, unselectedLabelStyle: const TextStyle(color: Colors.grey), labelPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5), tabs: [
-                  Text(
-                    "Login",
-                    style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w900),
-                  ),
-                  Text(
-                    "Register",
-                    style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w900),
-                  ),
-                ]),
+                TabBar(
+                    isScrollable: false,
+                    indicatorPadding: const EdgeInsets.only(top: 20),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 15),
+                    indicatorColor: AppColors.primaryColor,
+                    unselectedLabelColor: Colors.grey,
+                    labelColor: AppColors.primaryColor,
+                    automaticIndicatorColorAdjustment: true,
+                    unselectedLabelStyle: const TextStyle(color: Colors.grey),
+                    labelPadding:
+                        const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                    tabs: [
+                      Text(
+                        "Login",
+                        style: GoogleFonts.poppins(
+                            fontSize: 20, fontWeight: FontWeight.w900),
+                      ),
+                      Text(
+                        "Register",
+                        style: GoogleFonts.poppins(
+                            fontSize: 20, fontWeight: FontWeight.w900),
+                      ),
+                    ]),
                 Expanded(
                   child: TabBarView(
                     children: [
@@ -65,7 +79,8 @@ initialIndex: 1,
         ),
       ));
 
-  onTapRegister(BuildContext context) {   Get.toNamed(gameScreen);
+  onTapRegister(BuildContext context) {
+    Get.toNamed(appHomeScreen);
     signUpApi(context: context);
   }
 
@@ -93,7 +108,10 @@ initialIndex: 1,
 
     String url = WebApiConstant.registerUrl;
 
-    await _apiCtrl.registerApiHit(context: context, url: url,   token: '', dictData: dictparm).then((result) async {
+    await _apiCtrl
+        .registerApiHit(
+            context: context, url: url, token: '', dictData: dictparm)
+        .then((result) async {
       if (result != null) {
         try {
           if (result.status != null) {
@@ -101,7 +119,7 @@ initialIndex: 1,
             if (result.status != false) {
               Utils.printLog("Status is :::::::;${result.status}");
               ToastCustom.showToast(msg: result.message ?? "asdasfafasfasf");
-              Get.toNamed(gameScreen);
+              Get.toNamed(appHomeScreen);
             }
             changeLoadingValue(false);
             changeSuccessValue(true);

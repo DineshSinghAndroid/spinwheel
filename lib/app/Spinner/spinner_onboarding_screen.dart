@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:neopop/widgets/buttons/neopop_tilted_button/neopop_tilted_button.dart';
 
-import '../Controller/Helper/BuildText/BuildText.dart';
-import '../Controller/ProjectController/common/OnboardingController/onboarding_controller.dart';
-import '../Controller/Utils/StringDefine/StringDefine.dart';
+import '../../Controller/Helper/BuildText/BuildText.dart';
+import '../../Controller/ProjectController/SpinnerControllers/OnboardingController/spinner_onboarding_controller.dart';
+import '../../Controller/Utils/StringDefine/StringDefine.dart';
 
-class OnBoardingScreen extends StatelessWidget {
-  OnBoardingScreen({super.key});
+class SpinnerOnboardingScreen extends StatelessWidget {
+  SpinnerOnboardingScreen({super.key});
 
-  final OnBoardingController _onBdCtrl = Get.put(OnBoardingController());
+  final SpinnerOnBoardingController _onBdCtrl =
+      Get.put(SpinnerOnBoardingController());
 
   @override
   Widget build(BuildContext context) {
@@ -62,20 +63,22 @@ class OnBoardingScreen extends StatelessWidget {
                 Container(
                   height: Get.height,
                   width: Get.width,
-                  child: Lottie.asset(kBackgoundhomeLottie,fit: BoxFit.cover),)
-                ,Positioned(
-
+                  child: Lottie.asset(kBackgoundhomeLottie, fit: BoxFit.cover),
+                ),
+                Positioned(
                   top: 40,
                   left: 80,
                   right: 80,
-                  child: Lottie.asset(kSpinthatwheelLottie,fit: BoxFit.cover,width: Get.width,height:120),),
-                 Positioned(
-
-                     bottom: 120,
-                     left: 40,
-                     right: 80,
-                     child: Lottie.asset(kWheellottieLottie,fit: BoxFit.cover,width: Get.width,height: 300),),
-
+                  child: Lottie.asset(kSpinthatwheelLottie,
+                      fit: BoxFit.cover, width: Get.width, height: 120),
+                ),
+                Positioned(
+                  bottom: 120,
+                  left: 40,
+                  right: 80,
+                  child: Lottie.asset(kWheellottieLottie,
+                      fit: BoxFit.cover, width: Get.width, height: 300),
+                ),
                 buildSizeBox(50.0, 0.0),
                 Positioned(
                   bottom: 20,

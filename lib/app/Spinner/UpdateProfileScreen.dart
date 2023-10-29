@@ -5,7 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:spinwheel/Controller/Utils/CustomFileds/CustomAppBar.dart';
 import 'package:spinwheel/Controller/Utils/StringDefine/StringDefine.dart';
-import 'package:spinwheel/app/Views/ProfileScreen.dart';
+import 'package:spinwheel/app/Spinner/ProfileScreen.dart';
 
 import '../../Controller/Utils/Colors/custom_color.dart';
 
@@ -16,33 +16,20 @@ class UpdateProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // final controller = Get.put(ProfileController());
     return Scaffold(
-      appBar:CustomAppBar(text: "Edit Profile")
-        ,
+      appBar: CustomAppBar(text: "Edit Profile"),
       body: SingleChildScrollView(
-
         child: Container(
-
-          padding:   EdgeInsets.all(8),
+          padding: EdgeInsets.all(8),
           child: Column(
-
             children: [
-
-
               Stack(
-
-
                 children: [
-
                   SizedBox(
-
                     width: 120,
                     height: 120,
                     child: ClipRRect(
-
                         borderRadius: BorderRadius.circular(100),
                         child: const Image(image: AssetImage(kLogo))),
-
-
                   ),
                   Positioned(
                     bottom: 0,
@@ -50,9 +37,11 @@ class UpdateProfileScreen extends StatelessWidget {
                     child: Container(
                       width: 35,
                       height: 35,
-                      decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(100), color: AppColors.blueColorApp),
-                      child: const Icon(LineAwesomeIcons.camera, color: Colors.black, size: 20),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: AppColors.blueColorApp),
+                      child: const Icon(LineAwesomeIcons.camera,
+                          color: Colors.black, size: 20),
                     ),
                   ),
                 ],
@@ -66,17 +55,20 @@ class UpdateProfileScreen extends StatelessWidget {
                   children: [
                     TextFormField(
                       decoration: const InputDecoration(
-                          label: Text("Full Name"), prefixIcon: Icon(LineAwesomeIcons.user)),
+                          label: Text("Full Name"),
+                          prefixIcon: Icon(LineAwesomeIcons.user)),
                     ),
                     const SizedBox(height: 40 - 20),
                     TextFormField(
                       decoration: const InputDecoration(
-                          label: Text("Email"), prefixIcon: Icon(LineAwesomeIcons.envelope_1)),
+                          label: Text("Email"),
+                          prefixIcon: Icon(LineAwesomeIcons.envelope_1)),
                     ),
                     const SizedBox(height: 40 - 20),
                     TextFormField(
                       decoration: const InputDecoration(
-                          label: Text(kMobileNumber), prefixIcon: Icon(LineAwesomeIcons.phone)),
+                          label: Text(kMobileNumber),
+                          prefixIcon: Icon(LineAwesomeIcons.phone)),
                     ),
                     const SizedBox(height: 40 - 20),
                     TextFormField(
@@ -84,8 +76,9 @@ class UpdateProfileScreen extends StatelessWidget {
                       decoration: InputDecoration(
                         label: const Text(kPassword),
                         prefixIcon: const Icon(Icons.fingerprint),
-                        suffixIcon:
-                        IconButton(icon: const Icon(LineAwesomeIcons.eye_slash), onPressed: () {}),
+                        suffixIcon: IconButton(
+                            icon: const Icon(LineAwesomeIcons.eye_slash),
+                            onPressed: () {}),
                       ),
                     ),
                     const SizedBox(height: 40),
@@ -99,7 +92,8 @@ class UpdateProfileScreen extends StatelessWidget {
                             backgroundColor: AppColors.blueColorApp,
                             side: BorderSide.none,
                             shape: const StadiumBorder()),
-                        child:  Text("Edit Profile", style: TextStyle(color: AppColors.whiteColor)),
+                        child: Text("Edit Profile",
+                            style: TextStyle(color: AppColors.whiteColor)),
                       ),
                     ),
                     const SizedBox(height: 40),
@@ -115,14 +109,17 @@ class UpdateProfileScreen extends StatelessWidget {
                             children: [
                               TextSpan(
                                   text: " 12 june 2023",
-                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12))
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12))
                             ],
                           ),
                         ),
                         ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.redAccent.withOpacity(0.1),
+                              backgroundColor:
+                                  Colors.redAccent.withOpacity(0.1),
                               elevation: 0,
                               foregroundColor: Colors.red,
                               shape: const StadiumBorder(),
