@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:spinwheel/Controller/Utils/CustomFileds/CustomAppBar.dart';
+import 'package:spinwheel/Spinner/spinController.dart';
 import 'package:spinwheel/adminviews/sideDrawer.dart';
-import 'package:spinwheel/app/Spinner/ProfileScreen.dart';
-import 'package:spinwheel/app/Spinner/spinController.dart';
 
 import '../../Controller/Helper/BuildText/BuildText.dart';
 import '../../Controller/ProjectController/SpinnerControllers/GameScreenMainController/game_screen_main_controller.dart';
 import '../../Controller/Utils/Colors/custom_color.dart';
 import '../../Controller/Utils/StringDefine/StringDefine.dart';
-import 'ProfileScreen.dart';
 
 class SpinnerHomeScreen extends StatelessWidget {
   SpinnerHomeScreen({super.key});
@@ -28,7 +26,7 @@ class SpinnerHomeScreen extends StatelessWidget {
             child: Scaffold(
           appBar: AppBar(
             backgroundColor: AppColors.blueColorApp,
-            title: BuildText.buildText(text: "Satish Ji Ludo"),
+            title: BuildText.buildText(text: "Spin N Win"),
             centerTitle: true,
             actions: [
               IconButton(
@@ -51,7 +49,7 @@ class SpinnerHomeScreen extends StatelessWidget {
                 children: [
                   WheelSpin(
                     controller: wheelSpinController,
-                    pathImage: 'assets/images/spin2.png',
+                    pathImage: 'assets/spinner/images/spin2.png',
                     withWheel: 300,
                     pieces: 15,
                     speed: 500,

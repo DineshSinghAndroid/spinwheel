@@ -53,6 +53,9 @@ dependencies:
   neopop:
   line_awesome_flutter:
   carousel_slider: ^4.2.1
+  text_scroll: ^0.2.0
+  webview_flutter_android:
+  webview_flutter:
 
 
 dev_dependencies:
@@ -68,7 +71,7 @@ dev_dependencies:
   flutter_launcher_icons: "^0.9.0"
 
 flutter_icons:
-  image_path: "assets/images/spin2.png"
+  image_path: "assets/common/ludoBoard.png"
   android: true
   ios: true
   min_sdk_android: 21

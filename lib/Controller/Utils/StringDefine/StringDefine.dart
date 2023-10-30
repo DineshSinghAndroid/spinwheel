@@ -164,5 +164,6 @@ const String kLudoBoard = 'assets/common/ludoBoard.png';
 const String kSnackladde = 'assets/common/snackladder.png';
 const String kSpinwheel = 'assets/common/spinwheel.png';
 const String kColorPrediction = 'assets/common/colorPrediction.jpg';
+const String kAviator = 'assets/common/aviator.jpg';
 
 const String kPlayAndWiin = 'assets/common/spinWheelBanner.jpg';

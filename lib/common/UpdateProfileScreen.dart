@@ -5,9 +5,9 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:spinwheel/Controller/Utils/CustomFileds/CustomAppBar.dart';
 import 'package:spinwheel/Controller/Utils/StringDefine/StringDefine.dart';
-import 'package:spinwheel/app/Spinner/ProfileScreen.dart';
 
 import '../../Controller/Utils/Colors/custom_color.dart';
+import 'ProfileScreen.dart';
 
 class UpdateProfileScreen extends StatelessWidget {
   const UpdateProfileScreen({Key? key}) : super(key: key);

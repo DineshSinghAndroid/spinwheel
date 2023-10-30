@@ -14,4 +14,15 @@ const String adminbankDetailsScreen = "bankDetails_screen";
 
 /******************************************************************Spinner  *********************************************/
 
-const String spinnerHomeScreenScreen = "spinnerHomeScreen_screen";
+const String spinnerHomeScreen = "spinnerHomeScreen_screen";
+/******************************************************************ludo ameHom Screen  *********************************************/
+
+const String ludoGameHomeScreen = "ludoGameHomeScreen_screen";
+
+/******************************************************************color Screen  *********************************************/
+
+const String colorPredictionGame = "colorPredictionGame_screen";
+
+/******************************************************************color Screen  *********************************************/
+
+const String spinandwheelGame = "spinandwheelGame_screen";

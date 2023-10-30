@@ -5,10 +5,11 @@ import 'package:spinwheel/Controller/Utils/Colors/custom_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:neopop/widgets/buttons/neopop_tilted_button/neopop_tilted_button.dart';
+import 'package:text_scroll/text_scroll.dart';
 
 import '../Controller/Helper/BuildText/BuildText.dart';
 import '../Controller/Utils/StringDefine/StringDefine.dart';
-import '../app/Spinner/ProfileScreen.dart';
+import 'ProfileScreen.dart';
 
 class AppOnBoardingScreen extends StatelessWidget {
   AppOnBoardingScreen({super.key});
@@ -22,7 +23,7 @@ class AppOnBoardingScreen extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: AppColors.blueColorApp,
+            backgroundColor: AppColors.purpleColor,
             title: BuildText.buildText(text: "Player Ultimate"),
             centerTitle: true,
             actions: [
@@ -32,7 +33,7 @@ class AppOnBoardingScreen extends StatelessWidget {
               buildSizeBox(0.0, 5.0),
             ],
           ),
-          drawer: Container(width: Get.width / 1.1, child: ProfileScreen()),
+          drawer: Container(width: Get.width / 1.2, child: ProfileScreen()),
           backgroundColor: AppColors.scaffoldBackgroundColor,
           body: SingleChildScrollView(
             child: SafeArea(
@@ -45,34 +46,56 @@ class AppOnBoardingScreen extends StatelessWidget {
                         Lottie.asset(kBackgoundhomeLottie, fit: BoxFit.cover),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: CarouselSlider(
-                      options: CarouselOptions(
-                          enlargeCenterPage: false,
-                          viewportFraction: 1.0,
-                          enableInfiniteScroll: true,
-                          autoPlay: true,
-                          pageSnapping: true,
-                          aspectRatio: 6 / 3),
-                      items: _appCtrl.topSliderImages.map((i) {
-                        return Builder(
-                          builder: (BuildContext context) {
-                            return Container(
-                              // height: 250,
+                    padding: const EdgeInsets.only(top: 5),
+                    child: Column(
+                      children: [
+                        CarouselSlider(
+                          options: CarouselOptions(
+                              enlargeCenterPage: false,
+                              viewportFraction: 1.0,
+                              enableInfiniteScroll: true,
+                              autoPlay: true,
+                              pageSnapping: true,
+                              aspectRatio: 6 / 3),
+                          items: _appCtrl.topSliderImages.map((i) {
+                            return Builder(
+                              builder: (BuildContext context) {
+                                return Container(
+                                  // height: 250,
 
-                              width: Get.width,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage(i), fit: BoxFit.cover)),
+                                  width: Get.width,
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: AssetImage(i),
+                                          fit: BoxFit.cover)),
+                                );
+                              },
                             );
-                          },
-                        );
-                      }).toList(),
+                          }).toList(),
+                        ),
+                        buildSizeBox(10.0, 0.0),
+                        Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 0, vertical: 6),
+                          decoration: BoxDecoration(color: Colors.red),
+                          child: TextScroll(
+                            _appCtrl.textSlider[0],
+                            mode: TextScrollMode.endless,
+                            velocity: Velocity(pixelsPerSecond: Offset(150, 0)),
+                            delayBefore: Duration(milliseconds: 5000),
+                            numberOfReps: 999999,
+                            pauseBetween: Duration(milliseconds: 5000),
+                            style: TextStyle(color: Colors.white),
+                            textAlign: TextAlign.right,
+                            selectable: true,
+                          ),
+                        )
+                      ],
                     ),
                   ),
                   Padding(
                     padding:
-                        const EdgeInsets.only(top: 250, right: 10, left: 10),
+                        const EdgeInsets.only(top: 230, right: 10, left: 10),
                     child: GridView.builder(
                       physics: NeverScrollableScrollPhysics(),
                       itemCount: _appCtrl.gameImages.length,

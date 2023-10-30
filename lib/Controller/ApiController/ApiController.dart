@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:spinwheel/app/Spinner/spinner_onboarding_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart' as G;

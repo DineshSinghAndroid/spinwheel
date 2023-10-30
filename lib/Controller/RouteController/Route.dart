@@ -5,10 +5,12 @@ import 'package:spinwheel/adminviews/admin_usermanagement_screen.dart';
 import 'package:spinwheel/adminviews/admin_widthdrawalHistory_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../../app/Spinner/spinner_onboarding_screen.dart';
+import '../../ColorPrediction/color_prediction_home_screen.dart';
+import '../../LudoGame/LudoHomeScreen.dart';
+import '../../Spinner/gameScreen.dart';
+import '../../Spinner/spinner_onboarding_screen.dart';
 import '../../adminviews/admin_dashboard_screen.dart';
-import '../../app/Spinner/gameScreen.dart';
-import '../../common/app_onboarding_screen.dart';
+import '../../common/app_home_screen.dart';
 import 'RouteNames.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -52,9 +54,17 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     /****************************************************************** spinner routes *********************************************/
 
     ///Game screen
-    case adminbankDetailsScreen:
+    case spinnerHomeScreen:
       return MaterialPageRoute(builder: (context) => SpinnerHomeScreen());
 
+    /****************************************************************** Ludo Game routes *********************************************/
+    case ludoGameHomeScreen:
+      return MaterialPageRoute(builder: (context) => LudoHomeScreen());
+
+    /******************************************************************colorPredictionGameroutes *********************************************/
+    case colorPredictionGame:
+      return MaterialPageRoute(
+          builder: (context) => ColorPredictionHomeScreen());
     default:
       return MaterialPageRoute(builder: (context) => SpinnerOnboardingScreen());
   }

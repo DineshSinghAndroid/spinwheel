@@ -6,7 +6,6 @@ import 'Controller/Utils/CustomFileds/ButtonCustom.dart';
 import 'Controller/Utils/StringDefine/StringDefine.dart';
 import 'package:spinwheel/Controller/RouteController/Route.dart' as router;
 
-import 'app/Spinner/gameScreen.dart';
 
 void main() {
   runApp(const MyApp());
