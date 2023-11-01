@@ -89,13 +89,13 @@ class AppOnBoardingScreen extends StatelessWidget {
                             textAlign: TextAlign.right,
                             selectable: true,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
                   Padding(
                     padding:
-                        const EdgeInsets.only(top: 230, right: 10, left: 10),
+                        const EdgeInsets.only(top: 250, right: 10, left: 10),
                     child: GridView.builder(
                       physics: NeverScrollableScrollPhysics(),
                       itemCount: _appCtrl.gameImages.length,

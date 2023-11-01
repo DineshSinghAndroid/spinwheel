@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import '../Colors/custom_color.dart';
 import '../StringDefine/StringDefine.dart';
@@ -19,15 +20,8 @@ class LoadingWidget extends StatelessWidget {
     return SizedBox(
       height: height,
       width: width,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Center(
-              child: Lottie.asset(kLoadingLottie,
-                  height: 120, width: 120, fit: BoxFit.cover)),
-        ],
-      ),
+      child: Image.asset('assets/common/loading1.gif',
+          height: Get.height, width: Get.width, fit: BoxFit.fitHeight),
     );
   }
 }

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:spinwheel/Controller/Utils/CustomFileds/CustomAppBar.dart';
+import 'package:spinwheel/Controller/Utils/Loader/LoadScreen/LoadScreen.dart';
 import 'package:spinwheel/LudoGame/ludoHomeScreenController.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -140,6 +141,8 @@ class _LudoHomeScreenState extends State<LudoHomeScreen> {
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (int progress) {
+            _ludoCtrl.isLoading.value = true;
+            _ludoCtrl.update();
             debugPrint('WebView is loading (progress : $progress%)');
           },
           onPageStarted: (String url) {
@@ -147,6 +150,8 @@ class _LudoHomeScreenState extends State<LudoHomeScreen> {
           },
           onPageFinished: (String url) {
             debugPrint('Page finished loading: $url');
+            _ludoCtrl.isLoading.value = false;
+            _ludoCtrl.update();
           },
           onWebResourceError: (WebResourceError error) {
             debugPrint('''
@@ -205,7 +210,14 @@ Page resource error:
         // leading: IconButton(onPressed: () {}, icon: Icon(Icons.home))
       ),
       backgroundColor: Colors.green,
-      body: SafeArea(child: WebViewWidget(controller: _controller)),
+      body: GetBuilder(
+        init: _ludoCtrl,
+        builder: (controller) {
+          return LoadScreen(
+              widget: SafeArea(child: WebViewWidget(controller: _controller)),
+              isLoading: _ludoCtrl.isLoading.value);
+        },
+      ),
     );
   }
 }
