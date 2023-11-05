@@ -118,8 +118,11 @@ class _LudoHomeScreenState extends State<LudoHomeScreen> {
 
   @override
   void initState() {
+    inits();
     super.initState();
+  }
 
+  inits() {
     // #docregion platform_features
     late final PlatformWebViewControllerCreationParams params;
     if (WebViewPlatform.instance is WebKitWebViewPlatform) {
@@ -144,14 +147,16 @@ class _LudoHomeScreenState extends State<LudoHomeScreen> {
             _ludoCtrl.isLoading.value = true;
             _ludoCtrl.update();
             debugPrint('WebView is loading (progress : $progress%)');
+            if (progress > 99) {
+              _ludoCtrl.isLoading.value = false;
+              _ludoCtrl.update();
+            }
           },
           onPageStarted: (String url) {
             debugPrint('Page started loading: $url');
           },
           onPageFinished: (String url) {
             debugPrint('Page finished loading: $url');
-            _ludoCtrl.isLoading.value = false;
-            _ludoCtrl.update();
           },
           onWebResourceError: (WebResourceError error) {
             debugPrint('''
@@ -163,7 +168,7 @@ Page resource error:
           ''');
           },
           onNavigationRequest: (NavigationRequest request) {
-            if (request.url.startsWith('https://ludokingworld.com/')) {
+            if (request.url.startsWith('https://sikarludo.com/')) {
               debugPrint('blocking navigation to ${request.url}');
               return NavigationDecision.prevent;
             }
@@ -183,7 +188,7 @@ Page resource error:
           );
         },
       )
-      ..loadRequest(Uri.parse('https://ludokingworld.com/'));
+      ..loadRequest(Uri.parse('https://sikarludo.com/'));
 
     // #docregion platform_features
     if (controller.platform is AndroidWebViewController) {
