@@ -6,7 +6,8 @@ import 'package:spinwheel/adminviews/admin_widthdrawalHistory_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../ColorPrediction/color_prediction_home_screen.dart';
-import '../../LudoGame/LudoHomeScreen.dart';
+ import '../../JackpotGame/jackpot_game_screen.dart';
+import '../../LudoGames/LudoHomeScreen.dart';
 import '../../Spinner/gameScreen.dart';
 import '../../Spinner/spinner_onboarding_screen.dart';
 import '../../adminviews/admin_dashboard_screen.dart';
@@ -60,6 +61,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     /****************************************************************** Ludo Game routes *********************************************/
     case ludoGameHomeScreen:
       return MaterialPageRoute(builder: (context) => LudoHomeScreen());
+      /******************************************************************Jackpot Game routes *********************************************/
+    case jackpotGameScreen:
+      return MaterialPageRoute(builder: (context) => JackpotGameScreen());
 
     /******************************************************************colorPredictionGameroutes *********************************************/
     case colorPredictionGame:

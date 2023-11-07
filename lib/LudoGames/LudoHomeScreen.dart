@@ -13,7 +13,7 @@ import 'package:webview_flutter_android/webview_flutter_android.dart';
 // Import for iOS features.
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 
-import 'color_prediction_controller.dart';
+import 'ludoHomeScreenController.dart';
 // #enddocregion platform_imports
 
 const String kNavigationExamplePage = '''
@@ -102,17 +102,17 @@ const String kLogExamplePage = '''
 </html>
 ''';
 
-class ColorPredictionHomeScreen extends StatefulWidget {
-  const ColorPredictionHomeScreen({super.key});
+class LudoHomeScreen extends StatefulWidget {
+  const LudoHomeScreen({super.key});
 
   @override
-  State<ColorPredictionHomeScreen> createState() => _LudoHomeScreenState();
+  State<LudoHomeScreen> createState() => _LudoHomeScreenState();
 }
 
-class _LudoHomeScreenState extends State<ColorPredictionHomeScreen> {
+class _LudoHomeScreenState extends State<LudoHomeScreen> {
   late final WebViewController _controller;
-  ColorPredictionHomeScreenController _colorCtrl =
-  Get.put(ColorPredictionHomeScreenController());
+  final LudoHomeScreenController _ludoCtrl = Get.put(LudoHomeScreenController());
+
   @override
   void initState() {
     inits();
@@ -132,7 +132,7 @@ class _LudoHomeScreenState extends State<ColorPredictionHomeScreen> {
     }
 
     final WebViewController controller =
-    WebViewController.fromPlatformCreationParams(params);
+        WebViewController.fromPlatformCreationParams(params);
     // #enddocregion platform_features
 
     controller
@@ -141,12 +141,12 @@ class _LudoHomeScreenState extends State<ColorPredictionHomeScreen> {
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (int progress) {
-            _colorCtrl.isLoading.value = true;
-            _colorCtrl.update();
+            _ludoCtrl.isLoading.value = true;
+            _ludoCtrl.update();
             debugPrint('WebView is loading (progress : $progress%)');
             if (progress > 99) {
-              _colorCtrl.isLoading.value = false;
-              _colorCtrl.update();
+              _ludoCtrl.isLoading.value = false;
+              _ludoCtrl.update();
             }
           },
           onPageStarted: (String url) {
@@ -165,7 +165,7 @@ Page resource error:
           ''');
           },
           onNavigationRequest: (NavigationRequest request) {
-            if (request.url.startsWith('https://colorbricks.ludokingworld.com/index.php')) {
+            if (request.url.startsWith('https://no.com/')) {
               debugPrint('blocking navigation to ${request.url}');
               return NavigationDecision.prevent;
             }
@@ -185,7 +185,7 @@ Page resource error:
           );
         },
       )
-      ..loadRequest(Uri.parse('https://colorbricks.ludokingworld.com/index.php?for=mobile'));
+      ..loadRequest(Uri.parse('https://ludokingworld.com/'));
 
     // #docregion platform_features
     if (controller.platform is AndroidWebViewController) {
@@ -213,17 +213,17 @@ Page resource error:
       ),
       backgroundColor: Colors.green,
       body: GetBuilder(
-        init: _colorCtrl,
+        init: _ludoCtrl,
         builder: (controller) {
           return Container(
             decoration: BoxDecoration(
-                color: Colors.black
+              color: Colors.black
             ),
             child: LoadScreen(
                 widget: SafeArea(child: WebViewWidget(
 
                     controller: _controller)),
-                isLoading: _colorCtrl.isLoading.value),
+                isLoading: _ludoCtrl.isLoading.value),
           );
         },
       ),

@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
         ),
       );
     };
-    return GetMaterialApp(
+    return const GetMaterialApp(
       initialRoute: onboardingScreen,
       // home: GameScreenMain(),
       debugShowCheckedModeBanner: false,

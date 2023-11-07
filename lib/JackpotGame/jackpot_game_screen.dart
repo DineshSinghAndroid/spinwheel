@@ -1,15 +1,10 @@
-import 'dart:async';
-import 'dart:convert';
-import 'dart:io';
-import 'dart:typed_data';
+
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:spinwheel/Controller/Utils/CustomFileds/CustomAppBar.dart';
 import 'package:spinwheel/Controller/Utils/Loader/LoadScreen/LoadScreen.dart';
-import 'package:spinwheel/LudoGame/ludoHomeScreenController.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+ import 'package:webview_flutter/webview_flutter.dart';
 
 // #docregion platform_imports
 // Import for Android features.
@@ -17,6 +12,8 @@ import 'package:webview_flutter_android/webview_flutter_android.dart';
 
 // Import for iOS features.
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
+
+import 'JackpotController.dart';
 // #enddocregion platform_imports
 
 const String kNavigationExamplePage = '''
@@ -105,16 +102,16 @@ const String kLogExamplePage = '''
 </html>
 ''';
 
-class LudoHomeScreen extends StatefulWidget {
-  const LudoHomeScreen({super.key});
+class JackpotGameScreen extends StatefulWidget {
+  const JackpotGameScreen({super.key});
 
   @override
-  State<LudoHomeScreen> createState() => _LudoHomeScreenState();
+  State<JackpotGameScreen> createState() => _LudoHomeScreenState();
 }
 
-class _LudoHomeScreenState extends State<LudoHomeScreen> {
+class _LudoHomeScreenState extends State<JackpotGameScreen> {
   late final WebViewController _controller;
-  LudoHomeScreenController _ludoCtrl = Get.put(LudoHomeScreenController());
+  final JackpotScreenController _jackpotCtrl = Get.put(JackpotScreenController());
 
   @override
   void initState() {
@@ -144,12 +141,12 @@ class _LudoHomeScreenState extends State<LudoHomeScreen> {
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (int progress) {
-            _ludoCtrl.isLoading.value = true;
-            _ludoCtrl.update();
+            _jackpotCtrl.isLoading.value = true;
+            _jackpotCtrl.update();
             debugPrint('WebView is loading (progress : $progress%)');
             if (progress > 99) {
-              _ludoCtrl.isLoading.value = false;
-              _ludoCtrl.update();
+              _jackpotCtrl.isLoading.value = false;
+              _jackpotCtrl.update();
             }
           },
           onPageStarted: (String url) {
@@ -168,7 +165,7 @@ Page resource error:
           ''');
           },
           onNavigationRequest: (NavigationRequest request) {
-            if (request.url.startsWith('https://sikarludo.com/')) {
+            if (request.url.startsWith('https://no.com/')) {
               debugPrint('blocking navigation to ${request.url}');
               return NavigationDecision.prevent;
             }
@@ -188,7 +185,7 @@ Page resource error:
           );
         },
       )
-      ..loadRequest(Uri.parse('https://sikarludo.com/'));
+      ..loadRequest(Uri.parse('https://ludokingworld.com/'));
 
     // #docregion platform_features
     if (controller.platform is AndroidWebViewController) {
@@ -205,7 +202,7 @@ Page resource error:
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        text: "Ludo King World",
+        text: "Ludo",
         action: [
           IconButton(
             icon: const Icon(Icons.replay),
@@ -216,11 +213,18 @@ Page resource error:
       ),
       backgroundColor: Colors.green,
       body: GetBuilder(
-        init: _ludoCtrl,
+        init: _jackpotCtrl,
         builder: (controller) {
-          return LoadScreen(
-              widget: SafeArea(child: WebViewWidget(controller: _controller)),
-              isLoading: _ludoCtrl.isLoading.value);
+          return Container(
+            decoration: BoxDecoration(
+              color: Colors.black
+            ),
+            child: LoadScreen(
+                widget: SafeArea(child: WebViewWidget(
+
+                    controller: _controller)),
+                isLoading: _jackpotCtrl.isLoading.value),
+          );
         },
       ),
     );

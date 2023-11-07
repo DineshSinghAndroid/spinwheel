@@ -24,7 +24,7 @@ class AppOnBoardingScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: AppColors.purpleColor,
-            title: BuildText.buildText(text: "Player Ultimate"),
+            title: BuildText.buildText(text: "Shekhawati Gaming Club"),
             centerTitle: true,
             actions: [
               IconButton(onPressed: () {}, icon: Icon(Icons.volume_down)),
@@ -33,7 +33,8 @@ class AppOnBoardingScreen extends StatelessWidget {
               buildSizeBox(0.0, 5.0),
             ],
           ),
-          drawer: Container(width: Get.width / 1.2, child: ProfileScreen()),
+          ///profile screen comment
+          // drawer: Container(width: Get.width / 1.2, child: ProfileScreen()),
           backgroundColor: AppColors.scaffoldBackgroundColor,
           body: SingleChildScrollView(
             child: SafeArea(

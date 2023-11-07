@@ -26,3 +26,6 @@ const String colorPredictionGame = "colorPredictionGame_screen";
 /******************************************************************color Screen  *********************************************/
 
 const String spinandwheelGame = "spinandwheelGame_screen";
+/******************************************************************jackpot GameS creen    *********************************************/
+
+const String jackpotGameScreen = "jackpotGameScreen_screen";

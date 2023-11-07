@@ -17,11 +17,13 @@ class LoadingWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
-    return SizedBox(
-      height: height,
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.blackColor
+      ),   height: height,
       width: width,
-      child: Image.asset('assets/common/loading1.gif',
-          height: Get.height, width: Get.width, fit: BoxFit.fitHeight),
+      child:Lottie.asset("assets/spinner/lottie/loading3.json",
+           ),
     );
   }
 }
