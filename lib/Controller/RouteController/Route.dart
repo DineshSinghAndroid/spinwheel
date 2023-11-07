@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import '../../ColorPrediction/color_prediction_home_screen.dart';
  import '../../JackpotGame/jackpot_game_screen.dart';
 import '../../LudoGames/LudoHomeScreen.dart';
-import '../../Spinner/gameScreen.dart';
+import '../../Spinner/spinner_gameScreen.dart';
 import '../../Spinner/spinner_onboarding_screen.dart';
 import '../../adminviews/admin_dashboard_screen.dart';
 import '../../common/app_home_screen.dart';

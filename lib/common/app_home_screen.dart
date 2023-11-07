@@ -5,8 +5,10 @@ import 'package:spinwheel/Controller/Utils/Colors/custom_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:neopop/widgets/buttons/neopop_tilted_button/neopop_tilted_button.dart';
+import 'package:spinwheel/LudoGames/ludoHomeScreenController.dart';
 import 'package:text_scroll/text_scroll.dart';
 
+import '../ColorPrediction/color_prediction_controller.dart';
 import '../Controller/Helper/BuildText/BuildText.dart';
 import '../Controller/Utils/StringDefine/StringDefine.dart';
 import 'ProfileScreen.dart';
@@ -15,7 +17,9 @@ class AppOnBoardingScreen extends StatelessWidget {
   AppOnBoardingScreen({super.key});
 
   final AppOnboardingControlller _appCtrl = Get.put(AppOnboardingControlller());
-
+  ///Initialise ludo ctrl here
+  LudoHomeScreenController _ludoGameCtrl = Get.put(LudoHomeScreenController());
+  ColorPredictionHomeScreenController _colorCtrl = Get.put(ColorPredictionHomeScreenController());
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
