@@ -28,7 +28,7 @@ class AppOnBoardingScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: AppColors.purpleColor,
-            title: BuildText.buildText(text: "Shekhawati Gaming Club"),
+            title: BuildText.buildText(text: "Ludo King World"),
             centerTitle: true,
             actions: [
               IconButton(onPressed: () {}, icon: Icon(Icons.volume_down)),

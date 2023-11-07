@@ -84,7 +84,7 @@ Page resource error:
           Get.snackbar(message.message, "");
         },
       )
-      ..loadRequest(Uri.parse('https://ludokingworld.com/'));
+      ..loadRequest(Uri.parse('https://shekhawatiludo.com/'));
 
     // #docregion platform_features
     if (controller.platform is AndroidWebViewController) {
