@@ -3,15 +3,16 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:xen_popup_card/xen_popup_card.dart';
 
+import '../../../../CommonScreens/loginAndSignupColumns.dart';
 import '../../../../Models/CommonModels/RegisterModel.dart';
-import '../../../../common/loginAndSignupColumns.dart';
+import '../../../../CommonScreens/loginAndSignupColumns.dart';
 import '../../../ApiController/ApiController.dart';
 import '../../../ApiController/WebConstant.dart';
 import '../../../RouteController/RouteNames.dart';
 import '../../../Utils/Colors/custom_color.dart';
 import '../../../Utils/Utils.dart';
 
-class SpinnerOnBoardingController extends GetxController {
+class AppOnboardingController extends GetxController {
   ApiController _apiCtrl = ApiController();
 
   TextEditingController userNameCtrl = TextEditingController();
@@ -80,7 +81,7 @@ class SpinnerOnBoardingController extends GetxController {
       ));
 
   onTapRegister(BuildContext context) {
-    Get.toNamed(appHomeScreen);
+    Get.toNamed(apphomeScreen);
     signUpApi(context: context);
   }
 
@@ -119,7 +120,7 @@ class SpinnerOnBoardingController extends GetxController {
             if (result.status != false) {
               Utils.printLog("Status is :::::::;${result.status}");
               ToastCustom.showToast(msg: result.message ?? "asdasfafasfasf");
-              Get.toNamed(appHomeScreen);
+              Get.toNamed(apphomeScreen);
             }
             changeLoadingValue(false);
             changeSuccessValue(true);

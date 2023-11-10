@@ -6,7 +6,7 @@ import 'package:spinwheel/Controller/Utils/CustomFileds/CustomAppBar.dart';
 import 'package:spinwheel/Controller/Utils/StringDefine/StringDefine.dart';
 
 import '../../Controller/Utils/Colors/custom_color.dart';
-import '../../common/ProfileMenuWidget.dart';
+import '../../CommonScreens/ProfileMenuWidget.dart';
 import 'UpdateProfileScreen.dart';
 
 class ProfileScreen extends StatelessWidget {

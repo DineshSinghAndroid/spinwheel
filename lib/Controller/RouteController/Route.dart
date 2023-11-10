@@ -5,20 +5,22 @@ import 'package:spinwheel/adminviews/admin_usermanagement_screen.dart';
 import 'package:spinwheel/adminviews/admin_widthdrawalHistory_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../../ColorPrediction/color_prediction_home_screen.dart';
- import '../../JackpotGame/jackpot_game_screen.dart';
-import '../../LudoGames/LudoHomeScreen.dart';
-import '../../Spinner/spinner_gameScreen.dart';
-import '../../Spinner/spinner_onboarding_screen.dart';
+import '../../GamesViews/ColorPrediction/color_prediction_home_screen.dart';
+import '../../GamesViews/JackpotGame/jackpot_game_screen.dart';
+import '../../GamesViews/LudoGames/LudoHomeScreen.dart';
+import '../../GamesViews/Spinner/spinner_gameScreen.dart';
+import '../../CommonScreens/app_onboarding_screen.dart';
 import '../../adminviews/admin_dashboard_screen.dart';
-import '../../common/app_home_screen.dart';
+import '../../CommonScreens/app_home_screen.dart';
 import 'RouteNames.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     ///Onboarding
     case onboardingScreen:
-      return MaterialPageRoute(builder: (context) => AppOnBoardingScreen());
+      return MaterialPageRoute(builder: (context) => AppOnboardingScreen());
+    case apphomeScreen:
+      return MaterialPageRoute(builder: (context) => AppHomeScreen());
 
     // ///Game screen
     // case gameScreen:
@@ -61,7 +63,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     /****************************************************************** Ludo Game routes *********************************************/
     case ludoGameHomeScreen:
       return MaterialPageRoute(builder: (context) => LudoHomeScreen());
-      /******************************************************************Jackpot Game routes *********************************************/
+    /******************************************************************Jackpot Game routes *********************************************/
     case jackpotGameScreen:
       return MaterialPageRoute(builder: (context) => JackpotGameScreen());
 
@@ -70,6 +72,6 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(
           builder: (context) => ColorPredictionHomeScreen());
     default:
-      return MaterialPageRoute(builder: (context) => SpinnerOnboardingScreen());
+      return MaterialPageRoute(builder: (context) => AppOnboardingScreen());
   }
 }

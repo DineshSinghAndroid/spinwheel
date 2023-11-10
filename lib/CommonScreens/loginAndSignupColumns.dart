@@ -6,13 +6,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:neopop/widgets/buttons/neopop_tilted_button/neopop_tilted_button.dart';
 
 import '../Controller/Helper/BuildText/BuildText.dart';
-import '../Controller/ProjectController/SpinnerControllers/OnboardingController/spinner_onboarding_controller.dart';
+import '../Controller/ProjectController/common/OnboardingController/appOnboardingController.dart';
 
 class LoginColumn extends StatelessWidget {
   LoginColumn({super.key});
 
-  final SpinnerOnBoardingController _onBdCtrl =
-  Get.put(SpinnerOnBoardingController());
+  final AppOnboardingController _onBdCtrl = Get.put(AppOnboardingController());
 
   @override
   Widget build(BuildContext context) {
@@ -132,8 +131,7 @@ class LoginColumn extends StatelessWidget {
 class RegisterColumn extends StatelessWidget {
   RegisterColumn({super.key});
 
-  final SpinnerOnBoardingController _onBdCtrl =
-  Get.put(SpinnerOnBoardingController());
+  final AppOnboardingController _onBdCtrl = Get.put(AppOnboardingController());
 
   @override
   Widget build(BuildContext context) {

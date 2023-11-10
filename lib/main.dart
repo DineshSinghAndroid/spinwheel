@@ -1,3 +1,5 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -6,9 +8,15 @@ import 'Controller/Utils/CustomFileds/ButtonCustom.dart';
 import 'Controller/Utils/StringDefine/StringDefine.dart';
 import 'package:spinwheel/Controller/RouteController/Route.dart' as router;
 
+import 'CommonScreens/app_onboarding_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  // runApp(DevicePreview(
+  //   enabled: !kReleaseMode,
+  //   builder: (context) => const MyApp(),
+  // ));
+
+  runApp(MyApp());
 }
 
 String authToken = "";
@@ -49,9 +57,9 @@ class MyApp extends StatelessWidget {
         ),
       );
     };
-    return const GetMaterialApp(
+    return GetMaterialApp(
       initialRoute: onboardingScreen,
-      // home: GameScreenMain(),
+      home: AppOnboardingScreen(),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
     );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:spinwheel/Controller/Utils/CustomFileds/CustomAppBar.dart';
-import 'package:spinwheel/Spinner/spinController.dart';
+import 'package:spinwheel/GamesViews/Spinner/spinController.dart';
 import 'package:spinwheel/adminviews/sideDrawer.dart';
 
 import '../../Controller/Helper/BuildText/BuildText.dart';
