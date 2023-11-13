@@ -10,7 +10,7 @@ import '../Controller/Helper/BuildText/BuildText.dart';
 import '../Controller/ProjectController/common/app_homescreen_controller.dart';
 import '../Controller/Utils/StringDefine/StringDefine.dart';
 import '../GamesViews/ColorPrediction/color_prediction_controller.dart';
-import '../GamesViews/LudoGames/ludoHomeScreenController.dart';
+import '../GamesViews/LudoOnlineWebview/ludoHomeScreenController.dart';
 import 'ProfileScreen.dart';
 
 class AppHomeScreen extends StatelessWidget {

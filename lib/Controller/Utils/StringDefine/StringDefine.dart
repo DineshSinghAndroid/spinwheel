@@ -161,6 +161,8 @@ const String kScreenshotHome = 'assets/spinner/images/section-2-image.png';
 
 ///app
 const String kLudoBoard = 'assets/common/ludoBoard.png';
+const String kludoBoardOffline = 'assets/common/ludoOffline.jpg';
+const String kMegaLudoOnline = 'assets/common/megaludo.png';
 const String kSnackladde = 'assets/common/snackladder.png';
 const String kSpinwheel = 'assets/common/spinwheel.png';
 const String kColorPrediction = 'assets/common/colorPrediction.jpg';

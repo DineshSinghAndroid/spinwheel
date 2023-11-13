@@ -5,11 +5,12 @@ import 'package:spinwheel/Controller/Utils/StringDefine/StringDefine.dart';
 import '../../RouteController/RouteNames.dart';
 
 class AppOnboardingControlller extends GetxController {
-  List gameImages = [
-    kLudoBoard,
+  List gameImages = [kMegaLudoOnline
+    ,
     kJackpot1,
     kColorPrediction,
     kSpinwheel,
+    kludoBoardOffline,
     kAviator,
     kSnackladde,
   ];

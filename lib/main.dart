@@ -9,6 +9,9 @@ import 'Controller/Utils/StringDefine/StringDefine.dart';
 import 'package:spinwheel/Controller/RouteController/Route.dart' as router;
 
 import 'CommonScreens/app_onboarding_screen.dart';
+import 'GamesViews/LudoOffline/boardUI/main_screen.dart';
+import 'GamesViews/LudoOffline/ludo_ui/home.dart';
+import 'GamesViews/LudoOffline/ludo_ui/play_offline/play_offline_players.dart';
 
 void main() {
   // runApp(DevicePreview(
@@ -58,8 +61,8 @@ class MyApp extends StatelessWidget {
       );
     };
     return GetMaterialApp(
-      initialRoute: onboardingScreen,
-      home: AppOnboardingScreen(),
+      // initialRoute: onboardingScreen,
+      home: LudoOfflineGameScreen(),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
     );

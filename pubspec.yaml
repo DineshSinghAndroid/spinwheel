@@ -58,6 +58,8 @@ dependencies:
   webview_flutter:
   device_preview:
   flutter_timer_countdown:
+  just_audio:
+  simple_ripple_animation:
 
 
   #extra
@@ -99,6 +101,9 @@ flutter:
     - assets/spinner/images/
     - assets/spinner/lottie/
     - assets/common/
+    - assets/ludoOffline/
+    - assets/ludoOffline/ludo/
+    - assets/ludoOffline/images/
 
 
 

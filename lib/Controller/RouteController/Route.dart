@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 import '../../GamesViews/ColorPrediction/color_prediction_home_screen.dart';
 import '../../GamesViews/JackpotGame/jackpot_game_screen.dart';
-import '../../GamesViews/LudoGames/LudoHomeScreen.dart';
+import '../../GamesViews/LudoOnlineWebview/LudoHomeScreen.dart';
 import '../../GamesViews/Spinner/spinner_gameScreen.dart';
 import '../../CommonScreens/app_onboarding_screen.dart';
 import '../../adminviews/admin_dashboard_screen.dart';
