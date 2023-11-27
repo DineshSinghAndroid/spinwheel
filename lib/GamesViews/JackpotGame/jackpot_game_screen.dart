@@ -1,10 +1,8 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spinwheel/Controller/Utils/CustomFileds/CustomAppBar.dart';
 import 'package:spinwheel/Controller/Utils/Loader/LoadScreen/LoadScreen.dart';
- import 'package:webview_flutter/webview_flutter.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 // #docregion platform_imports
 // Import for Android features.
@@ -111,7 +109,8 @@ class JackpotGameScreen extends StatefulWidget {
 
 class _LudoHomeScreenState extends State<JackpotGameScreen> {
   late final WebViewController _controller;
-  final JackpotScreenController _jackpotCtrl = Get.put(JackpotScreenController());
+  final JackpotScreenController _jackpotCtrl =
+      Get.put(JackpotScreenController());
 
   @override
   void initState() {
@@ -185,7 +184,7 @@ Page resource error:
           );
         },
       )
-      ..loadRequest(Uri.parse('https://shekhawatiludo.com/'));
+      ..loadRequest(Uri.parse('https://lottery.mobify.shop/'));
 
     // #docregion platform_features
     if (controller.platform is AndroidWebViewController) {
@@ -202,7 +201,7 @@ Page resource error:
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        text: "Ludo",
+        text: "Lucky Jackpot",
         action: [
           IconButton(
             icon: const Icon(Icons.replay),
@@ -216,13 +215,9 @@ Page resource error:
         init: _jackpotCtrl,
         builder: (controller) {
           return Container(
-            decoration: BoxDecoration(
-              color: Colors.black
-            ),
+            decoration: BoxDecoration(color: Colors.black),
             child: LoadScreen(
-                widget: SafeArea(child: WebViewWidget(
-
-                    controller: _controller)),
+                widget: SafeArea(child: WebViewWidget(controller: _controller)),
                 isLoading: _jackpotCtrl.isLoading.value),
           );
         },

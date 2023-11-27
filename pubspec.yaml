@@ -104,6 +104,9 @@ flutter:
     - assets/ludoOffline/
     - assets/ludoOffline/ludo/
     - assets/ludoOffline/images/
+    - assets/ludoOffline/images/dice/
+    - assets/ludoOffline/images/crown/
+    - assets/ludoOffline/sounds/
 
 
 

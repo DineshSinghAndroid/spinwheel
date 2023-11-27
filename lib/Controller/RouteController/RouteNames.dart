@@ -29,3 +29,7 @@ const String spinandwheelGame = "spinandwheelGame_screen";
 /******************************************************************jackpot GameS creen    *********************************************/
 
 const String jackpotGameScreen = "jackpotGameScreen_screen";
+
+/******************************************************************ludo offline GameS creen    *********************************************/
+
+const String ludoOfflineGameScreen = "ludoOfflineGame_screen";

@@ -9,17 +9,19 @@ import 'package:webview_flutter_android/webview_flutter_android.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
 
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
+
 class LudoHomeScreenController extends GetxController {
   @override
   void onInit() {
-    inits( );
+    inits();
     // TODO: implement onInit
     super.onInit();
   }
+
   RxBool isLoading = false.obs;
   late final WebViewController webViewCtrl;
 
-  inits( )async {
+  inits() async {
     print("Init hitted");
     // #docregion platform_features
     late final PlatformWebViewControllerCreationParams params;
@@ -33,7 +35,7 @@ class LudoHomeScreenController extends GetxController {
     }
 
     final WebViewController controller =
-    WebViewController.fromPlatformCreationParams(params);
+        WebViewController.fromPlatformCreationParams(params);
     // #enddocregion platform_features
 
     controller
@@ -84,7 +86,7 @@ Page resource error:
           Get.snackbar(message.message, "");
         },
       )
-      ..loadRequest(Uri.parse('https://shekhawatiludo.com/'));
+      ..loadRequest(Uri.parse('https://ludokingworld.com/'));
 
     // #docregion platform_features
     if (controller.platform is AndroidWebViewController) {

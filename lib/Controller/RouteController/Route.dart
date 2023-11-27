@@ -1,3 +1,4 @@
+import 'package:spinwheel/GamesViews/LudoOffline/boardUI/main_screen.dart';
 import 'package:spinwheel/adminviews/admin_amountSetup_screen.dart';
 import 'package:spinwheel/adminviews/admin_bankDetails_screen.dart';
 import 'package:spinwheel/adminviews/admin_rechargeHistory_screen.dart';
@@ -71,6 +72,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case colorPredictionGame:
       return MaterialPageRoute(
           builder: (context) => ColorPredictionHomeScreen());
+    /******************************************************************ludo Offline   Gameroutes *********************************************/
+    case ludoOfflineGameScreen:
+      return MaterialPageRoute(builder: (context) => MainScreen());
     default:
       return MaterialPageRoute(builder: (context) => AppOnboardingScreen());
   }

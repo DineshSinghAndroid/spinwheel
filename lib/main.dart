@@ -1,33 +1,70 @@
-import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
+import 'package:spinwheel/tetste.dart';
+
 import 'Controller/RouteController/RouteNames.dart';
 import 'Controller/Utils/CustomFileds/ButtonCustom.dart';
 import 'Controller/Utils/StringDefine/StringDefine.dart';
+import 'GamesViews/LudoOffline/boardUI/ludo_provider.dart';
+import 'GamesViews/LudoOffline/ludo_ui/home.dart';
 import 'package:spinwheel/Controller/RouteController/Route.dart' as router;
 
-import 'CommonScreens/app_onboarding_screen.dart';
-import 'GamesViews/LudoOffline/boardUI/main_screen.dart';
-import 'GamesViews/LudoOffline/ludo_ui/home.dart';
-import 'GamesViews/LudoOffline/ludo_ui/play_offline/play_offline_players.dart';
-
-void main() {
-  // runApp(DevicePreview(
-  //   enabled: !kReleaseMode,
-  //   builder: (context) => const MyApp(),
-  // ));
-
-  runApp(MyApp());
+main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  return runApp(ChangeNotifierProvider(
+    create: (_) => LudoProvider(),
+    child: const Root(),
+  ));
 }
 
 String authToken = "";
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Root extends StatefulWidget {
+  const Root({super.key});
 
-  // This widget is the root of your application.
+  @override
+  State<Root> createState() => _RootState();
+}
+
+class _RootState extends State<Root> {
+  @override
+  void initState() {
+    Future.delayed(Duration(seconds: 1)).then((value) => inits());
+
+    super.initState();
+  }
+
+  void inits() {
+    ///Initialize images and precache it
+    precacheImage(
+        const AssetImage("assets/ludoOffline/images/thankyou.gif"), context);
+    precacheImage(
+        const AssetImage("assets/ludoOffline/images/board.png"), context);
+    precacheImage(
+        const AssetImage("assets/ludoOffline/images/dice/1.png"), context);
+    precacheImage(
+        const AssetImage("assets/ludoOffline/images/dice/2.png"), context);
+    precacheImage(
+        const AssetImage("assets/ludoOffline/images/dice/3.png"), context);
+    precacheImage(
+        const AssetImage("assets/ludoOffline/images/dice/4.png"), context);
+    precacheImage(
+        const AssetImage("assets/ludoOffline/images/dice/5.png"), context);
+    precacheImage(
+        const AssetImage("assets/ludoOffline/images/dice/6.png"), context);
+    precacheImage(
+        const AssetImage("assets/ludoOffline/images/dice/draw.gif"), context);
+    precacheImage(
+        const AssetImage("assets/ludoOffline/images/crown/1st.png"), context);
+    precacheImage(
+        const AssetImage("assets/ludoOffline/images/crown/2nd.png"), context);
+    precacheImage(
+        const AssetImage("assets/ludoOffline/images/crown/3rd.png"), context);
+  }
+
   @override
   Widget build(BuildContext context) {
     ErrorWidget.builder = (FlutterErrorDetails details) {
@@ -61,8 +98,8 @@ class MyApp extends StatelessWidget {
       );
     };
     return GetMaterialApp(
-      // initialRoute: onboardingScreen,
-      home: LudoOfflineGameScreen(),
+      initialRoute: onboardingScreen,
+      // home: SpinWheelGame(),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
     );

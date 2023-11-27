@@ -5,13 +5,13 @@ import 'package:spinwheel/Controller/Utils/StringDefine/StringDefine.dart';
 import '../../RouteController/RouteNames.dart';
 
 class AppOnboardingControlller extends GetxController {
-  List gameImages = [kMegaLudoOnline
-    ,
+  List gameImages = [
+    kMegaLudoOnline,
+    kludoBoardOffline,
     kJackpot1,
     kColorPrediction,
     kSpinwheel,
-    kludoBoardOffline,
-    kAviator,
+    // kAviator,
     kSnackladde,
   ];
   List topSliderImages = [kPlayAndWiin, khomebanner2, kPlayAndWiin];
@@ -29,13 +29,17 @@ class AppOnboardingControlller extends GetxController {
     //   // Get.toNamed(colorPredictionGame);
     // }
     //
+    ///jackpot game
     else if (index == 3) {
+      Get.toNamed(jackpotGameScreen);
+    } else if (index == 4) {
       Get.toNamed(colorPredictionGame);
     }
-    // else if (index == 3) {
-    //   Get.toNamed(spinnerHomeScreen);
-    // }
-    else {
+
+    ///Ludo offline
+    else if (index == 2) {
+      Get.toNamed(ludoOfflineGameScreen);
+    } else {
       Get.snackbar(
           "Coming Soon", "This game is yet in development, will available soon",
           snackPosition: SnackPosition.BOTTOM, colorText: Colors.white);
