@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 import '../../GamesViews/ColorPrediction/color_prediction_home_screen.dart';
 import '../../GamesViews/JackpotGame/jackpot_game_screen.dart';
+import '../../GamesViews/LudoOffline/ludo_ui/home.dart';
 import '../../GamesViews/LudoOnlineWebview/LudoHomeScreen.dart';
 import '../../GamesViews/Spinner/spinner_gameScreen.dart';
 import '../../CommonScreens/app_onboarding_screen.dart';
@@ -73,8 +74,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(
           builder: (context) => ColorPredictionHomeScreen());
     /******************************************************************ludo Offline   Gameroutes *********************************************/
-    case ludoOfflineGameScreen:
-      return MaterialPageRoute(builder: (context) => MainScreen());
+    case ludoOfflineGameOnboardingScreen:
+      return MaterialPageRoute(builder: (context) => LudoOfflineGameScreen());
     default:
       return MaterialPageRoute(builder: (context) => AppOnboardingScreen());
   }

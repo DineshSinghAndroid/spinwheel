@@ -32,4 +32,4 @@ const String jackpotGameScreen = "jackpotGameScreen_screen";
 
 /******************************************************************ludo offline GameS creen    *********************************************/
 
-const String ludoOfflineGameScreen = "ludoOfflineGame_screen";
+const String ludoOfflineGameOnboardingScreen = "ludoOfflineGame_screen";

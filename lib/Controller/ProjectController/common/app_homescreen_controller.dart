@@ -38,7 +38,7 @@ class AppOnboardingControlller extends GetxController {
 
     ///Ludo offline
     else if (index == 2) {
-      Get.toNamed(ludoOfflineGameScreen);
+      Get.toNamed(ludoOfflineGameOnboardingScreen);
     } else {
       Get.snackbar(
           "Coming Soon", "This game is yet in development, will available soon",

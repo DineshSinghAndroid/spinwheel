@@ -173,3 +173,11 @@ const String kJackpot1 = 'assets/common/jackpot1.jpg';
 
 const String kPlayAndWiin = 'assets/common/spinWheelBanner.jpg';
 const String khomebanner2 = 'assets/common/homebanner2.jpg';
+
+///Ludo Offline Assets
+const String kLudoOfflineGameBanner1 =
+    'assets/ludoOffline/images/ludoOfflineBanner1.jpg';
+const String kLudoOfflineGameBanner2 =
+    'assets/ludoOffline/images/ludoOfflineBanner2.jpg';
+const String kLudoOfflineGameBanner3 =
+    'assets/ludoOffline/images/ludoOfflineBanner3.jpg';

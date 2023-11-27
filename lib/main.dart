@@ -99,7 +99,7 @@ class _RootState extends State<Root> {
     };
     return GetMaterialApp(
       initialRoute: onboardingScreen,
-      // home: SpinWheelGame(),
+      // home: MyudpateApp(),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
     );

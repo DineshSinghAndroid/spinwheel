@@ -1,73 +1,98 @@
-import 'dart:math';
+import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:in_app_update/in_app_update.dart';
 
-
-class SpinWheelGame extends StatefulWidget {
+class MyudpateApp extends StatefulWidget {
   @override
-  _SpinWheelGameState createState() => _SpinWheelGameState();
+  _MyudpateAppState createState() => _MyudpateAppState();
 }
 
-class _SpinWheelGameState extends State<SpinWheelGame> {
-  final List<Color> colors = [
-    Colors.red,
-    Colors.blue,
-    Colors.green,
-    Colors.yellow,
-    Colors.orange,
-    Colors.purple,
-  ];
+class _MyudpateAppState extends State<MyudpateApp> {
+  AppUpdateInfo? _updateInfo;
 
-  List<Color> spinResult = [];
+  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
 
-  void spinWheel() {
-    spinResult.clear();
-    for (int i = 0; i < 3; i++) {
-      final randomColor = colors[Random().nextInt(colors.length)];
-      spinResult.add(randomColor);
+  bool _flexibleUpdateAvailable = false;
+
+  // Platform messages are asynchronous, so we initialize in an async method.
+  Future<void> checkForUpdate() async {
+    InAppUpdate.checkForUpdate().then((info) {
+      setState(() {
+        _updateInfo = info;
+      });
+    }).catchError((e) {
+      showSnack(e.toString());
+    });
+  }
+
+  void showSnack(String text) {
+    if (_scaffoldKey.currentContext != null) {
+      ScaffoldMessenger.of(_scaffoldKey.currentContext!)
+          .showSnackBar(SnackBar(content: Text(text)));
     }
-    // Add the winners to a list or perform any other action based on the result.
-    print('Winners: $spinResult');
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Spin Wheel Game'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: 200,
-              height: 200,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: Colors.black, width: 2.0),
-                gradient: RadialGradient(
-                  colors: spinResult.isEmpty
-                      ? [Colors.grey, Colors.grey]
-                      : spinResult,
-                  stops: [0.2, 1.0],
-                ),
+    return MaterialApp(
+      home: Scaffold(
+        key: _scaffoldKey,
+        appBar: AppBar(
+          title: const Text('In App Update Example App'),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: <Widget>[
+              Center(
+                child: Text('Update info: $_updateInfo'),
               ),
-              child: Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    spinWheel();
-                  },
-                  child: Text('Spin'),
-                ),
+              ElevatedButton(
+                child: Text('Check for Update'),
+                onPressed: () => checkForUpdate(),
               ),
-            ),
-            SizedBox(height: 20),
-            Text(
-              'Tap "Spin" to play the game!',
-              style: TextStyle(fontSize: 18),
-            ),
-          ],
+              ElevatedButton(
+                child: Text('Perform immediate update'),
+                onPressed: _updateInfo?.updateAvailability ==
+                        UpdateAvailability.updateAvailable
+                    ? () {
+                        InAppUpdate.performImmediateUpdate().catchError((e) {
+                          showSnack(e.toString());
+                          return AppUpdateResult.inAppUpdateFailed;
+                        });
+                      }
+                    : null,
+              ),
+              ElevatedButton(
+                child: Text('Start flexible update'),
+                onPressed: _updateInfo?.updateAvailability ==
+                        UpdateAvailability.updateAvailable
+                    ? () {
+                        InAppUpdate.startFlexibleUpdate().then((_) {
+                          setState(() {
+                            _flexibleUpdateAvailable = true;
+                          });
+                        }).catchError((e) {
+                          showSnack(e.toString());
+                        });
+                      }
+                    : null,
+              ),
+              ElevatedButton(
+                child: Text('Complete flexible update'),
+                onPressed: !_flexibleUpdateAvailable
+                    ? null
+                    : () {
+                        InAppUpdate.completeFlexibleUpdate().then((_) {
+                          showSnack("Success!");
+                        }).catchError((e) {
+                          showSnack(e.toString());
+                        });
+                      },
+              )
+            ],
+          ),
         ),
       ),
     );
