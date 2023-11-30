@@ -1,100 +1,89 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:in_app_update/in_app_update.dart';
 
-class MyudpateApp extends StatefulWidget {
+
+class HomePage extends StatefulWidget {
   @override
-  _MyudpateAppState createState() => _MyudpateAppState();
+  HomePageState createState() => HomePageState();
 }
 
-class _MyudpateAppState extends State<MyudpateApp> {
-  AppUpdateInfo? _updateInfo;
-
-  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
-
-  bool _flexibleUpdateAvailable = false;
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> checkForUpdate() async {
-    InAppUpdate.checkForUpdate().then((info) {
-      setState(() {
-        _updateInfo = info;
-      });
-    }).catchError((e) {
-      showSnack(e.toString());
-    });
-  }
-
-  void showSnack(String text) {
-    if (_scaffoldKey.currentContext != null) {
-      ScaffoldMessenger.of(_scaffoldKey.currentContext!)
-          .showSnackBar(SnackBar(content: Text(text)));
-    }
-  }
+class HomePageState extends State<HomePage> {
+  var currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        key: _scaffoldKey,
-        appBar: AppBar(
-          title: const Text('In App Update Example App'),
+    Size size = MediaQuery
+        .of(context)
+        .size;
+    return Scaffold(
+      bottomNavigationBar: Container(
+        margin: EdgeInsets.all(20),
+        height: size.width * .155,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(.15),
+              blurRadius: 30,
+              offset: Offset(0, 10),
+            ),
+          ],
+          borderRadius: BorderRadius.circular(50),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: <Widget>[
-              Center(
-                child: Text('Update info: $_updateInfo'),
+        child: ListView.builder(
+          itemCount: 4,
+          scrollDirection: Axis.horizontal,
+          padding: EdgeInsets.symmetric(horizontal: size.width * .024),
+          itemBuilder: (context, index) =>
+              InkWell(
+                onTap: () {
+                  setState(
+                        () {
+                      currentIndex = index;
+                    },
+                  );
+                },
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AnimatedContainer(
+                      duration: Duration(milliseconds: 1500),
+                      curve: Curves.fastLinearToSlowEaseIn,
+                      margin: EdgeInsets.only(
+                        bottom: index == currentIndex ? 0 : size.width * .029,
+                        right: size.width * .0422,
+                        left: size.width * .0422,
+                      ),
+                      width: size.width * .128,
+                      height: index == currentIndex ? size.width * .014 : 0,
+                      decoration: BoxDecoration(
+                        color: Colors.blueAccent,
+                        borderRadius: BorderRadius.vertical(
+                          bottom: Radius.circular(10),
+                        ),
+                      ),
+                    ),
+                    Icon(
+                      listOfIcons[index],
+                      size: size.width * .076,
+                      color: index == currentIndex
+                          ? Colors.blueAccent
+                          : Colors.black38,
+                    ),
+                    SizedBox(height: size.width * .03),
+                  ],
+                ),
               ),
-              ElevatedButton(
-                child: Text('Check for Update'),
-                onPressed: () => checkForUpdate(),
-              ),
-              ElevatedButton(
-                child: Text('Perform immediate update'),
-                onPressed: _updateInfo?.updateAvailability ==
-                        UpdateAvailability.updateAvailable
-                    ? () {
-                        InAppUpdate.performImmediateUpdate().catchError((e) {
-                          showSnack(e.toString());
-                          return AppUpdateResult.inAppUpdateFailed;
-                        });
-                      }
-                    : null,
-              ),
-              ElevatedButton(
-                child: Text('Start flexible update'),
-                onPressed: _updateInfo?.updateAvailability ==
-                        UpdateAvailability.updateAvailable
-                    ? () {
-                        InAppUpdate.startFlexibleUpdate().then((_) {
-                          setState(() {
-                            _flexibleUpdateAvailable = true;
-                          });
-                        }).catchError((e) {
-                          showSnack(e.toString());
-                        });
-                      }
-                    : null,
-              ),
-              ElevatedButton(
-                child: Text('Complete flexible update'),
-                onPressed: !_flexibleUpdateAvailable
-                    ? null
-                    : () {
-                        InAppUpdate.completeFlexibleUpdate().then((_) {
-                          showSnack("Success!");
-                        }).catchError((e) {
-                          showSnack(e.toString());
-                        });
-                      },
-              )
-            ],
-          ),
         ),
       ),
     );
   }
+
+  List<IconData> listOfIcons = [
+    Icons.home_rounded,
+    Icons.favorite_rounded,
+    Icons.settings_rounded,
+    Icons.person_rounded,
+  ];
 }

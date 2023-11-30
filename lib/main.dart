@@ -9,7 +9,7 @@ import 'Controller/RouteController/RouteNames.dart';
 import 'Controller/Utils/CustomFileds/ButtonCustom.dart';
 import 'Controller/Utils/StringDefine/StringDefine.dart';
 import 'GamesViews/LudoOffline/boardUI/ludo_provider.dart';
-import 'GamesViews/LudoOffline/ludo_ui/home.dart';
+import 'GamesViews/LudoOffline/ludo_ui/LudoOfflineBottomNavigationBarScreen/ludo_offline_bottom_bar_screen.dart';
 import 'package:spinwheel/Controller/RouteController/Route.dart' as router;
 
 main() {
@@ -99,7 +99,7 @@ class _RootState extends State<Root> {
     };
     return GetMaterialApp(
       initialRoute: onboardingScreen,
-      // home: MyudpateApp(),
+      home: LudoOfflineBottomNavBarScreen(),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
     );
