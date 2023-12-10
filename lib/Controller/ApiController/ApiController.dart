@@ -1,4 +1,5 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart' as G;
 
@@ -8,7 +9,9 @@ import 'package:spinwheel/Controller/Helper/Shared%20Preferences/SharedPreferenc
 
 import '../../../main.dart';
 import '../../Models/adminModels/LoginModel.dart';
+import '../../Models/adminModels/ProfleModel.dart';
 import '../../Models/adminModels/RegisterModel.dart';
+import '../../Models/superAdminModels/SuperAdminHomeDataModel.dart';
 import '../Helper/ConnectionValidator/ConnectionValidator.dart';
 import '../Utils/Utils.dart';
 import 'WebConstant.dart';
@@ -17,7 +20,7 @@ import 'package:dio/dio.dart';
 class ApiControllerAdmin {
   final Dio _dio = Dio();
 
-  ///games
+  ///register
   Future<RegisterModel?> registerApiHit({
     context,
     required String url,
@@ -47,7 +50,7 @@ class ApiControllerAdmin {
     return result;
   }
 
-  ///Register
+  ///login
   Future<LoginModel?> loginApiHit({
     context,
     required String url,
@@ -62,6 +65,37 @@ class ApiControllerAdmin {
             context: context, url: url, dictData: dictData, token: token);
         if (response?.data != null && response?.statusCode == 200) {
           return result = LoginModel.fromJson(response?.data);
+        } else {
+          return result;
+        }
+      } catch (e) {
+        Utils.printLog("Exception_main1 s: $e");
+
+        return result;
+      }
+    } else {
+      Fluttertoast.showToast(
+          msg: "Please check network connection and try again!");
+    }
+    return result;
+  }
+
+
+  ///getprofileDataApi
+  Future<ProfileDataModelHome?> getprofileDataApi({
+    context,
+    required String url,
+    required dictData,
+    String? token,
+  }) async {
+    ProfileDataModelHome? result;
+
+    if (await ConnectionValidator().check()) {
+      try {
+        final response = await requestPostApi(
+            context: context, url: url, dictData: dictData, token: token);
+        if (response?.data != null && response?.statusCode == 200) {
+          return result = ProfileDataModelHome.fromJson(response?.data);
         } else {
           return result;
         }
@@ -126,9 +160,9 @@ class ApiControllerAdmin {
                 Animation<double> animation,
                 Animation<double> secondaryAnimation,
                 Widget child) {
-              return new SlideTransition(
-                position: new Tween<Offset>(
-                  begin: const Offset(1.0, 0.0),
+              return   SlideTransition(
+                position:   Tween<Offset>(
+                  begin:   const Offset(1.0, 0.0),
                   end: Offset.zero,
                 ).animate(animation),
                 child: child,
@@ -137,30 +171,7 @@ class ApiControllerAdmin {
             (Route route) => false);
       }
 
-      // if (response.statusCode == 401) {
-      //   final prefs = await SharedPreferences.getInstance();
-      //   prefs.remove('token');
-      //   prefs.remove('userId');
-      //   prefs.remove('name');
-      //   prefs.remove('email');
-      //   prefs.remove('mobile');
-      //   prefs.setBool(WebConstant.IS_LOGIN, false);
-      //   Navigator.pushAndRemoveUntil(
-      //       context,
-      //       PageRouteBuilder(pageBuilder: (BuildContext context, Animation animation, Animation secondaryAnimation) {
-      //         return OnBoardingScreen();
-      //       }, transitionsBuilder: (BuildContext context, Animation<double> animation,
-      //           Animation<double> secondaryAnimation, Widget child) {
-      //         return new SlideTransition(
-      //           position: new Tween<Offset>(
-      //             begin: const Offset(1.0, 0.0),
-      //             end: Offset.zero,
-      //           ).animate(animation),
-      //           child: child,
-      //         );
-      //       }),
-      //           (Route route) => false);
-      // }
+
       return response;
     } catch (error) {
       Utils.printLog("Exception_Main: $error");
@@ -537,6 +548,38 @@ class ApiControllerGames {
 class ApiControllerSuperAdmin {
   final Dio _dio = Dio();
 
+  ///get home data superadmin
+  Future<SuperAdminHomeDataMode?> getHomeDataApi({
+    context,
+    required String url,
+    required dictData,
+    String? token,
+  }) async {
+    SuperAdminHomeDataMode? result;
+
+    if (await ConnectionValidator().check()) {
+      try {
+        final response = await requestPostApi(
+            context: context, url: url, dictData: dictData, token: token);
+        if (response?.data != null && response?.statusCode == 200) {
+          return result = SuperAdminHomeDataMode.fromJson(response?.data);
+        } else {
+          return result;
+        }
+      } catch (e) {
+        Utils.printLog("Exception_main1 s: $e");
+
+        return result;
+      }
+    } else {
+      Fluttertoast.showToast(
+          msg: "Please check network connection and try again!");
+    }
+    return result;
+  }
+
+
+
   ///methods
   Future<Response?> requestPostApi(
       {required context, String? url, required dictData, String? token}) async {
@@ -554,7 +597,7 @@ class ApiControllerSuperAdmin {
       Utils.printLog("formData: $dictData");
 
       BaseOptions options = BaseOptions(
-          baseUrl: WebApiConstantAdmin.BASE_URL,
+          baseUrl: WebApiConstantSuperAdmin.BASE_URL,
           receiveTimeout: Duration(seconds: 5),
           connectTimeout: Duration(seconds: 5),
           headers: headers);
@@ -627,7 +670,7 @@ class ApiControllerSuperAdmin {
       Utils.printLog("DictParameter: $dictParameter");
 
       BaseOptions options = BaseOptions(
-          baseUrl: WebApiConstantAdmin.BASE_URL,
+          baseUrl: WebApiConstantSuperAdmin.BASE_URL,
           receiveTimeout: Duration(minutes: 1),
           connectTimeout: Duration(minutes: 1),
           headers: headers,
@@ -669,7 +712,7 @@ class ApiControllerSuperAdmin {
       Utils.printLog("formData: ${formData.fields.toString()}");
 
       BaseOptions options = BaseOptions(
-          baseUrl: WebApiConstantAdmin.BASE_URL,
+          baseUrl: WebApiConstantSuperAdmin.BASE_URL,
           receiveTimeout: Duration(minutes: 1),
           connectTimeout: Duration(minutes: 1),
           headers: headers);

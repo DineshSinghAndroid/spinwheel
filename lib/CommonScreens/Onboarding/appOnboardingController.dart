@@ -275,45 +275,35 @@ class AppOnboardingController extends GetxController {
   }
 
   Future<void> saveUserDataToSharedPrefrences({required userData}) async {
-    await AppSharedPreferences.addStringValueToSharedPref(
-        variableName: AppSharedPreferences.cookie,
-        variableValue: userData?.cookie.toString() ?? "");
+    SharedPreferences.getInstance().then((value) {
+      value.setString("dk", "jaya");
 
-    await AppSharedPreferences.addStringValueToSharedPref(
-        variableName: AppSharedPreferences.username,
-        variableValue: userData?.username.toString() ?? "");
-    await AppSharedPreferences.addStringValueToSharedPref(
-        variableName: AppSharedPreferences.phone,
-        variableValue: userData?.phone.toString() ?? "");
-    await AppSharedPreferences.addStringValueToSharedPref(
-        variableName: AppSharedPreferences.nicename,
-        variableValue: userData?.nicename.toString() ?? "");
-    await AppSharedPreferences.addStringValueToSharedPref(
-        variableName: AppSharedPreferences.email,
-        variableValue: userData?.email.toString() ?? "");
-    await AppSharedPreferences.addStringValueToSharedPref(
-        variableName: AppSharedPreferences.registered,
-        variableValue: userData?.registered.toString() ?? "");
-    await AppSharedPreferences.addStringValueToSharedPref(
-        variableName: AppSharedPreferences.displayname,
-        variableValue: userData?.displayname.toString() ?? "");
-    await AppSharedPreferences.addStringValueToSharedPref(
-        variableName: AppSharedPreferences.firstname,
-        variableValue: userData?.firstname.toString() ?? "");
-    await AppSharedPreferences.addStringValueToSharedPref(
-        variableName: AppSharedPreferences.lastname,
-        variableValue: userData?.lastname.toString() ?? "");
-    await AppSharedPreferences.addStringValueToSharedPref(
-        variableName: AppSharedPreferences.nickname,
-        variableValue: userData?.nickname.toString() ?? "");
-    await AppSharedPreferences.addStringValueToSharedPref(
-        variableName: AppSharedPreferences.cookieName,
-        variableValue: userData?.cookieName.toString() ?? "");
-    await AppSharedPreferences.addStringValueToSharedPref(
-        variableName: AppSharedPreferences.cookieAdmin,
-        variableValue: userData?.cookieAdmin.toString() ?? "");
-    await AppSharedPreferences.addBoolValueToSharedPref(
-        variableName: AppSharedPreferences.IS_Logged_In, variableValue: true);
-    authToken = userData?.cookie.toString() ?? "";
+      value.setString(AppSharedPreferences.cookie, userData.cookie);
+
+      value.setString(AppSharedPreferences.username, userData.username);
+
+      value.setString(AppSharedPreferences.phone, userData.phone);
+
+      value.setString(AppSharedPreferences.nicename, userData.nicename);
+
+      value.setString(AppSharedPreferences.email, userData.email);
+
+      value.setString(AppSharedPreferences.registered, userData.registered);
+
+      value.setString(AppSharedPreferences.displayname, userData.displayname);
+
+      value.setString(AppSharedPreferences.firstname, userData.firstname);
+
+      value.setString(AppSharedPreferences.lastname, userData.lastname);
+
+      value.setString(AppSharedPreferences.nickname, userData.nickname);
+
+      value.setString(AppSharedPreferences.cookieName, userData.cookieName);
+
+      value.setString(AppSharedPreferences.cookieAdmin, userData.cookieAdmin);
+
+      value.setBool(AppSharedPreferences.IS_Logged_In, true);
+      authToken = userData?.cookie.toString() ?? "";
+    });
   }
 }

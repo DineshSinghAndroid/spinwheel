@@ -13,7 +13,7 @@ import 'app_homescreen_controller.dart';
 import '../../Controller/Utils/StringDefine/StringDefine.dart';
 import '../../GamesViews/ColorPrediction/color_prediction_controller.dart';
 import '../../GamesViews/LudoOnlineWebview/ludoHomeScreenController.dart';
-import '../ProfileScreen.dart';
+import '../ProfileScreens/ProfileScreen.dart';
 
 class AppHomeScreen extends StatelessWidget {
   AppHomeScreen({super.key});
@@ -77,17 +77,27 @@ class AppHomeScreen extends StatelessWidget {
                                       autoPlay: true,
                                       pageSnapping: true,
                                       aspectRatio: 6 / 3),
-                                  items: _appCtrl.topSliderImages.map((i) {
+                                  items: _appCtrl.homeData?.data?.homeData?.slider?.map((i) {
                                     return Builder(
                                       builder: (BuildContext context) {
                                         return Container(
-                                          // height: 250,
-
                                           width: Get.width,
-                                          decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                  image: AssetImage(i),
-                                                  fit: BoxFit.cover)),
+                                          child: Image.network(
+                                            i.url??'',
+                                            fit: BoxFit.cover,
+                                            loadingBuilder: (BuildContext context, Widget child,
+                                                ImageChunkEvent? loadingProgress) {
+                                              if (loadingProgress == null) return child;
+                                              return Center(
+                                                child: CircularProgressIndicator(
+                                                  value: loadingProgress.expectedTotalBytes != null
+                                                      ? loadingProgress.cumulativeBytesLoaded /
+                                                      loadingProgress.expectedTotalBytes!
+                                                      : null,
+                                                ),
+                                              );
+                                            },
+                                          ),
                                         );
                                       },
                                     );
@@ -95,11 +105,12 @@ class AppHomeScreen extends StatelessWidget {
                                 ),
                                 buildSizeBox(10.0, 0.0),
                                 Container(
+                                  width: Get.width,
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 0, vertical: 6),
                                   decoration: BoxDecoration(color: Colors.red),
                                   child: TextScroll(
-                                    _appCtrl.textSlider[0],
+                                    _appCtrl.homeData?.data?.homeData?.footerText??"",
                                     mode: TextScrollMode.endless,
                                     velocity: Velocity(
                                         pixelsPerSecond: Offset(150, 0)),
@@ -119,7 +130,7 @@ class AppHomeScreen extends StatelessWidget {
                                 top: 250, right: 10, left: 10),
                             child: GridView.builder(
                               physics: NeverScrollableScrollPhysics(),
-                              itemCount: _appCtrl.gameImages.length,
+                              itemCount: _appCtrl.homeData?.data?.appList?.length??0,
                               shrinkWrap: true,
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
@@ -134,15 +145,24 @@ class AppHomeScreen extends StatelessWidget {
                                     height: 160,
                                     width: 230,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20)),
-                                        image: DecorationImage(
-                                            image: AssetImage(
-                                                _appCtrl.gameImages[index]),
-                                            fit: BoxFit.cover)),
-                                    child: Center(
-                                      child: BuildText.buildText(
-                                          text: "", size: 33),
+                                      borderRadius: BorderRadius.all(Radius.circular(20))
+                                    ),
+
+                                    child:  Image.network(
+                                      _appCtrl.homeData?.data?.appList?[index].appImage.toString()??"",
+                                      fit: BoxFit.cover,
+                                      loadingBuilder: (BuildContext context, Widget child,
+                                          ImageChunkEvent? loadingProgress) {
+                                        if (loadingProgress == null) return child;
+                                        return Center(
+                                          child: CircularProgressIndicator(
+                                            value: loadingProgress.expectedTotalBytes != null
+                                                ? loadingProgress.cumulativeBytesLoaded /
+                                                loadingProgress.expectedTotalBytes!
+                                                : null,
+                                          ),
+                                        );
+                                      },
                                     ),
                                   ),
                                 );

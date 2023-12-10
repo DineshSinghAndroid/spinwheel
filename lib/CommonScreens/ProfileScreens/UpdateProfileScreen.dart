@@ -6,7 +6,7 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:spinwheel/Controller/Utils/CustomFileds/CustomAppBar.dart';
 import 'package:spinwheel/Controller/Utils/StringDefine/StringDefine.dart';
 
-import '../../Controller/Utils/Colors/custom_color.dart';
+import '../../../Controller/Utils/Colors/custom_color.dart';
 import 'ProfileScreen.dart';
 
 class UpdateProfileScreen extends StatelessWidget {
@@ -87,7 +87,7 @@ class UpdateProfileScreen extends StatelessWidget {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () => Get.to(() => const ProfileScreen()),
+                        onPressed: () => Get.to(() =>   ProfileScreen()),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.blueColorApp,
                             side: BorderSide.none,

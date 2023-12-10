@@ -5,7 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:spinwheel/tetste.dart';
 
-import 'CommonScreens/ProfileScreen.dart';
+import 'CommonScreens/ProfileScreens/ProfileScreen.dart';
 import 'Controller/RouteController/RouteNames.dart';
 import 'Controller/Utils/CustomFileds/ButtonCustom.dart';
 import 'Controller/Utils/StringDefine/StringDefine.dart';
