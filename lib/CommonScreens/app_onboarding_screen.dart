@@ -1,11 +1,8 @@
-import 'package:lottie/lottie.dart';
 import 'package:spinwheel/Controller/Utils/Colors/custom_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:neopop/widgets/buttons/neopop_tilted_button/neopop_tilted_button.dart';
 
-import '../../Controller/Helper/BuildText/BuildText.dart';
-import '../../Controller/Utils/StringDefine/StringDefine.dart';
 import '../Controller/ProjectController/common/OnboardingController/appOnboardingController.dart';
 
 class AppOnboardingScreen extends StatelessWidget {

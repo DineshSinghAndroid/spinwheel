@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:lottie/lottie.dart';
 import 'package:spinwheel/Controller/Utils/Colors/custom_color.dart';

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:spinwheel/GamesViews/LudoOffline/ludo_ui/reusable/background-widget.dart';
 import 'package:spinwheel/GamesViews/LudoOffline/ludo_ui/LudoOfflineHomeScreen/ludoOfflineHomeScreen.dart';
 
+import 'LudoOfflineBottomNavigationBarScreen/ludo_offline_bottom_bar_screen.dart';
+
 class LudoOfflineGameScreen extends StatefulWidget {
   const LudoOfflineGameScreen({Key? key}) : super(key: key);
 
@@ -18,7 +20,7 @@ class _HomeState extends State<LudoOfflineGameScreen> {
     Timer(
         const Duration(seconds: 2),
         () => Navigator.push(context,
-            MaterialPageRoute(builder: (context) => SelectGameType())));
+            MaterialPageRoute(builder: (context) => LudoOfflineBottomNavBarScreen())));
   }
 
   @override

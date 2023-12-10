@@ -1,6 +1,4 @@
-import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart' as G;
 
@@ -9,7 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../main.dart';
 import '../../Models/CommonModels/RegisterModel.dart';
 import '../Helper/ConnectionValidator/ConnectionValidator.dart';
-import '../Utils/StringDefine/StringDefine.dart';
 import '../Utils/Utils.dart';
 import 'WebConstant.dart';
 import 'package:dio/dio.dart';

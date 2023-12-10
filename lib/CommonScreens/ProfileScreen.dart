@@ -14,8 +14,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
-    return Scaffold(
+     return Scaffold(
       appBar: CustomAppBar(
         text: "Profile",
       ),
