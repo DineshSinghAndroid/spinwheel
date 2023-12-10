@@ -8,17 +8,17 @@ import 'package:spinwheel/Controller/Utils/Loader/LoadScreen/LoadScreen.dart';
 import 'package:spinwheel/Controller/Utils/Utils.dart';
 import 'package:text_scroll/text_scroll.dart';
 
-import '../Controller/Helper/BuildText/BuildText.dart';
-import '../Controller/ProjectController/common/app_homescreen_controller.dart';
-import '../Controller/Utils/StringDefine/StringDefine.dart';
-import '../GamesViews/ColorPrediction/color_prediction_controller.dart';
-import '../GamesViews/LudoOnlineWebview/ludoHomeScreenController.dart';
-import 'ProfileScreen.dart';
+import '../../Controller/Helper/BuildText/BuildText.dart';
+import 'app_homescreen_controller.dart';
+import '../../Controller/Utils/StringDefine/StringDefine.dart';
+import '../../GamesViews/ColorPrediction/color_prediction_controller.dart';
+import '../../GamesViews/LudoOnlineWebview/ludoHomeScreenController.dart';
+import '../ProfileScreen.dart';
 
 class AppHomeScreen extends StatelessWidget {
   AppHomeScreen({super.key});
 
-  final AppOnboardingControlller _appCtrl = Get.put(AppOnboardingControlller());
+  final AppHomeScreenController _appCtrl = Get.put(AppHomeScreenController());
 
   ///Initialise ludo ctrl here
   final LudoHomeScreenController _ludoGameCtrl =

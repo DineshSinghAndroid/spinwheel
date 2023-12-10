@@ -6,8 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:neopop/widgets/buttons/neopop_tilted_button/neopop_tilted_button.dart';
 import 'package:spinwheel/Controller/Utils/Loader/LoadScreen/LoadScreen.dart';
 
-import '../Controller/Helper/BuildText/BuildText.dart';
-import 'Onboarding/appOnboardingController.dart';
+import '../../Controller/Helper/BuildText/BuildText.dart';
+import 'appOnboardingController.dart';
 
 class LoginColumn extends StatelessWidget {
   LoginColumn({super.key});

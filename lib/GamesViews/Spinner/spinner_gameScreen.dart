@@ -40,7 +40,7 @@ class SpinnerHomeScreen extends StatelessWidget {
           ),
           body: SingleChildScrollView(
             child: Container(
-              height: Get.height / 1.1,
+              height: Get.height,
               width: Get.width,
               decoration: BoxDecoration(
                   image: DecorationImage(

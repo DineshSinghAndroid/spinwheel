@@ -13,7 +13,7 @@ import '../../GamesViews/LudoOnlineWebview/LudoHomeScreen.dart';
 import '../../GamesViews/Spinner/spinner_gameScreen.dart';
 import '../../CommonScreens/Onboarding/app_onboarding_screen.dart';
 import '../../adminviews/admin_dashboard_screen.dart';
-import '../../CommonScreens/app_home_screen.dart';
+import '../../CommonScreens/homeScreen/app_home_screen.dart';
 import 'RouteNames.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
