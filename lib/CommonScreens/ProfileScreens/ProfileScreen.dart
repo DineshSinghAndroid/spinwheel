@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:spinwheel/CommonScreens/ProfileScreens/profile_screen_controller.dart';
+import 'package:spinwheel/Controller/Helper/BuildText/BuildText.dart';
 import 'package:spinwheel/Controller/Utils/CustomFileds/CustomAppBar.dart';
 import 'package:spinwheel/Controller/Utils/StringDefine/StringDefine.dart';
+import 'package:spinwheel/Controller/Utils/Utils.dart';
 
 import '../../../Controller/Utils/Colors/custom_color.dart';
 import 'ProfileMenuWidget.dart';
@@ -35,7 +37,22 @@ final HomeProfileScreenController _profileCtrl = Get.put(HomeProfileScreenContro
                        height: 120,
                        child: ClipRRect(
                            borderRadius: BorderRadius.circular(100),
-                           child: const Image(image: AssetImage(kLogo))),
+                           child: Image.network(
+                             _profileCtrl.profileData?.data?.profileImage?.toString()??"",
+                             fit: BoxFit.cover,
+                             loadingBuilder: (BuildContext context, Widget child,
+                                 ImageChunkEvent? loadingProgress) {
+                               if (loadingProgress == null) return child;
+                               return Center(
+                                 child: CircularProgressIndicator(
+                                   value: loadingProgress.expectedTotalBytes != null
+                                       ? loadingProgress.cumulativeBytesLoaded /
+                                       loadingProgress.expectedTotalBytes!
+                                       : null,
+                                 ),
+                               );
+                             },
+                           )),
                      ),
                      Positioned(
                        bottom: 0,
@@ -45,10 +62,10 @@ final HomeProfileScreenController _profileCtrl = Get.put(HomeProfileScreenContro
                          height: 35,
                          decoration: BoxDecoration(
                              borderRadius: BorderRadius.circular(100),
-                             color: AppColors.blueColorApp),
+                             color: AppColors.blueDeliveryNoteColor),
                          child: const Icon(
                            LineAwesomeIcons.alternate_pencil,
-                           color: Colors.black,
+                           color: Colors.white,
                            size: 20,
                          ),
                        ),
@@ -56,8 +73,42 @@ final HomeProfileScreenController _profileCtrl = Get.put(HomeProfileScreenContro
                    ],
                  ),
                  const SizedBox(height: 10),
-                 Text("Satish", style: Theme.of(context).textTheme.headline4),
-                 Text("Gold Member", style: Theme.of(context).textTheme.bodyText2),
+                 BuildText.buildText(text:_profileCtrl.profileData?.data?.displayname??"",  ),
+                 Column(
+                   children: [
+                     if(_profileCtrl.profileData?.data?.username.toString() != "")
+                     Row(
+                       children: [
+                         BuildText.buildText(text:"   Phone Number:    ",color: AppColors.blackColor,size: 12  ),
+
+                         BuildText.buildText(text:_profileCtrl.profileData?.data?.username??"",color: AppColors.blueDeliveryNoteColor  ),
+
+                          BuildText.buildText(text:"  Verify",color: AppColors.redColor  ),
+                       ],
+                     ),
+                     Row(
+                       children: [
+                         BuildText.buildText(text:"   Email:    ",color: AppColors.blackColor,size: 12  ),
+
+                         BuildText.buildText(text:_profileCtrl.profileData?.data?.email??"",color: AppColors.blueDeliveryNoteColor  ),
+
+                          BuildText.buildText(text:"  Verified",color: AppColors.greenAccentColor  ),
+                       ],
+                     ),
+                     Row(
+                       children: [
+                         BuildText.buildText(text:"   KYC:    ",color: AppColors.blackColor,size: 12  ),
+
+
+                          InkWell(
+                              onTap: (){
+                                ToastCustom.showToast(msg: "KYC Will available soon");
+                              },
+                              child: BuildText.buildText(text:"  Click To verify",color: AppColors.redColor  )),
+                       ],
+                     ),
+                   ],
+                 ),
                  const SizedBox(height: 20),
 
                  /// -- BUTTON
@@ -69,8 +120,8 @@ final HomeProfileScreenController _profileCtrl = Get.put(HomeProfileScreenContro
                          backgroundColor: AppColors.blueColorApp,
                          side: BorderSide.none,
                          shape: const StadiumBorder()),
-                     child: Text("Edit Profile",
-                         style: TextStyle(color: AppColors.whiteColor)),
+                     child: BuildText.buildText(text:"Edit Profile",
+                     ),
                    ),
                  ),
                  const SizedBox(height: 30),
@@ -117,9 +168,9 @@ final HomeProfileScreenController _profileCtrl = Get.put(HomeProfileScreenContro
                        Get.defaultDialog(
                          title: "LOGOUT",
                          titleStyle: const TextStyle(fontSize: 20),
-                         content: const Padding(
+                         content:   Padding(
                            padding: EdgeInsets.symmetric(vertical: 15.0),
-                           child: Text("Are you sure, you want to Logout?"),
+                           child: BuildText.buildText(text:"Are you sure, you want to Logout?"),
                          ),
                          confirm: Expanded(
                            child: ElevatedButton(
@@ -128,11 +179,11 @@ final HomeProfileScreenController _profileCtrl = Get.put(HomeProfileScreenContro
                                  backgroundColor: Colors.redAccent,
                                  side: BorderSide.none),
                              onPressed: () {},
-                             child: const Text("Yes"),
+                             child:   BuildText.buildText(text:"Yes"),
                            ),
                          ),
                          cancel: OutlinedButton(
-                             onPressed: () => Get.back(), child: const Text("No")),
+                             onPressed: () => Get.back(), child:   BuildText.buildText(text:"No")),
                        );
                      }),
                ],
