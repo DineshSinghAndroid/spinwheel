@@ -9,12 +9,17 @@ class Utils {
 
 class ToastCustom {
   static showToast({required String msg}) {
-    Fluttertoast.showToast(msg: msg, textColor: Colors.white);
+    Fluttertoast.showToast(
+      msg: msg,
+      textColor: Colors.white,
+      gravity: ToastGravity.TOP,
+    );
   }
 
   static showToastWithLength({required String msg, Toast? toastLength}) {
     Fluttertoast.showToast(
         msg: msg,
+        gravity: ToastGravity.TOP,
         toastLength: toastLength ?? Toast.LENGTH_LONG,
         textColor: Colors.white);
   }
