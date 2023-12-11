@@ -3,18 +3,13 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'package:spinwheel/tetste.dart';
 
-import 'CommonScreens/ProfileScreens/ProfileScreen.dart';
 import 'Controller/RouteController/RouteNames.dart';
 import 'Controller/Utils/CustomFileds/ButtonCustom.dart';
 import 'Controller/Utils/StringDefine/StringDefine.dart';
 import 'GamesViews/LudoOffline/boardUI/ludo_provider.dart';
-import 'GamesViews/LudoOffline/ludo_ui/LudoOfflineBottomNavigationBarScreen/ludo_offline_bottom_bar_screen.dart';
 import 'package:spinwheel/Controller/RouteController/Route.dart' as router;
 
-import 'GamesViews/LudoOffline/ludo_ui/LudoOfflineHomeScreen/ludo_offline_profilescreen.dart';
-import 'GamesViews/Spinner/spinner_gameScreen.dart';
 
 main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -103,7 +98,7 @@ class _RootState extends State<Root> {
     };
     return GetMaterialApp(
       initialRoute: onboardingScreen,
-      // home: SpinnerHomeScreen(),
+        // home: LeaderBoard(),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
     );

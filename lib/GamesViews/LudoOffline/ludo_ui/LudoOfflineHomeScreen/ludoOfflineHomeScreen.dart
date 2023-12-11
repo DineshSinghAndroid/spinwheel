@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:lottie/lottie.dart';
+import 'package:spinwheel/Controller/RouteController/RouteNames.dart';
 
 import '../../../../Controller/Helper/BuildText/BuildText.dart';
 import '../../../../Controller/Utils/Colors/custom_color.dart';
+import '../../../../Controller/Utils/Utils.dart';
 import 'ludo_offline_homescreen_controller.dart';
 
 class SelectGameType extends StatelessWidget {
@@ -19,7 +22,7 @@ class SelectGameType extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size(Get.width, 50),
+        preferredSize: Size(Get.width, 80),
         child: Container(
           decoration: BoxDecoration(color: Colors.green),
           child: SafeArea(
@@ -28,20 +31,16 @@ class SelectGameType extends StatelessWidget {
                 Row(
                   children: [
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {Get.back();},
                       icon: Icon(Icons.arrow_back),
                       color: Colors.white,
                     ),
-                    buildSizeBox(0.0, 20.0),
+                    buildSizeBox(0.0, 10.0),
                     BuildText.buildText(
-                        text: "Mama Ludo", size: 28, weight: FontWeight.w900),
+                        text: " MaMa Ludo", size: 24, weight: FontWeight.w900),
                     Spacer(),
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.notification_add,
-                          color: AppColors.whiteColor,
-                        ))
+
+                    ShowBalanceBoxCommon(balance: '121'),
                   ],
                 ),
               ],
@@ -635,4 +634,5 @@ class SelectGameType extends StatelessWidget {
       ),
     );
   }
+
 }

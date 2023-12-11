@@ -62,12 +62,6 @@ class AppHomeScreenController extends GetxController {
   }
 
 
-
-
-
-
-
-
   /// get home screen data
   SuperAdminHomeDataMode? homeData;
 
@@ -97,7 +91,7 @@ class AppHomeScreenController extends GetxController {
             homeData = result;
 
             Utils.printLog("Status is :::::::;${result.message}");
-            ToastCustom.showToast(msg: result.message??"");
+            // ToastCustom.showToast(msg: "Welcome to Game");
 
             changeLoadingValue(false);
             changeSuccessValue(true);

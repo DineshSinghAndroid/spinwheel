@@ -18,8 +18,7 @@ class LudoOfflineBottomNavBarScreenState
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return SafeArea(
+     return SafeArea(
       child: DefaultTabController(
         length: 3,
         child: Scaffold(

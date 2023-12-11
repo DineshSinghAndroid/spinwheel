@@ -5,6 +5,7 @@ class WebApiConstantAdmin {
   static const String registerUrl = "${BASE_URL}customer/register";
   static const String loginUrl = "${BASE_URL}customer/sign_in";
   static const String GET_PROFILE_DATA = "customer/currentuserinfo";
+  static const String UPDATE_PROFILE_DATA = "customer/update_userinfo";
 
 }
 

@@ -77,22 +77,28 @@ class UpdateProfileScreen extends StatelessWidget {
                    child: Column(
                      children: [
                        TextFormField(
-                         initialValue: _profileCtrl.profileData?.data?.displayname??"",
+                         controller: _profileCtrl.fullNameCtrl,keyboardType: TextInputType.name,
+
+
                          decoration:   InputDecoration(
                                label: Text("Full Name"),
                                prefixIcon: Icon(LineAwesomeIcons.user)),
                        ),
                        const SizedBox(height: 40 - 20),
                        TextFormField(
-                         initialValue: _profileCtrl.profileData?.data?.email??"",
+                         controller: _profileCtrl.emailCtrl,
+keyboardType: TextInputType.emailAddress,
 
                          decoration: const InputDecoration(
+
                              label: Text("Email"),
                              prefixIcon: Icon(LineAwesomeIcons.envelope_1)),
                        ),
                        const SizedBox(height: 40 - 20),
                        TextFormField(
-                         initialValue: _profileCtrl.profileData?.data?.username??"",
+
+                         controller: _profileCtrl.mobileNumberCtrl,
+                         keyboardType: TextInputType.phone,
 
                          decoration: const InputDecoration(
                              label: Text(kMobileNumber),
@@ -100,15 +106,31 @@ class UpdateProfileScreen extends StatelessWidget {
                        ),
                        const SizedBox(height: 40 - 20),
                        TextFormField(
+
+                         controller: _profileCtrl.passwordCtrl,
+                         keyboardType: TextInputType.visiblePassword,
+                         obscureText: true,
+                         decoration: InputDecoration(
+                           hintText: "Enter Pin",
+
+                           label: const Text("Pin (4Digit)"),
+                           prefixIcon: const Icon(Icons.key),
+
+                         ),
+                       ), const SizedBox(height: 40 - 20),
+                       TextFormField(
+
+                         controller: _profileCtrl.pinCtrl,
+                         keyboardType: TextInputType.number,
                          obscureText: true,
                          decoration: InputDecoration(
                            hintText: "**********",
-
-                           label: const Text(kPassword),
-                           prefixIcon: const Icon(Icons.fingerprint),
                            suffixIcon: IconButton(
                                icon: const Icon(LineAwesomeIcons.eye_slash),
                                onPressed: () {}),
+                           label: const Text(kPassword),
+                           prefixIcon: const Icon(Icons.fingerprint),
+
                          ),
                        ),
                        const SizedBox(height: 40),

@@ -12,8 +12,7 @@ import '../../Controller/Helper/BuildText/BuildText.dart';
 import 'app_homescreen_controller.dart';
 import '../../Controller/Utils/StringDefine/StringDefine.dart';
 import '../../GamesViews/ColorPrediction/color_prediction_controller.dart';
-import '../../GamesViews/LudoOnlineWebview/ludoHomeScreenController.dart';
-import '../ProfileScreens/ProfileScreen.dart';
+ import '../ProfileScreens/ProfileScreen.dart';
 
 class AppHomeScreen extends StatelessWidget {
   AppHomeScreen({super.key});
@@ -21,8 +20,7 @@ class AppHomeScreen extends StatelessWidget {
   final AppHomeScreenController _appCtrl = Get.put(AppHomeScreenController());
 
   ///Initialise ludo ctrl here
-  final LudoHomeScreenController _ludoGameCtrl =
-      Get.put(LudoHomeScreenController());
+
   final ColorPredictionHomeScreenController _colorCtrl =
       Get.put(ColorPredictionHomeScreenController());
 
@@ -40,14 +38,14 @@ class AppHomeScreen extends StatelessWidget {
           builder: (controller) {
             return Scaffold(
               appBar: AppBar(
+
                 backgroundColor: AppColors.purpleColor,
-                title: BuildText.buildText(text: "Mama Ludo"),
-                centerTitle: true,
+                title: BuildText.buildText(text: "Mama Ludo",size: 20),
+                centerTitle: false,
                 actions: [
-                  IconButton(onPressed: () {}, icon: Icon(Icons.volume_down)),
-                  buildSizeBox(0.0, 5.0),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.info_outline)),
-                  buildSizeBox(0.0, 5.0),
+
+                   ShowBalanceBoxCommon(balance: '121'),
+
                 ],
               ),
 
@@ -173,7 +171,7 @@ class AppHomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  isLoading: _ludoGameCtrl.isLoading.value),
+                  isLoading: _appCtrl.isLoading),
             );
           },
         ));

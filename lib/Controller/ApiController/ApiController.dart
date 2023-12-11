@@ -11,6 +11,7 @@ import '../../../main.dart';
 import '../../Models/adminModels/LoginModel.dart';
 import '../../Models/adminModels/ProfleModel.dart';
 import '../../Models/adminModels/RegisterModel.dart';
+import '../../Models/adminModels/UpdateProfileDataModel.dart';
 import '../../Models/superAdminModels/SuperAdminHomeDataModel.dart';
 import '../Helper/ConnectionValidator/ConnectionValidator.dart';
 import '../Utils/Utils.dart';
@@ -96,6 +97,38 @@ class ApiControllerAdmin {
             context: context, url: url, dictData: dictData, token: token);
         if (response?.data != null && response?.statusCode == 200) {
           return result = ProfileDataModelHome.fromJson(response?.data);
+        } else {
+          return result;
+        }
+      } catch (e) {
+        Utils.printLog("Exception_main1 s: $e");
+
+        return result;
+      }
+    } else {
+      Fluttertoast.showToast(
+          msg: "Please check network connection and try again!");
+    }
+    return result;
+  }
+
+
+
+  ///updateProfileDataApi
+  Future<UpdateprofileDataModel?> updateProfileDataApi({
+    context,
+    required String url,
+    required dictData,
+    String? token,
+  }) async {
+    UpdateprofileDataModel? result;
+
+    if (await ConnectionValidator().check()) {
+      try {
+        final response = await requestPostApi(
+            context: context, url: url, dictData: dictData, token: token);
+        if (response?.data != null && response?.statusCode == 200) {
+          return result = UpdateprofileDataModel.fromJson(response?.data);
         } else {
           return result;
         }
