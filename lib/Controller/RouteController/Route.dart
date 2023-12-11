@@ -6,10 +6,11 @@ import 'package:spinwheel/adminviews/admin_usermanagement_screen.dart';
 import 'package:spinwheel/adminviews/admin_widthdrawalHistory_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../GamesViews/ColorPrediction/ColorBet_screen.dart';
 import '../../GamesViews/ColorPrediction/color_prediction_home_screen.dart';
 import '../../GamesViews/JackpotGame/jackpot_game_screen.dart';
 import '../../GamesViews/LudoOffline/ludo_ui/LudoOfflineBottomNavigationBarScreen/ludo_offline_bottom_bar_screen.dart';
-  import '../../GamesViews/Spinner/spinner_gameScreen.dart';
+import '../../GamesViews/Spinner/spinner_gameScreen.dart';
 import '../../CommonScreens/Onboarding/app_onboarding_screen.dart';
 import '../../adminviews/admin_dashboard_screen.dart';
 import '../../CommonScreens/homeScreen/app_home_screen.dart';
@@ -63,7 +64,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     /****************************************************************** Ludo Game routes *********************************************/
     case ludoGameHomeScreen:
-      return MaterialPageRoute(builder: (context) => LudoOfflineBottomNavBarScreen());
+      return MaterialPageRoute(
+          builder: (context) => LudoOfflineBottomNavBarScreen());
     /******************************************************************Jackpot Game routes *********************************************/
     case jackpotGameScreen:
       return MaterialPageRoute(builder: (context) => JackpotGameScreen());
@@ -74,7 +76,18 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           builder: (context) => ColorPredictionHomeScreen());
     /******************************************************************ludo Offline   Gameroutes *********************************************/
     case ludoOfflineGameOnboardingScreen:
-      return MaterialPageRoute(builder: (context) => LudoOfflineBottomNavBarScreen());
+      return MaterialPageRoute(
+          builder: (context) => LudoOfflineBottomNavBarScreen());
+
+    /*************************************************************** color Prediction *********************************************************/
+
+    case ColorPredictionScreenroute:
+      return MaterialPageRoute(builder: (context) => ColorBetScreen());
+
+    // case loginScreenroute:
+    //   return MaterialPageRoute(
+    //       builder: (context) => RegisterScreen());
+
     default:
       return MaterialPageRoute(builder: (context) => AppOnboardingScreen());
   }

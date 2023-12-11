@@ -110,6 +110,7 @@ flutter:
     - assets/ludoOffline/images/dice/
     - assets/ludoOffline/images/crown/
     - assets/ludoOffline/sounds/
+    - assets/color_predication/
 
 
 

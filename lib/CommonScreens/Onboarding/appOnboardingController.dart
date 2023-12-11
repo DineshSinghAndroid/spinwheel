@@ -36,12 +36,15 @@ class AppOnboardingController extends GetxController {
 
   checkLogin() async {
     await SharedPreferences.getInstance().then((value) {
-      bool? LoggedIn = value.getBool(AppSharedPreferences.IS_Logged_In);
+      userLoggedIn = value.getBool(AppSharedPreferences.IS_Logged_In);
+      authToken = value.getString(AppSharedPreferences.cookie)!;
       update();
-      if (LoggedIn == true) {
+      if (userLoggedIn == true) {
         Get.offAllNamed(apphomeScreen);
         ToastCustom.showToast(msg: "Welcome Back");
       }
+      print("authToken $authToken");
+      print("LoggedIn $userLoggedIn");
     });
   }
 

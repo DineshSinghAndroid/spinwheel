@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart' as G;
@@ -12,6 +11,7 @@ import '../../Models/adminModels/LoginModel.dart';
 import '../../Models/adminModels/ProfleModel.dart';
 import '../../Models/adminModels/RegisterModel.dart';
 import '../../Models/adminModels/UpdateProfileDataModel.dart';
+import '../../Models/gamesModel/CreateGameModel.dart';
 import '../../Models/superAdminModels/SuperAdminHomeDataModel.dart';
 import '../Helper/ConnectionValidator/ConnectionValidator.dart';
 import '../Utils/Utils.dart';
@@ -66,8 +66,6 @@ class ApiControllerAdmin {
             context: context, url: url, dictData: dictData, token: token);
         if (response?.data != null && response?.statusCode == 200) {
           return result = LoginModel.fromJson(response?.data);
-        } else {
-          return result;
         }
       } catch (e) {
         Utils.printLog("Exception_main1 s: $e");
@@ -80,7 +78,6 @@ class ApiControllerAdmin {
     }
     return result;
   }
-
 
   ///getprofileDataApi
   Future<ProfileDataModelHome?> getprofileDataApi({
@@ -97,8 +94,6 @@ class ApiControllerAdmin {
             context: context, url: url, dictData: dictData, token: token);
         if (response?.data != null && response?.statusCode == 200) {
           return result = ProfileDataModelHome.fromJson(response?.data);
-        } else {
-          return result;
         }
       } catch (e) {
         Utils.printLog("Exception_main1 s: $e");
@@ -111,8 +106,6 @@ class ApiControllerAdmin {
     }
     return result;
   }
-
-
 
   ///updateProfileDataApi
   Future<UpdateprofileDataModel?> updateProfileDataApi({
@@ -129,8 +122,6 @@ class ApiControllerAdmin {
             context: context, url: url, dictData: dictData, token: token);
         if (response?.data != null && response?.statusCode == 200) {
           return result = UpdateprofileDataModel.fromJson(response?.data);
-        } else {
-          return result;
         }
       } catch (e) {
         Utils.printLog("Exception_main1 s: $e");
@@ -193,17 +184,16 @@ class ApiControllerAdmin {
                 Animation<double> animation,
                 Animation<double> secondaryAnimation,
                 Widget child) {
-              return   SlideTransition(
-                position:   Tween<Offset>(
-                  begin:   const Offset(1.0, 0.0),
+              return SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(1.0, 0.0),
                   end: Offset.zero,
                 ).animate(animation),
                 child: child,
               );
             }),
-            (Route route) => false);
+                (Route route) => false);
       }
-
 
       return response;
     } catch (error) {
@@ -212,11 +202,10 @@ class ApiControllerAdmin {
     }
   }
 
-  Future<Response?> requestGetForApi(
-      {required context,
-      String? url,
-      Map<String, dynamic>? dictParameter,
-      String? token}) async {
+  Future<Response?> requestGetForApi({required context,
+    String? url,
+    Map<String, dynamic>? dictParameter,
+    String? token}) async {
     try {
       Map<String, String> headers = {
         "Content-type": "application/json",
@@ -255,11 +244,10 @@ class ApiControllerAdmin {
     }
   }
 
-  Future<Response?> requestMultipartApi(
-      {required context,
-      String? url,
-      Map<String, dynamic>? dictParameter,
-      String? token}) async {
+  Future<Response?> requestMultipartApi({required context,
+    String? url,
+    Map<String, dynamic>? dictParameter,
+    String? token}) async {
     try {
       Map<String, String> headers = {
         // "Content-type": "application/json",
@@ -317,7 +305,7 @@ class ApiControllerAdmin {
                 child: child,
               );
             }),
-            (Route route) => false);
+                (Route route) => false);
       }
 
       checkTokenStatus(
@@ -351,6 +339,37 @@ class ApiControllerAdmin {
 class ApiControllerGames {
   final Dio _dio = Dio();
 
+  ///Create Ludo Game
+  Future<CreateLudoGameModel?> createLudoGame({
+    context,
+    required String url,
+    required dictData,
+    String? token,
+  }) async {
+    CreateLudoGameModel? result;
+
+    if (await ConnectionValidator().check()) {
+      try {
+        final response = await requestPostApi(
+            context: context, url: url, dictData: dictData, token: token);
+        if (response?.data != null && response?.statusCode == 200) {
+          result = CreateLudoGameModel.fromJson(response?.data);
+
+          ToastCustom.showToast(msg: result?.message ?? "");
+          return result;
+        }
+      } catch (e) {
+        Utils.printLog("Exception_main1 s: $e");
+
+        return result;
+      }
+    } else {
+      Fluttertoast.showToast(
+          msg: "Please check network connection and try again!");
+    }
+    return null;
+  }
+
   ///methods
   Future<Response?> requestPostApi(
       {required context, String? url, required dictData, String? token}) async {
@@ -408,7 +427,7 @@ class ApiControllerGames {
                 child: child,
               );
             }),
-            (Route route) => false);
+                (Route route) => false);
       }
 
       // if (response.statusCode == 401) {
@@ -442,11 +461,10 @@ class ApiControllerGames {
     }
   }
 
-  Future<Response?> requestGetForApi(
-      {required context,
-      String? url,
-      Map<String, dynamic>? dictParameter,
-      String? token}) async {
+  Future<Response?> requestGetForApi({required context,
+    String? url,
+    Map<String, dynamic>? dictParameter,
+    String? token}) async {
     try {
       Map<String, String> headers = {
         "Content-type": "application/json",
@@ -454,10 +472,6 @@ class ApiControllerGames {
         "Connection": "Keep-Alive",
         "Keep-Alive": "timeout=5, max=1000",
       };
-
-      //  final prefs = await SharedPreferences.getInstance();
-      // String userId = prefs.getString(AppSharedPreferences.userId) ?? "";
-      //  String sessionId = prefs.getString(AppSharedPreferences.sessionId) ?? "";
 
       Utils.printLog("Headers: $headers");
       Utils.printLog("Url:  $url");
@@ -485,11 +499,10 @@ class ApiControllerGames {
     }
   }
 
-  Future<Response?> requestMultipartApi(
-      {required context,
-      String? url,
-      Map<String, dynamic>? dictParameter,
-      String? token}) async {
+  Future<Response?> requestMultipartApi({required context,
+    String? url,
+    Map<String, dynamic>? dictParameter,
+    String? token}) async {
     try {
       Map<String, String> headers = {
         // "Content-type": "application/json",
@@ -547,7 +560,7 @@ class ApiControllerGames {
                 child: child,
               );
             }),
-            (Route route) => false);
+                (Route route) => false);
       }
 
       checkTokenStatus(
@@ -596,8 +609,6 @@ class ApiControllerSuperAdmin {
             context: context, url: url, dictData: dictData, token: token);
         if (response?.data != null && response?.statusCode == 200) {
           return result = SuperAdminHomeDataMode.fromJson(response?.data);
-        } else {
-          return result;
         }
       } catch (e) {
         Utils.printLog("Exception_main1 s: $e");
@@ -610,8 +621,6 @@ class ApiControllerSuperAdmin {
     }
     return result;
   }
-
-
 
   ///methods
   Future<Response?> requestPostApi(
@@ -671,7 +680,7 @@ class ApiControllerSuperAdmin {
                 child: child,
               );
             }),
-            (Route route) => false);
+                (Route route) => false);
       }
       return response;
     } catch (error) {
@@ -680,11 +689,10 @@ class ApiControllerSuperAdmin {
     }
   }
 
-  Future<Response?> requestGetForApi(
-      {required context,
-      String? url,
-      Map<String, dynamic>? dictParameter,
-      String? token}) async {
+  Future<Response?> requestGetForApi({required context,
+    String? url,
+    Map<String, dynamic>? dictParameter,
+    String? token}) async {
     try {
       Map<String, String> headers = {
         "Content-type": "application/json",
@@ -723,11 +731,10 @@ class ApiControllerSuperAdmin {
     }
   }
 
-  Future<Response?> requestMultipartApi(
-      {required context,
-      String? url,
-      Map<String, dynamic>? dictParameter,
-      String? token}) async {
+  Future<Response?> requestMultipartApi({required context,
+    String? url,
+    Map<String, dynamic>? dictParameter,
+    String? token}) async {
     try {
       Map<String, String> headers = {
         // "Content-type": "application/json",
@@ -785,7 +792,7 @@ class ApiControllerSuperAdmin {
                 child: child,
               );
             }),
-            (Route route) => false);
+                (Route route) => false);
       }
 
       checkTokenStatus(

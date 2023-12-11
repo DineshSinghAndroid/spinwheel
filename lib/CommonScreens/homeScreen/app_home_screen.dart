@@ -12,7 +12,7 @@ import '../../Controller/Helper/BuildText/BuildText.dart';
 import 'app_homescreen_controller.dart';
 import '../../Controller/Utils/StringDefine/StringDefine.dart';
 import '../../GamesViews/ColorPrediction/color_prediction_controller.dart';
- import '../ProfileScreens/ProfileScreen.dart';
+import '../ProfileScreens/ProfileScreen.dart';
 
 class AppHomeScreen extends StatelessWidget {
   AppHomeScreen({super.key});
@@ -38,14 +38,11 @@ class AppHomeScreen extends StatelessWidget {
           builder: (controller) {
             return Scaffold(
               appBar: AppBar(
-
                 backgroundColor: AppColors.purpleColor,
-                title: BuildText.buildText(text: "Mama Ludo",size: 20),
+                title: BuildText.buildText(text: "Mama Ludo", size: 20),
                 centerTitle: false,
                 actions: [
-
-                   ShowBalanceBoxCommon(balance: '121'),
-
+                  ShowBalanceBoxCommon(balance: '121'),
                 ],
               ),
 
@@ -75,22 +72,33 @@ class AppHomeScreen extends StatelessWidget {
                                       autoPlay: true,
                                       pageSnapping: true,
                                       aspectRatio: 6 / 3),
-                                  items: _appCtrl.homeData?.data?.homeData?.slider?.map((i) {
+                                  items: _appCtrl
+                                      .homeData?.data?.homeData?.slider
+                                      ?.map((i) {
                                     return Builder(
                                       builder: (BuildContext context) {
                                         return Container(
                                           width: Get.width,
                                           child: Image.network(
-                                            i.url??'',
+                                            i.url ?? '',
                                             fit: BoxFit.cover,
-                                            loadingBuilder: (BuildContext context, Widget child,
-                                                ImageChunkEvent? loadingProgress) {
-                                              if (loadingProgress == null) return child;
+                                            loadingBuilder:
+                                                (BuildContext context,
+                                                    Widget child,
+                                                    ImageChunkEvent?
+                                                        loadingProgress) {
+                                              if (loadingProgress == null)
+                                                return child;
                                               return Center(
-                                                child: CircularProgressIndicator(
-                                                  value: loadingProgress.expectedTotalBytes != null
-                                                      ? loadingProgress.cumulativeBytesLoaded /
-                                                      loadingProgress.expectedTotalBytes!
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  value: loadingProgress
+                                                              .expectedTotalBytes !=
+                                                          null
+                                                      ? loadingProgress
+                                                              .cumulativeBytesLoaded /
+                                                          loadingProgress
+                                                              .expectedTotalBytes!
                                                       : null,
                                                 ),
                                               );
@@ -104,11 +112,13 @@ class AppHomeScreen extends StatelessWidget {
                                 buildSizeBox(10.0, 0.0),
                                 Container(
                                   width: Get.width,
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       horizontal: 0, vertical: 6),
                                   decoration: BoxDecoration(color: Colors.red),
                                   child: TextScroll(
-                                    _appCtrl.homeData?.data?.homeData?.footerText??"",
+                                    _appCtrl.homeData?.data?.homeData
+                                            ?.footerText ??
+                                        "",
                                     mode: TextScrollMode.endless,
                                     velocity: Velocity(
                                         pixelsPerSecond: Offset(150, 0)),
@@ -128,10 +138,11 @@ class AppHomeScreen extends StatelessWidget {
                                 top: 250, right: 10, left: 10),
                             child: GridView.builder(
                               physics: NeverScrollableScrollPhysics(),
-                              itemCount: _appCtrl.homeData?.data?.appList?.length??0,
+                              itemCount:
+                                  _appCtrl.homeData?.data?.appList?.length ?? 0,
                               shrinkWrap: true,
                               gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 2,
                                       crossAxisSpacing: 15,
                                       mainAxisSpacing: 10),
@@ -143,20 +154,28 @@ class AppHomeScreen extends StatelessWidget {
                                     height: 160,
                                     width: 230,
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(Radius.circular(20))
-                                    ),
-
-                                    child:  Image.network(
-                                      _appCtrl.homeData?.data?.appList?[index].appImage.toString()??"",
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(20))),
+                                    child: Image.network(
+                                      _appCtrl.homeData?.data?.appList?[index]
+                                              .appImage
+                                              .toString() ??
+                                          "",
                                       fit: BoxFit.cover,
-                                      loadingBuilder: (BuildContext context, Widget child,
+                                      loadingBuilder: (BuildContext context,
+                                          Widget child,
                                           ImageChunkEvent? loadingProgress) {
-                                        if (loadingProgress == null) return child;
+                                        if (loadingProgress == null)
+                                          return child;
                                         return Center(
                                           child: CircularProgressIndicator(
-                                            value: loadingProgress.expectedTotalBytes != null
-                                                ? loadingProgress.cumulativeBytesLoaded /
-                                                loadingProgress.expectedTotalBytes!
+                                            value: loadingProgress
+                                                        .expectedTotalBytes !=
+                                                    null
+                                                ? loadingProgress
+                                                        .cumulativeBytesLoaded /
+                                                    loadingProgress
+                                                        .expectedTotalBytes!
                                                 : null,
                                           ),
                                         );

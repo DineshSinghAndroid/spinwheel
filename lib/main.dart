@@ -3,13 +3,15 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import 'Controller/Helper/Shared Preferences/SharedPreferences.dart';
 import 'Controller/RouteController/RouteNames.dart';
 import 'Controller/Utils/CustomFileds/ButtonCustom.dart';
 import 'Controller/Utils/StringDefine/StringDefine.dart';
+import 'Controller/Utils/Utils.dart';
 import 'GamesViews/LudoOffline/boardUI/ludo_provider.dart';
 import 'package:spinwheel/Controller/RouteController/Route.dart' as router;
-
 
 main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,6 +22,7 @@ main() {
 }
 
 String authToken = "";
+bool? userLoggedIn;
 
 class Root extends StatefulWidget {
   const Root({super.key});
@@ -98,7 +101,7 @@ class _RootState extends State<Root> {
     };
     return GetMaterialApp(
       initialRoute: onboardingScreen,
-        // home: LeaderBoard(),
+      // home: SplashScreen(),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
     );

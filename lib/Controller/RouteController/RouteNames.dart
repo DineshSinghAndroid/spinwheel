@@ -33,3 +33,7 @@ const String jackpotGameScreen = "jackpotGameScreen_screen";
 /******************************************************************ludo offline GameS creen    *********************************************/
 
 const String ludoOfflineGameOnboardingScreen = "ludoOfflineGame_screen";
+
+/***************************************************************** color Prediction Game Screens *******************************************/
+
+const String ColorPredictionScreenroute = "Color_prediction_screen";

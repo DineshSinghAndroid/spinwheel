@@ -3,21 +3,22 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
- import 'package:webview_flutter_android/webview_flutter_android.dart';
-
+import 'package:webview_flutter_android/webview_flutter_android.dart';
 
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
+
 class ColorPredictionHomeScreenController extends GetxController {
   @override
   void onInit() {
-    inits( );
+    inits();
     // TODO: implement onInit
     super.onInit();
   }
+
   RxBool isLoading = false.obs;
   late final WebViewController webViewCtrl;
 
-  inits( )async {
+  inits() async {
     print("color Init hitted");
     // #docregion platform_features
     late final PlatformWebViewControllerCreationParams params;
@@ -31,7 +32,7 @@ class ColorPredictionHomeScreenController extends GetxController {
     }
 
     final WebViewController controller =
-    WebViewController.fromPlatformCreationParams(params);
+        WebViewController.fromPlatformCreationParams(params);
     // #enddocregion platform_features
 
     controller
@@ -64,7 +65,8 @@ Page resource error:
           ''');
           },
           onNavigationRequest: (NavigationRequest request) {
-            if (request.url.startsWith('https://colorbricks.ludokingworld.com/index.php')) {
+            if (request.url.startsWith(
+                'https://colorbricks.ludokingworld.com/index.php')) {
               debugPrint('blocking navigation to ${request.url}');
               return NavigationDecision.prevent;
             }
@@ -82,7 +84,8 @@ Page resource error:
           Get.snackbar(message.message, "");
         },
       )
-      ..loadRequest(Uri.parse('https://colorbricks.ludokingworld.com/index.php?for=mobile'));
+      ..loadRequest(Uri.parse(
+          'https://colorbricks.ludokingworld.com/index.php?for=mobile'));
 
     // #docregion platform_features
     if (controller.platform is AndroidWebViewController) {
