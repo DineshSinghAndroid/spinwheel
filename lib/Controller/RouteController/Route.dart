@@ -1,3 +1,4 @@
+import 'package:spinwheel/CommonScreens/WalletScreen/wallet_screens.dart';
 import 'package:spinwheel/GamesViews/LudoOffline/boardUI/main_screen.dart';
 import 'package:spinwheel/adminviews/admin_amountSetup_screen.dart';
 import 'package:spinwheel/adminviews/admin_bankDetails_screen.dart';
@@ -21,8 +22,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     ///Onboarding
     case onboardingScreen:
       return MaterialPageRoute(builder: (context) => AppOnboardingScreen());
+      ///app home screen
     case apphomeScreen:
       return MaterialPageRoute(builder: (context) => AppHomeScreen());
+///Wallet screen
+   case walletScreen:
+      return MaterialPageRoute(builder: (context) => WalletScreen());
 
     // ///Game screen
     // case gameScreen:

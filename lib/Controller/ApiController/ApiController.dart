@@ -13,6 +13,7 @@ import '../../Models/adminModels/ProfleModel.dart';
 import '../../Models/adminModels/RegisterModel.dart';
 import '../../Models/adminModels/UpdateProfileDataModel.dart';
 import '../../Models/gamesModel/LudoOfflineModels/CreateGameModel.dart';
+import '../../Models/gamesModel/LudoOfflineModels/OpenMatchesModel.dart';
 import '../../Models/superAdminModels/SuperAdminHomeDataModel.dart';
 import '../Helper/ConnectionValidator/ConnectionValidator.dart';
 import '../Utils/Utils.dart';
@@ -402,6 +403,35 @@ class ApiControllerGames {
   }
 
 
+  ///Get open matches list data
+  Future<OpenMatchesModel?> getOpenMatchesApi({
+    context,
+    required String url,
+    required dictData,
+    String? token,
+  }) async {
+    OpenMatchesModel? result;
+
+    if (await ConnectionValidator().check()) {
+      try {
+        final response = await requestPostApi(
+            context: context, url: url, dictData: dictData, token: token);
+        if (response?.data != null && response?.statusCode == 200) {
+          return result = OpenMatchesModel.fromJson(response?.data);
+        }
+      } catch (e) {
+        Utils.printLog("Exception_main1 s: $e");
+
+        return result;
+      }
+    } else {
+      Fluttertoast.showToast(
+          msg: "Please check network connection and try again!");
+    }
+    return result;
+  }
+
+
   ///methods
   Future<Response?> requestPostApi(
       {required context, String? url, required dictData, String? token}) async {
@@ -597,7 +627,8 @@ class ApiControllerGames {
       });
     }
   }
-}
+
+ }
 
 class ApiControllerSuperAdmin {
   final Dio _dio = Dio();

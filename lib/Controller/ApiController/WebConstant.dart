@@ -14,8 +14,8 @@ class WebApiConstantAdmin {
 class WebApiConstantGames {
   static const String BASE_URL = "https://mamaludo.com/";
   static const String CREATE_LUDO_GAME = "${BASE_URL}gameapis/creatematch";
-  static const String USER_CREATED_MATCHES_API =
-      "${BASE_URL}gameapis/loadmatches";
+  static const String USER_CREATED_MATCHES_API = "${BASE_URL}gameapis/loadmatches";
+  static const String GET_OPEN_MATCHES_LIST = "${BASE_URL}gameapis/loadopenmatches";
 }
 
 ///Super admin

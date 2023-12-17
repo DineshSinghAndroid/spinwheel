@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:spinwheel/tetste.dart';
 
 import 'Controller/Helper/Shared Preferences/SharedPreferences.dart';
 import 'Controller/RouteController/RouteNames.dart';
@@ -101,7 +102,7 @@ class _RootState extends State<Root> {
     };
     return GetMaterialApp(
       initialRoute: onboardingScreen,
-      // home: SplashScreen(),
+        // home: MyMoneyScreen(),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
     );

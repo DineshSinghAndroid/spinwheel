@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:spinwheel/Controller/Utils/CustomFileds/CustomAppBar.dart';
 
+ 
 
-
-
-class MyMoneyScreen extends StatefulWidget {
+ 
+class WalletScreen extends StatefulWidget {
   @override
-  _MyMoneyScreenState createState() => _MyMoneyScreenState();
+  _WalletScreenState createState() => _WalletScreenState();
 }
 
-class _MyMoneyScreenState extends State<MyMoneyScreen> {
+class _WalletScreenState extends State<WalletScreen> {
   double currentBalance = 1000.0; // Replace with actual balance value
   double withdrawableBalance = 800.0; // Replace with actual withdrawable balance value
   TextEditingController amountController = TextEditingController();
@@ -16,9 +17,7 @@ class _MyMoneyScreenState extends State<MyMoneyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('My Money Screen'),
-      ),
+      appBar: CustomAppBar(text: "Wallet"),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

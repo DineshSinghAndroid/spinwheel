@@ -2,6 +2,7 @@ const String onboardingScreen = "/";
 
 ///App
 const String apphomeScreen = "app_home_screen";
+const String walletScreen = "wallet_screens";
 
 /******************************************************************Admin  *********************************************/
 

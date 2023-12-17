@@ -1,17 +1,52 @@
+import 'dart:async';
+
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:spinwheel/CommonScreens/ProfileScreens/profile_screen_controller.dart';
 import 'package:spinwheel/Controller/ApiController/ApiController.dart';
 import 'package:spinwheel/Controller/ApiController/WebConstant.dart';
 import 'package:spinwheel/main.dart';
 
 import '../../../../../Controller/Utils/Utils.dart';
 import '../../../../../Models/gamesModel/LudoOfflineModels/CreateGameModel.dart';
+import '../../../../../Models/gamesModel/LudoOfflineModels/OpenMatchesModel.dart';
 import '../../../../../Models/gamesModel/LudoOfflineModels/UserCreatedMatchModel.dart';
 
 class LudoJoinGameControlller extends GetxController {
   final ApiControllerGames _gameApiCtrl = ApiControllerGames();
+  final HomeProfileScreenController homeProfileCtrl = Get.find();
   bool isLoading = false;
+@override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    hitInEvery1Second();
+  }
+  RxBool showFindingPlayer = false.obs;
+  late Timer _timer;
 
+  hitInEvery1Second()async{
+    userCreatedMatchModel = null;
+
+    _timer = Timer.periodic(const Duration(seconds: 3), (Timer timer) {
+      if(showFindingPlayer.value = true ){
+        getCreatedMatchData();
+
+      }
+      getOpenMatchesList();
+      print("Hitting in every 3 second");
+
+     });
+  }
+  @override
+  void dispose() {
+    _timer.cancel();
+    userCreatedMatchModel = null;
+    print("Disposed");
+
+    // TODO: implement dispose
+    super.dispose();
+  }
   List progressValue = [
     .10,
     .10,
@@ -52,10 +87,10 @@ class LudoJoinGameControlller extends GetxController {
   onTapCreateGame({
     required BuildContext context,
   }) {
-    createGame();
+    createGame().then((value) => getCreatedMatchData());
   }
 
-  /// Create Match
+  ///Create Match
   CreateLudoGameModel? createLudoGameModel;
 
   Future<CreateLudoGameModel?> createGame({
@@ -83,7 +118,7 @@ class LudoJoinGameControlller extends GetxController {
         try {
           if (result.error != true) {
             createLudoGameModel = result;
-
+        showFindingPlayer.value = true ;
             Utils.printLog("create game status is  :::::::;${result.message}");
             ToastCustom.showToast(msg: result.message ?? "");
 
@@ -119,13 +154,13 @@ class LudoJoinGameControlller extends GetxController {
     BuildContext? context,
   }) async {
     changeEmptyValue(false);
-    changeLoadingValue(true);
+    // changeLoadingValue(true);
     changeNetworkValue(false);
     changeErrorValue(false);
     changeSuccessValue(false);
 
     Map<String, String> dictparm = {
-      "cookie": authToken.toString(),
+      "cookie": authToken,
     };
 
     String url = WebApiConstantGames.USER_CREATED_MATCHES_API;
@@ -139,22 +174,78 @@ class LudoJoinGameControlller extends GetxController {
           if (result.error != true) {
             userCreatedMatchModel = result;
 
-            Utils.printLog(
-                "userCreatedMatchModel status is  :::::::;${result.message}");
-            ToastCustom.showToast(msg: result.message ?? "");
+            // Utils.printLog("user Created Match Model status is  :::::::;${result.message}");
+            // ToastCustom.showToast(msg: result.message ?? "");
 
             changeLoadingValue(false);
             changeSuccessValue(true);
           } else {
-            Utils.printLog(result.message);
-            ToastCustom.showToast(msg: result.message.toString() ?? "");
+            // Utils.printLog(result.message);
+            // ToastCustom.showToast(msg: result.message.toString() ?? "");
 
             changeLoadingValue(false);
             changeSuccessValue(false);
           }
         } catch (_) {
           Utils.printLog("Exception : $_");
-          ToastCustom.showToast(msg: result.message ?? "");
+          // ToastCustom.showToast(msg: result.message ?? "");
+          changeSuccessValue(false);
+          changeLoadingValue(false);
+          changeErrorValue(true);
+        }
+      } else {
+        changeSuccessValue(false);
+        changeLoadingValue(false);
+        changeErrorValue(true);
+      }
+    });
+    update();
+  }
+
+
+
+  /// Open Matches Data
+  OpenMatchesModel? openMatchesListData;
+
+  Future<OpenMatchesModel?> getOpenMatchesList({
+    BuildContext? context,
+  }) async {
+    changeEmptyValue(false);
+    // changeLoadingValue(true);
+    changeNetworkValue(false);
+    changeErrorValue(false);
+    changeSuccessValue(false);
+
+    Map<String, String> dictparm = {
+      "cookie": authToken,
+    };
+
+    String url = WebApiConstantGames.GET_OPEN_MATCHES_LIST;
+
+    await _gameApiCtrl
+        .getOpenMatchesApi(
+            context: context, url: url, token: '', dictData: dictparm)
+        .then((result) async {
+      if (result != null) {
+        try {
+          if (result.error != true) {
+            openMatchesListData = result;
+
+            // Utils.printLog("user Created Match Model status is  :::::::;${result.message}");
+            // ToastCustom.showToast(msg: result.message ?? "");
+
+            changeLoadingValue(false);
+            changeSuccessValue(true);
+          } else {
+            // Utils.printLog(result.message);
+            // ToastCustom.showToast(msg: result.message.toString() ?? "");
+
+            changeLoadingValue(false);
+            changeSuccessValue(false);
+          }
+        } catch (_) {
+          Utils.printLog("Exception : $_");
+          // ToastCustom.showToast(msg: result.message ?? "");
           changeSuccessValue(false);
           changeLoadingValue(false);
           changeErrorValue(true);
@@ -197,4 +288,66 @@ class LudoJoinGameControlller extends GetxController {
   bool isEmpty = false;
   bool isNetworkError = false;
   bool isSuccess = false;
+
+  onTapCancelMatch({required BuildContext context}) {
+    // hitCancelMatchApi();
+    userCreatedMatchModel = null;
+    showFindingPlayer.value = false;
+  }
+
+  // /// User Created Matchs
+  // UserCreatedMatchModel? userCreatedMatchModel;
+  //
+  // Future<UserCreatedMatchModel?> hitCancelMatchApi({
+  //   BuildContext? context,
+  // }) async {
+  //   changeEmptyValue(false);
+  //   // changeLoadingValue(true);
+  //   changeNetworkValue(false);
+  //   changeErrorValue(false);
+  //   changeSuccessValue(false);
+  //
+  //   Map<String, String> dictparm = {
+  //     "cookie": authToken,
+  //   };
+  //
+  //   String url = WebApiConstantGames.USER_CREATED_MATCHES_API;
+  //
+  //   await _gameApiCtrl
+  //       .userCreatedMatchesApi(
+  //       context: context, url: url, token: '', dictData: dictparm)
+  //       .then((result) async {
+  //     if (result != null) {
+  //       try {
+  //         if (result.error != true) {
+  //           userCreatedMatchModel = result;
+  //
+  //           // Utils.printLog("user Created Match Model status is  :::::::;${result.message}");
+  //           // ToastCustom.showToast(msg: result.message ?? "");
+  //
+  //           changeLoadingValue(false);
+  //           changeSuccessValue(true);
+  //         } else {
+  //           // Utils.printLog(result.message);
+  //           // ToastCustom.showToast(msg: result.message.toString() ?? "");
+  //
+  //           changeLoadingValue(false);
+  //           changeSuccessValue(false);
+  //         }
+  //       } catch (_) {
+  //         Utils.printLog("Exception : $_");
+  //         // ToastCustom.showToast(msg: result.message ?? "");
+  //         changeSuccessValue(false);
+  //         changeLoadingValue(false);
+  //         changeErrorValue(true);
+  //       }
+  //     } else {
+  //       changeSuccessValue(false);
+  //       changeLoadingValue(false);
+  //       changeErrorValue(true);
+  //     }
+  //   });
+  //   update();
+  // }
+
 }

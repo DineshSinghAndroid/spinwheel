@@ -19,6 +19,7 @@ class ToastCustom {
       msg: msg,
       textColor: Colors.white,
       gravity: ToastGravity.TOP,
+
     );
   }
 
@@ -40,7 +41,7 @@ InkWell ShowBalanceBoxCommon(
 }
     ) {
   return InkWell(
-    onTap: ()=>Get.toNamed(apphomeScreen),
+    onTap: ()=>Get.toNamed(walletScreen),
     child: Container(  decoration: BoxDecoration(
 
         borderRadius: BorderRadius.all(Radius.circular(8),)

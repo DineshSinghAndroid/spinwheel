@@ -181,3 +181,6 @@ const String kLudoOfflineGameBanner2 =
     'assets/ludoOffline/images/ludoOfflineBanner2.jpg';
 const String kLudoOfflineGameBanner3 =
     'assets/ludoOffline/images/ludoOfflineBanner3.jpg';
+
+const String kLudosearching =
+    'assets/ludoOffline/searching.json';

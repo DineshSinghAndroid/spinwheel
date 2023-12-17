@@ -158,7 +158,7 @@ class AppOnboardingController extends GetxController {
             registerData = result;
 
             Utils.printLog("Status is :::::::;${result.message}");
-            ToastCustom.showToast(msg: result.message);
+            ToastCustom.showToast(msg: result.message??"");
             Get.offAllNamed(apphomeScreen);
 
             changeLoadingValue(false);
