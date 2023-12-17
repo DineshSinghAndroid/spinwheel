@@ -203,7 +203,9 @@ class JoinGameScreenLudo extends StatelessWidget {
                                                   side: BorderSide(
                                                       color:
                                                           AppColors.redColor)),
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                _joinCtrl.getCreatedMatchData();
+                                              },
                                               child: BuildText.buildText(
                                                   text: "Join",
                                                   color: Colors.pink,
