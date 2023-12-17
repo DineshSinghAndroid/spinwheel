@@ -48,7 +48,7 @@ class LudoJoinGameControlller extends GetxController {
     "8000",
   ];
 
-  onTapPlayNow({
+  onTapCreateGame({
     required BuildContext context,
   }) {
     createGame();

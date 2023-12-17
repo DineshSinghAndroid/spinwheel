@@ -66,10 +66,8 @@ class JoinGameScreenLudo extends StatelessWidget {
                         height: 50,
                         child: NeoPopTiltedButton(
                           isFloating: true,
-                          onTapUp: () => _joinCtrl.onTapPlayNow(
-                            context: context,
-                          ),
-                          onTapDown: () => _joinCtrl.onTapPlayNow(
+                          onTapUp: () {},
+                          onTapDown: () => _joinCtrl.onTapCreateGame(
                             context: context,
                           ),
                           decoration: const NeoPopTiltedButtonDecoration(
