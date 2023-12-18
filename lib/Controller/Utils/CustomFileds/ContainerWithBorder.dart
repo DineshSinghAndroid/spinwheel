@@ -15,8 +15,8 @@ Container ContainerWithBorder(
   return Container(
     height: height,
     padding: EdgeInsets.symmetric(
-        horizontal: horizontalPadding ?? 0.0,
-        vertical: verticalPadding ?? 0 / 0),
+        horizontal: horizontalPadding ?? 1.0,
+        vertical: verticalPadding ?? 1.0),
     margin: EdgeInsets.symmetric(
         horizontal: horizontalmargin ?? 0.0, vertical: verticalmargin ?? 0.0),
     decoration: BoxDecoration(

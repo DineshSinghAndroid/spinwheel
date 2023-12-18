@@ -62,6 +62,7 @@ dependencies:
   simple_ripple_animation:
   flutter_staggered_animations:
   in_app_update: ^4.2.2
+  smooth_page_indicator:
 
 
 
@@ -106,6 +107,7 @@ flutter:
     - assets/common/
     - assets/ludoOffline/
     - assets/ludoOffline/ludo/
+    - assets/ludoOffline/wallet/
     - assets/ludoOffline/images/
     - assets/ludoOffline/images/dice/
     - assets/ludoOffline/images/crown/

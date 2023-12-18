@@ -14,16 +14,16 @@ AppBar CustomAppBar({
     centerTitle: true,
     // leading:
     //     leading ?? IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
-    // leading: IconButton(
-    //   icon: Icon(
-    //     Icons.arrow_back,
-    //     color: Colors.white,
-    //     size: 23,
-    //   ),
-    //   onPressed: () {
-    //     Get.back();
-    //   },
-    // ),
+    leading: IconButton(
+      icon: Icon(
+        Icons.arrow_back,
+        color: Colors.white,
+        size: 23,
+      ),
+      onPressed: () {
+        Get.back();
+      },
+    ),
 
     backgroundColor: AppColors.blueColorApp,
     title: BuildText.buildText(

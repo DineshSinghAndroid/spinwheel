@@ -18,7 +18,7 @@ class BuildText {
     return Text(text,
         style: style ??
             GoogleFonts.ptSerif(
-              color: color ?? Colors.white,
+              color: color ?? Colors.black,
               fontSize: size ?? 14,
               fontWeight: weight ?? FontWeight.w500,
             ));
