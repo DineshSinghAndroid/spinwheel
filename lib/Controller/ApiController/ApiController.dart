@@ -12,7 +12,9 @@ import '../../Models/adminModels/LoginModel.dart';
 import '../../Models/adminModels/ProfleModel.dart';
 import '../../Models/adminModels/RegisterModel.dart';
 import '../../Models/adminModels/UpdateProfileDataModel.dart';
+import '../../Models/gamesModel/LudoOfflineModels/CancelMatchUserCreatedModel.dart';
 import '../../Models/gamesModel/LudoOfflineModels/CreateGameModel.dart';
+import '../../Models/gamesModel/LudoOfflineModels/JoinOpenMatchesModel.dart';
 import '../../Models/gamesModel/LudoOfflineModels/OpenMatchesModel.dart';
 import '../../Models/superAdminModels/SuperAdminHomeDataModel.dart';
 import '../Helper/ConnectionValidator/ConnectionValidator.dart';
@@ -155,8 +157,8 @@ class ApiControllerAdmin {
 
       BaseOptions options = BaseOptions(
           baseUrl: WebApiConstantAdmin.BASE_URL,
-          receiveTimeout: Duration(seconds: 5),
-          connectTimeout: Duration(seconds: 5),
+          receiveTimeout: Duration(seconds: 10),
+          connectTimeout: Duration(seconds: 10),
           headers: headers);
 
       _dio.options = options;
@@ -374,6 +376,40 @@ class ApiControllerGames {
     return null;
   }
 
+
+  ///Join open match
+  Future<JoinOpenMatchesModel?> joinOpenMatchApi({
+    context,
+    required String url,
+    required dictData,
+    String? token,
+  }) async {
+    JoinOpenMatchesModel? result;
+
+    if (await ConnectionValidator().check()) {
+      try {
+        final response = await requestPostApi(
+            context: context, url: url, dictData: dictData, token: token);
+        if (response?.data != null && response?.statusCode == 200) {
+          result = JoinOpenMatchesModel.fromJson(response?.data);
+
+          ToastCustom.showToast(msg: result.message ?? "");
+          return result;
+        }
+      } catch (e) {
+        ToastCustom.showToast(msg: result?.message ?? "");
+
+        Utils.printLog("Exception_main1 s: $e");
+
+        return result;
+      }
+    } else {
+      Fluttertoast.showToast(
+          msg: "Please check network connection and try again!");
+    }
+    return null;
+  }
+
   ///user Created Matches Api Ludo Game
   Future<UserCreatedMatchModel?> userCreatedMatchesApi({
     context,
@@ -432,6 +468,36 @@ class ApiControllerGames {
   }
 
 
+
+  ///cancel User Created MatchApi Hit
+  Future<UserCreatedMatchCalcelModel?> cancelUserCreatedMatchApiHit({
+    context,
+    required String url,
+    required dictData,
+    String? token,
+  }) async {
+    UserCreatedMatchCalcelModel? result;
+
+    if (await ConnectionValidator().check()) {
+      try {
+        final response = await requestPostApi(
+            context: context, url: url, dictData: dictData, token: token);
+        if (response?.data != null && response?.statusCode == 200) {
+          return result = UserCreatedMatchCalcelModel.fromJson(response?.data);
+        }
+      } catch (e) {
+        Utils.printLog("Exception_main1 s: $e");
+
+        return result;
+      }
+    } else {
+      Fluttertoast.showToast(
+          msg: "Please check network connection and try again!");
+    }
+    return result;
+  }
+
+
   ///methods
   Future<Response?> requestPostApi(
       {required context, String? url, required dictData, String? token}) async {
@@ -450,8 +516,8 @@ class ApiControllerGames {
 
       BaseOptions options = BaseOptions(
           baseUrl: WebApiConstantGames.BASE_URL,
-          receiveTimeout: Duration(seconds: 5),
-          connectTimeout: Duration(seconds: 5),
+          receiveTimeout: Duration(seconds: 10),
+          connectTimeout: Duration(seconds: 10),
           headers: headers);
 
       _dio.options = options;
@@ -628,6 +694,7 @@ class ApiControllerGames {
     }
   }
 
+
  }
 
 class ApiControllerSuperAdmin {
@@ -679,8 +746,8 @@ class ApiControllerSuperAdmin {
 
       BaseOptions options = BaseOptions(
           baseUrl: WebApiConstantSuperAdmin.BASE_URL,
-          receiveTimeout: Duration(seconds: 5),
-          connectTimeout: Duration(seconds: 5),
+          receiveTimeout: Duration(seconds: 10),
+          connectTimeout: Duration(seconds: 10),
           headers: headers);
 
       _dio.options = options;
@@ -813,6 +880,7 @@ class ApiControllerSuperAdmin {
         prefs.remove('name');
         prefs.remove('email');
         prefs.remove('mobile');
+
         prefs.setBool(AppSharedPreferences.IS_Logged_In, false);
         Navigator.pushAndRemoveUntil(
             context,

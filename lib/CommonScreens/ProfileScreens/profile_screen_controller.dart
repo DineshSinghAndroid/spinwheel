@@ -97,7 +97,7 @@ class HomeProfileScreenController extends GetxController {
 
     Map<String, dynamic> dictparm = {
       "cookie":
-          "9876551560|1703324554|plTIeEtFr2z0XLb53A7KMwUhD8lr2UNjdFb0CuhyPSa|518cef38117e009219a64e1850890915bb36cdb4abf7d645f1ba892ddb7ae9ab",
+          authToken,
       "meta_fields": {
         "first_name": fullNameCtrl.text,
         "last_name": "",

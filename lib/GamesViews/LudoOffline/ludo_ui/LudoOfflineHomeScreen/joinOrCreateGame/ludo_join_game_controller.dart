@@ -8,7 +8,9 @@ import 'package:spinwheel/Controller/ApiController/WebConstant.dart';
 import 'package:spinwheel/main.dart';
 
 import '../../../../../Controller/Utils/Utils.dart';
+import '../../../../../Models/gamesModel/LudoOfflineModels/CancelMatchUserCreatedModel.dart';
 import '../../../../../Models/gamesModel/LudoOfflineModels/CreateGameModel.dart';
+import '../../../../../Models/gamesModel/LudoOfflineModels/JoinOpenMatchesModel.dart';
 import '../../../../../Models/gamesModel/LudoOfflineModels/OpenMatchesModel.dart';
 import '../../../../../Models/gamesModel/LudoOfflineModels/UserCreatedMatchModel.dart';
 
@@ -28,12 +30,16 @@ class LudoJoinGameControlller extends GetxController {
   hitInEvery1Second()async{
     userCreatedMatchModel = null;
 
-    _timer = Timer.periodic(const Duration(seconds: 3), (Timer timer) {
+    _timer = Timer.periodic(const Duration(seconds: 390), (Timer timer) {
       if(showFindingPlayer.value = true ){
-        getCreatedMatchData();
+        getCreatedMatchData().then((value) {
+          if(userCreatedMatchModel == null){
+            showFindingPlayer.value = false;
+          }
+        });
 
       }
-      getOpenMatchesList();
+       // getOpenMatchesList();
       print("Hitting in every 3 second");
 
      });
@@ -85,9 +91,12 @@ class LudoJoinGameControlller extends GetxController {
   ];
 
   onTapCreateGame({
-    required BuildContext context,
+    required BuildContext context, required String amount,
   }) {
-    createGame().then((value) => getCreatedMatchData());
+    createGame(amount: amount).then((value) => getCreatedMatchData().then((value) {
+      showFindingPlayer.value = true;
+
+    }));
   }
 
   ///Create Match
@@ -95,6 +104,7 @@ class LudoJoinGameControlller extends GetxController {
 
   Future<CreateLudoGameModel?> createGame({
     BuildContext? context,
+    required String amount,
   }) async {
     changeEmptyValue(false);
     changeLoadingValue(true);
@@ -104,7 +114,7 @@ class LudoJoinGameControlller extends GetxController {
 
     Map<String, dynamic> dictparm = {
       "cookie": authToken,
-      "amount": "20",
+      "amount": amount.toString(),
       "match": "1"
     };
 
@@ -118,8 +128,7 @@ class LudoJoinGameControlller extends GetxController {
         try {
           if (result.error != true) {
             createLudoGameModel = result;
-        showFindingPlayer.value = true ;
-            Utils.printLog("create game status is  :::::::;${result.message}");
+             Utils.printLog("create game status is  :::::::;${result.message}");
             ToastCustom.showToast(msg: result.message ?? "");
 
             changeLoadingValue(false);
@@ -147,12 +156,74 @@ class LudoJoinGameControlller extends GetxController {
     update();
   }
 
-  /// User Created Matchs
+void onTapJoinMatch({required String matchId}){
+  joinOpenMatch(matchId: matchId);
+}
+  ///Join Open Matches Match
+  JoinOpenMatchesModel? joinOpenMatchesModel;
+
+  Future<JoinOpenMatchesModel?> joinOpenMatch({
+    required String matchId,
+    BuildContext? context,
+  }) async {
+    changeEmptyValue(false);
+    changeLoadingValue(true);
+    changeNetworkValue(false);
+    changeErrorValue(false);
+    changeSuccessValue(false);
+
+    Map<String, dynamic> dictparm = {
+      "cookie": authToken,
+      "match": matchId.toString()
+    };
+
+    String url = WebApiConstantGames.JOIN_OPEN_MATCHES_API;
+
+    await _gameApiCtrl
+        .joinOpenMatchApi(
+            context: context, url: url, token: '', dictData: dictparm)
+        .then((result) async {
+      if (result != null) {
+        try {
+          if (result.error != true) {
+            joinOpenMatchesModel = result;
+             Utils.printLog("create game status is  :::::::;${result.message}");
+            ToastCustom.showToast(msg: result.message ?? "");
+
+            changeLoadingValue(false);
+            changeSuccessValue(true);
+          } else {
+            Utils.printLog(result.message);
+            ToastCustom.showToast(msg: result.message.toString() ?? "");
+
+            changeLoadingValue(false);
+            changeSuccessValue(false);
+          }
+        } catch (_) {
+          Utils.printLog("Exception : $_");
+          ToastCustom.showToast(msg: result.message ?? "");
+          changeSuccessValue(false);
+          changeLoadingValue(false);
+          changeErrorValue(true);
+        }
+      } else {
+        changeSuccessValue(false);
+        changeLoadingValue(false);
+        changeErrorValue(true);
+      }
+    });
+    update();
+  }
+
+  /// User Created Matches
   UserCreatedMatchModel? userCreatedMatchModel;
 
   Future<UserCreatedMatchModel?> getCreatedMatchData({
+
     BuildContext? context,
   }) async {
+    // userCreatedMatchModel = null ;
+
     changeEmptyValue(false);
     // changeLoadingValue(true);
     changeNetworkValue(false);
@@ -175,7 +246,67 @@ class LudoJoinGameControlller extends GetxController {
             userCreatedMatchModel = result;
 
             // Utils.printLog("user Created Match Model status is  :::::::;${result.message}");
-            // ToastCustom.showToast(msg: result.message ?? "");
+            //  ToastCustom.showToast(msg: result.message?? "");
+
+            changeLoadingValue(false);
+            changeSuccessValue(true);
+          } else {
+            // Utils.printLog(result.message);
+            // ToastCustom.showToast(msg: result.message.toString() ?? "");
+
+            changeLoadingValue(false);
+            changeSuccessValue(false);
+          }
+        } catch (_) {
+          Utils.printLog("Exception : $_");
+          // ToastCustom.showToast(msg: result.message ?? "");
+          changeSuccessValue(false);
+          changeLoadingValue(false);
+          changeErrorValue(true);
+        }
+      } else {
+        changeSuccessValue(false);
+        changeLoadingValue(false);
+        changeErrorValue(true);
+      }
+    });
+    update();
+
+  }
+
+
+
+  /// User Created Match Cancel
+  UserCreatedMatchCalcelModel? cancelUserCreatedMatchData;
+
+  Future<UserCreatedMatchCalcelModel?> cancelUserCreatedMatchApi({
+    BuildContext? context, required String  matchId,
+  }) async {
+    changeEmptyValue(false);
+    // changeLoadingValue(true);
+    changeNetworkValue(false);
+    changeErrorValue(false);
+    changeSuccessValue(false);
+
+    Map<String, String> dictparm = {
+      "cookie": authToken,
+      "matchid":matchId.toString(),
+      "reason":'Self Cancel created match',
+    };
+
+    String url = WebApiConstantGames.CANCEL_USER_CREATED_MATCH_API;
+
+    await _gameApiCtrl
+        .cancelUserCreatedMatchApiHit(
+            context: context, url: url, token: '', dictData: dictparm)
+        .then((result) async {
+      if (result != null) {
+        try {
+          if (result.error != true) {
+            cancelUserCreatedMatchData = result;
+
+            // Utils.printLog("user Created Match Model status is  :::::::;${result.message}");
+             ToastCustom.showToast(msg: result.message ?? "");
 
             changeLoadingValue(false);
             changeSuccessValue(true);
@@ -291,63 +422,18 @@ class LudoJoinGameControlller extends GetxController {
 
   onTapCancelMatch({required BuildContext context}) {
     // hitCancelMatchApi();
-    userCreatedMatchModel = null;
-    showFindingPlayer.value = false;
+    cancelUserCreatedMatchApi(matchId:userCreatedMatchModel?.data?.id??"0").then((value) {
+      showFindingPlayer.value = false;
+      userCreatedMatchModel = null;
+
+    });
+update();
+
+  }  onTapStartMatch({required BuildContext context}) {
+     
+
+
   }
 
-  // /// User Created Matchs
-  // UserCreatedMatchModel? userCreatedMatchModel;
-  //
-  // Future<UserCreatedMatchModel?> hitCancelMatchApi({
-  //   BuildContext? context,
-  // }) async {
-  //   changeEmptyValue(false);
-  //   // changeLoadingValue(true);
-  //   changeNetworkValue(false);
-  //   changeErrorValue(false);
-  //   changeSuccessValue(false);
-  //
-  //   Map<String, String> dictparm = {
-  //     "cookie": authToken,
-  //   };
-  //
-  //   String url = WebApiConstantGames.USER_CREATED_MATCHES_API;
-  //
-  //   await _gameApiCtrl
-  //       .userCreatedMatchesApi(
-  //       context: context, url: url, token: '', dictData: dictparm)
-  //       .then((result) async {
-  //     if (result != null) {
-  //       try {
-  //         if (result.error != true) {
-  //           userCreatedMatchModel = result;
-  //
-  //           // Utils.printLog("user Created Match Model status is  :::::::;${result.message}");
-  //           // ToastCustom.showToast(msg: result.message ?? "");
-  //
-  //           changeLoadingValue(false);
-  //           changeSuccessValue(true);
-  //         } else {
-  //           // Utils.printLog(result.message);
-  //           // ToastCustom.showToast(msg: result.message.toString() ?? "");
-  //
-  //           changeLoadingValue(false);
-  //           changeSuccessValue(false);
-  //         }
-  //       } catch (_) {
-  //         Utils.printLog("Exception : $_");
-  //         // ToastCustom.showToast(msg: result.message ?? "");
-  //         changeSuccessValue(false);
-  //         changeLoadingValue(false);
-  //         changeErrorValue(true);
-  //       }
-  //     } else {
-  //       changeSuccessValue(false);
-  //       changeLoadingValue(false);
-  //       changeErrorValue(true);
-  //     }
-  //   });
-  //   update();
-  // }
 
 }

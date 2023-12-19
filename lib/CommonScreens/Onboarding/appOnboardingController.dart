@@ -29,23 +29,8 @@ class AppOnboardingController extends GetxController {
   void onInit() {
     userPhoneCtrl.text = "9876543210";
     userpasswordCtrl.text = "test1234";
-    checkLogin();
     // TODO: implement onInit
     super.onInit();
-  }
-
-  checkLogin() async {
-    await SharedPreferences.getInstance().then((value) {
-      userLoggedIn = value.getBool(AppSharedPreferences.IS_Logged_In);
-      authToken = value.getString(AppSharedPreferences.cookie)!;
-      update();
-      if (userLoggedIn == true) {
-        Get.offAllNamed(apphomeScreen);
-        ToastCustom.showToast(msg: "Welcome Back");
-      }
-      print("authToken $authToken");
-      print("LoggedIn $userLoggedIn");
-    });
   }
 
   onTapPlayNow(context) {
@@ -72,25 +57,21 @@ class AppOnboardingController extends GetxController {
                 TabBar(
                     isScrollable: false,
                     indicatorPadding: const EdgeInsets.only(top: 20),
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 15),
+                    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                     indicatorColor: AppColors.primaryColor,
                     unselectedLabelColor: Colors.grey,
                     labelColor: AppColors.primaryColor,
                     automaticIndicatorColorAdjustment: true,
                     unselectedLabelStyle: const TextStyle(color: Colors.grey),
-                    labelPadding:
-                        const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                    labelPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                     tabs: [
                       Text(
                         "Login",
-                        style: GoogleFonts.poppins(
-                            fontSize: 14, fontWeight: FontWeight.w900),
+                        style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w900),
                       ),
                       Text(
                         "Register",
-                        style: GoogleFonts.poppins(
-                            fontSize: 14, fontWeight: FontWeight.w900),
+                        style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w900),
                       ),
                     ]),
                 Expanded(
@@ -108,10 +89,7 @@ class AppOnboardingController extends GetxController {
       ));
 
   onTapRegister(BuildContext context) {
-    if (userNameCtrl.text.isNotEmpty &&
-        userPhoneCtrl.text.isNotEmpty &&
-        userEmailCtrl.text.isNotEmpty &&
-        userpasswordCtrl.text.isNotEmpty) {
+    if (userNameCtrl.text.isNotEmpty && userPhoneCtrl.text.isNotEmpty && userEmailCtrl.text.isNotEmpty && userpasswordCtrl.text.isNotEmpty) {
       signUpApi(context: context);
     } else {
       ToastCustom.showToast(msg: "All fields are mandatory");
@@ -148,17 +126,14 @@ class AppOnboardingController extends GetxController {
 
     String url = WebApiConstantAdmin.registerUrl;
 
-    await _apiCtrl
-        .registerApiHit(
-            context: context, url: url, token: '', dictData: dictparm)
-        .then((result) async {
+    await _apiCtrl.registerApiHit(context: context, url: url, token: '', dictData: dictparm).then((result) async {
       if (result != null) {
         try {
           if (result.error != true) {
             registerData = result;
 
             Utils.printLog("Status is :::::::;${result.message}");
-            ToastCustom.showToast(msg: result.message??"");
+            ToastCustom.showToast(msg: result.message ?? "");
             Get.offAllNamed(apphomeScreen);
 
             changeLoadingValue(false);
@@ -205,20 +180,19 @@ class AppOnboardingController extends GetxController {
 
     String url = WebApiConstantAdmin.loginUrl;
 
-    await _apiCtrl
-        .loginApiHit(context: context, url: url, token: '', dictData: dictparm)
-        .then((result) async {
+    await _apiCtrl.loginApiHit(context: context, url: url, token: '', dictData: dictparm).then((result) async {
       if (result != null) {
         try {
           if (result.error != true) {
             if (result.authenticated == true) {
               loginModel = result;
-              await saveUserDataToSharedPrefrences(userData: result.data);
-              Get.offAllNamed(apphomeScreen);
+              await saveUserDataToSharedPrefrences(userData: result.data).then((value) {
+                Get.offAllNamed(apphomeScreen);
+              });
             }
 
             Utils.printLog("Status is :::::::${result.message}");
-            ToastCustom.showToast(msg: result.message ?? "asdf");
+            ToastCustom.showToast(msg: result.message ?? "asf");
 
             changeLoadingValue(false);
             changeSuccessValue(true);
@@ -277,35 +251,25 @@ class AppOnboardingController extends GetxController {
     update();
   }
 
-  Future<void> saveUserDataToSharedPrefrences({required userData}) async {
+  Future saveUserDataToSharedPrefrences({LoginData? userData}) async {
     SharedPreferences.getInstance().then((value) {
-      value.setString("dk", "jaya");
+      value.setString(AppSharedPreferences.username, userData?.username ?? "");
 
-      value.setString(AppSharedPreferences.cookie, userData.cookie);
+      value.setString(AppSharedPreferences.phone, userData?.phone.toString() ?? "");
 
-      value.setString(AppSharedPreferences.username, userData.username);
+      value.setString(AppSharedPreferences.email, userData?.email ?? "");
 
-      value.setString(AppSharedPreferences.phone, userData.phone);
+      value.setString(AppSharedPreferences.registered, userData?.registered ?? "");
 
-      value.setString(AppSharedPreferences.nicename, userData.nicename);
+      value.setString(AppSharedPreferences.displayname, userData?.displayname ?? "");
 
-      value.setString(AppSharedPreferences.email, userData.email);
+      value.setString(AppSharedPreferences.nickname, userData?.nickname ?? "");
 
-      value.setString(AppSharedPreferences.registered, userData.registered);
+      value.setString(AppSharedPreferences.cookieName, userData?.cookieName ?? "");
 
-      value.setString(AppSharedPreferences.displayname, userData.displayname);
+      value.setString(AppSharedPreferences.cookieAdmin, userData?.cookieAdmin ?? "");
+      value.setString(AppSharedPreferences.authToken, userData?.cookie ?? "");
 
-      value.setString(AppSharedPreferences.firstname, userData.firstname);
-
-      value.setString(AppSharedPreferences.lastname, userData.lastname);
-
-      value.setString(AppSharedPreferences.nickname, userData.nickname);
-
-      value.setString(AppSharedPreferences.cookieName, userData.cookieName);
-
-      value.setString(AppSharedPreferences.cookieAdmin, userData.cookieAdmin);
-
-      value.setBool(AppSharedPreferences.IS_Logged_In, true);
       authToken = userData?.cookie.toString() ?? "";
     });
   }

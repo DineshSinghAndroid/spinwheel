@@ -29,7 +29,7 @@ class JoinGameScreenLudo extends StatelessWidget {
               child: Column(
                 children: [
                   Visibility(
-                    visible: _joinCtrl.userCreatedMatchModel == null ? true :false,
+                    visible: _joinCtrl.userCreatedMatchModel?.data == null ? true :false,
 
                     child: Container(
 
@@ -70,6 +70,10 @@ class JoinGameScreenLudo extends StatelessWidget {
                             ),
                           ),
                           buildSizeBox(10.0, 0.0),
+                          MaterialButton(onPressed: (){
+                            _joinCtrl.getOpenMatchesList();
+                          },child: Text("Test"),)
+                          ,
                           Container(
                             width: 120,
                             height: 50,
@@ -78,6 +82,7 @@ class JoinGameScreenLudo extends StatelessWidget {
                               onTapUp: () {},
                               onTapDown: () => _joinCtrl.onTapCreateGame(
                                 context: context,
+                                amount:_joinCtrl.dropDownValue.toString()
                               ),
                               decoration: const NeoPopTiltedButtonDecoration(
                                 color: Color.fromRGBO(255, 235, 52, 1),
@@ -96,10 +101,10 @@ class JoinGameScreenLudo extends StatelessWidget {
                       ),
                     ),
                   ),Visibility(
-                    visible: _joinCtrl.userCreatedMatchModel != null ? true :false,
+                    visible: _joinCtrl.userCreatedMatchModel?.data != null ? true :false,
 
                     child: Container(
-width: Get.width,
+          width: Get.width,
                       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                       decoration: BoxDecoration(
                           borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -127,7 +132,9 @@ width: Get.width,
                                     ),
 
                                       ),
-                                    BuildText.buildText(text: _joinCtrl.homeProfileCtrl.profileData?.data?.username?.toString()??"",color: Colors.black),
+                                    buildSizeBox(4.0, 0.0),
+                                    BuildText.buildText(text: _joinCtrl.userCreatedMatchModel?.data?.host?.name??"",color: Colors.black),
+                                    BuildText.buildText(text: "@${_joinCtrl.userCreatedMatchModel?.data?.host?.username}"??"",color: Colors.black,size: 10),
 
                                   ],
                                 ),
@@ -138,7 +145,22 @@ width: Get.width,
                                   ],
                                 )
                                 ,
-                                Lottie.asset(kLudosearching,width: 100),
+                                _joinCtrl.userCreatedMatchModel?.data?.join == null?
+                                Lottie.asset(kLudosearching,width: 100):
+                                Column(
+                                  children: [
+                                    CircleAvatar(radius: 30,backgroundColor: AppColors.colorAccent,backgroundImage: AssetImage(
+                                        kludoBoardOffline
+                                    ),
+
+                                    ),
+                                    buildSizeBox(4.0, 0.0),
+                                    BuildText.buildText(text: _joinCtrl.userCreatedMatchModel?.data?.join?.name??"",color: Colors.black),
+                                    BuildText.buildText(text: "@${_joinCtrl.userCreatedMatchModel?.data?.join?.username}"??"",color: Colors.black,size: 10),
+
+                                  ],
+                                ),
+
                               ],
                             ),
                           )
@@ -150,7 +172,10 @@ width: Get.width,
                             child: NeoPopTiltedButton(
                               isFloating: true,
                               onTapUp: () {},
-                              onTapDown: () => _joinCtrl.onTapCancelMatch(
+                              onTapDown: () =>_joinCtrl.userCreatedMatchModel?.data?.join == null?
+                              _joinCtrl.onTapCancelMatch(
+                                context: context,
+                              ):_joinCtrl.onTapStartMatch(
                                 context: context,
                               ),
                               decoration: const NeoPopTiltedButtonDecoration(
@@ -161,7 +186,7 @@ width: Get.width,
                               ),
                               child: Center(
                                   child: BuildText.buildText(
-                                      text: 'Cancel',
+                                      text:_joinCtrl.userCreatedMatchModel?.data?.join == null?  'Cancel':"Start",
                                       color: Colors.black,
                                       weight: FontWeight.w700)),
                             ),
@@ -290,7 +315,7 @@ width: Get.width,
                                                         color:
                                                         AppColors.redColor)),
                                                 onPressed: () {
-                                                  _joinCtrl.getCreatedMatchData();
+                                                  _joinCtrl.onTapJoinMatch(matchId:_joinCtrl.openMatchesListData?.data?[i].id??"");
                                                 },
                                                 child: BuildText.buildText(
                                                     text: "Join",

@@ -78,7 +78,7 @@ class WalletScreen extends StatelessWidget {
                               child: Container(
                                 height: 80,
                                 width: 100,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   image: DecorationImage(
                                       image: AssetImage(
                                           'assets/ludoOffline/wallet/sendmoney.png')),
@@ -95,7 +95,7 @@ class WalletScreen extends StatelessWidget {
                               child: Container(
                                 height: 80,
                                 width: 100,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                     image: DecorationImage(
                                         image: AssetImage(
                                             'assets/ludoOffline/wallet/card.png'))),
@@ -119,7 +119,7 @@ class WalletScreen extends StatelessWidget {
                               child: Container(
                                 decoration: BoxDecoration(
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(10)),
+                                        const BorderRadius.all(Radius.circular(10)),
                                     border: Border.all(
                                       color: Colors.grey,
                                       width: 2,
@@ -207,7 +207,7 @@ class WalletScreen extends StatelessWidget {
                               child: Container(
                                 decoration: BoxDecoration(
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(10)),
+                                        const BorderRadius.all(Radius.circular(10)),
                                     border: Border.all(
                                       color: Colors.grey,
                                       width: 2,
@@ -224,7 +224,7 @@ class WalletScreen extends StatelessWidget {
                                     TextFormField(
                                       controller:
                                           _walletCtrl.enterDepositAmountValue,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontWeight: FontWeight.w900,
                                           fontSize: 18),
                                       textInputAction: TextInputAction.next,
@@ -252,13 +252,13 @@ class WalletScreen extends StatelessWidget {
                                     SizedBox(
                                       width: Get.width,
                                       child: GridView.builder(
-                                        physics: NeverScrollableScrollPhysics(),
+                                        physics: const NeverScrollableScrollPhysics(),
                                         shrinkWrap: true,
                                         itemCount:
                                             _walletCtrl.walletNumbers.length ??
                                                 0,
                                         gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
+                                            const SliverGridDelegateWithFixedCrossAxisCount(
                                                 crossAxisCount: 5),
                                         itemBuilder: (context, index) {
                                           return InkWell(
@@ -272,9 +272,9 @@ class WalletScreen extends StatelessWidget {
                                               _walletCtrl.update();
                                             },
                                             child: Container(
-                                              margin: EdgeInsets.symmetric(
+                                              margin: const EdgeInsets.symmetric(
                                                   vertical: 2, horizontal: 4),
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                   color: Colors.amber,
                                                   borderRadius:
                                                       BorderRadius.all(
@@ -307,7 +307,7 @@ class WalletScreen extends StatelessWidget {
                                           showShimmer: true,
                                         ),
                                         child: Padding(
-                                          padding: EdgeInsets.symmetric(
+                                          padding: const EdgeInsets.symmetric(
                                             horizontal: 50.0,
                                             vertical: 15,
                                           ),

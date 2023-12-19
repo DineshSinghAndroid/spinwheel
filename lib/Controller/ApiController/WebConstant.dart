@@ -16,6 +16,8 @@ class WebApiConstantGames {
   static const String CREATE_LUDO_GAME = "${BASE_URL}gameapis/creatematch";
   static const String USER_CREATED_MATCHES_API = "${BASE_URL}gameapis/loadmatches";
   static const String GET_OPEN_MATCHES_LIST = "${BASE_URL}gameapis/loadopenmatches";
+  static const String CANCEL_USER_CREATED_MATCH_API = "${BASE_URL}gameapis/cancelmatch";
+  static const String JOIN_OPEN_MATCHES_API = "${BASE_URL}gameapis/joinmatch";
 }
 
 ///Super admin

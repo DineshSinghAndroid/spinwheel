@@ -16,7 +16,7 @@ class AppOnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _onBdCtrl.checkLogin();
+    // _onBdCtrl.checkLogin();
     return GetBuilder(
       init: _onBdCtrl,
       builder: (controller) {

@@ -3,21 +3,21 @@ class LoginModel {
   bool? error;
   bool? loginVerification;
   String? message;
-  Data? data;
+  LoginData? data;
 
   LoginModel(
       {this.authenticated,
-      this.error,
-      this.loginVerification,
-      this.message,
-      this.data});
+        this.error,
+        this.loginVerification,
+        this.message,
+        this.data});
 
   LoginModel.fromJson(Map<String, dynamic> json) {
     authenticated = json['authenticated'];
     error = json['error'];
     loginVerification = json['login_verification'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? new LoginData.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -33,66 +33,41 @@ class LoginModel {
   }
 }
 
-class Data {
-  String? cookie;
-  String? cookieAdmin;
-  String? cookieName;
-  String? userId;
-  String? username;
-  String? phone;
-  String? nicename;
-  String? email;
-  String? url;
-  String? registered;
-  String? displayname;
-  String? firstname;
-  String? lastname;
-  String? nickname;
-  String? description;
-  Capabilities? capabilities;
+class LoginData {
+  String ? cookie;
+  String ? cookieAdmin;
+  String ? cookieName;
+  String ? userId;
+  String ? username;
+  String ? phone;
+  String ? nickname;
+  String ? email;
+  String ? registered;
+  String ? displayname;
 
-  Data(
+  LoginData(
       {this.cookie,
-      this.cookieAdmin,
-      this.cookieName,
-      this.userId,
-      this.username,
-      this.phone,
-      this.nicename,
-      this.email,
-      this.url,
-      this.registered,
-      this.displayname,
-      this.firstname,
-      this.lastname,
-      this.nickname,
-      this.description,
-      this.capabilities});
+        this.cookieAdmin,
+        this.cookieName,
+        this.userId,
+        this.username,
+        this.phone,
+        this.nickname,
+        this.email,
+        this.registered,
+        this.displayname});
 
-  Data.fromJson(Map<String, dynamic> json) {
-    cookie = json['cookie'] != null ? json['cookie'].toString() : null;
-    cookieAdmin =
-        json['cookie_admin'] != null ? json['cookie_admin'].toString() : null;
-    cookieName =
-        json['cookie_name'] != null ? json['cookie_name'].toString() : null;
-    userId = json['user_id'] != null ? json['user_id'].toString() : null;
-    username = json['username'] != null ? json['username'].toString() : null;
-    phone = json['phone'] != null ? json['phone'].toString() : null;
-    nicename = json['nicename'] != null ? json['nicename'].toString() : null;
-    email = json['email'] != null ? json['email'].toString() : null;
-    url = json['url'] != null ? json['url'].toString() : null;
-    registered =
-        json['registered'] != null ? json['registered'].toString() : null;
-    displayname =
-        json['displayname'] != null ? json['displayname'].toString() : null;
-    firstname = json['firstname'] != null ? json['firstname'].toString() : null;
-    lastname = json['lastname'] != null ? json['lastname'].toString() : null;
-    nickname = json['nickname'] != null ? json['nickname'].toString() : null;
-    description =
-        json['description'] != null ? json['description'].toString() : null;
-    capabilities = json['capabilities'] != null
-        ? new Capabilities.fromJson(json['capabilities'])
-        : null;
+  LoginData.fromJson(Map<String, dynamic> json) {
+    cookie = json['cookie'] != null ? json['cookie'].toString():null ;
+    cookieAdmin = json['cookie_admin'] != null ? json['cookie_admin'].toString():null ;
+    cookieName = json['cookie_name'] != null ? json['cookie_name'].toString():null ;
+    userId = json['user_id'] != null ? json['user_id'].toString():null ;
+    username = json['username'] != null ? json['username'].toString():null ;
+    phone = json['phone'] != null ? json['phone'].toString():null ;
+    nickname = json['nickname'] != null ? json['nickname'].toString():null ;
+    email = json['email'] != null ? json['email'].toString():null ;
+    registered = json['registered'] != null ? json['registered'].toString():null ;
+    displayname = json['displayname'] != null ? json['displayname'].toString():null ;
   }
 
   Map<String, dynamic> toJson() {
@@ -103,34 +78,10 @@ class Data {
     data['user_id'] = this.userId;
     data['username'] = this.username;
     data['phone'] = this.phone;
-    data['nicename'] = this.nicename;
+    data['nickname'] = this.nickname;
     data['email'] = this.email;
-    data['url'] = this.url;
     data['registered'] = this.registered;
     data['displayname'] = this.displayname;
-    data['firstname'] = this.firstname;
-    data['lastname'] = this.lastname;
-    data['nickname'] = this.nickname;
-    data['description'] = this.description;
-    if (this.capabilities != null) {
-      data['capabilities'] = this.capabilities!.toJson();
-    }
-    return data;
-  }
-}
-
-class Capabilities {
-  bool? customer;
-
-  Capabilities({this.customer});
-
-  Capabilities.fromJson(Map<String, dynamic> json) {
-    customer = json['customer'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['customer'] = this.customer;
     return data;
   }
 }

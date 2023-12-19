@@ -22,8 +22,7 @@ main() {
   ));
 }
 
-String authToken = "";
-bool? userLoggedIn;
+String  authToken ='' ;
 
 class Root extends StatefulWidget {
   const Root({super.key});
@@ -36,8 +35,7 @@ class _RootState extends State<Root> {
   @override
   void initState() {
     Future.delayed(Duration(seconds: 1)).then((value) => inits());
-
-    super.initState();
+     super.initState();
   }
 
   void inits() {
@@ -102,7 +100,7 @@ class _RootState extends State<Root> {
     };
     return GetMaterialApp(
       initialRoute: onboardingScreen,
-      home: MyApp(),
+      // home: MyApp(),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
     );

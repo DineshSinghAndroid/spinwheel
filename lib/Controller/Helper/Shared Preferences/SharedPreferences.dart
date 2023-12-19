@@ -8,18 +8,17 @@ class AppSharedPreferences {
   static String isShowAppUpdatePopUp = "is_show_app_update_popup";
 
   static String appVersion = "app_version";
-  static String authToken = "token";
-  static String fcmToken = "fcm_token";
+   static String fcmToken = "fcm_token";
   static String userId = "user_id";
   static String userType = "user_type";
 
-  static String cookie = "cookie";
-  static String cookieAdmin = "cookieAdmin";
+   static String cookieAdmin = "cookieAdmin";
   static String cookieName = "cookieName";
   static String username = "username";
   static String phone = "phone";
-  static String nicename = "nicename";
-  static String email = "email";
+   static String email = "email";
+  static String authToken = "auth_token";
+
   static String registered = "registered";
   static String displayname = "displayname";
   static String firstname = "firstname";
