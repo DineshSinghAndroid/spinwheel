@@ -61,7 +61,7 @@ dependencies:
   just_audio:
   simple_ripple_animation:
   flutter_staggered_animations:
-  in_app_update: ^4.2.2
+  upgrader:
   smooth_page_indicator:
 
 

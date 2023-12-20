@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:upgrader/upgrader.dart';
 import 'package:xen_popup_card/xen_popup_card.dart';
 
 import '../../Controller/Helper/Shared Preferences/SharedPreferences.dart';
@@ -29,10 +30,14 @@ class AppOnboardingController extends GetxController {
   void onInit() {
     userPhoneCtrl.text = "9876543210";
     userpasswordCtrl.text = "test1234";
+    checkAppUpdate();
     // TODO: implement onInit
     super.onInit();
   }
+  checkAppUpdate()async{
+    Upgrader.clearSavedSettings();
 
+  }
   onTapPlayNow(context) {
     print("ON tap    Button");
     return showDialog(

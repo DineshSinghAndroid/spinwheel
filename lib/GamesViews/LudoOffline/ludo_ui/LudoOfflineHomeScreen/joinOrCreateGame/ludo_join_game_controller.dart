@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:spinwheel/CommonScreens/ProfileScreens/profile_screen_controller.dart';
 import 'package:spinwheel/Controller/ApiController/ApiController.dart';
 import 'package:spinwheel/Controller/ApiController/WebConstant.dart';
+import 'package:spinwheel/Controller/RouteController/RouteNames.dart';
 import 'package:spinwheel/main.dart';
 
 import '../../../../../Controller/Utils/Utils.dart';
@@ -174,7 +175,7 @@ void onTapJoinMatch({required String matchId}){
 
     Map<String, dynamic> dictparm = {
       "cookie": authToken,
-      "match": matchId.toString()
+      "matchid": matchId.toString()
     };
 
     String url = WebApiConstantGames.JOIN_OPEN_MATCHES_API;
@@ -187,7 +188,7 @@ void onTapJoinMatch({required String matchId}){
         try {
           if (result.error != true) {
             joinOpenMatchesModel = result;
-             Utils.printLog("create game status is  :::::::;${result.message}");
+             Utils.printLog("Join open match  :::::::;${result.message}");
             ToastCustom.showToast(msg: result.message ?? "");
 
             changeLoadingValue(false);
@@ -430,7 +431,7 @@ void onTapJoinMatch({required String matchId}){
 update();
 
   }  onTapStartMatch({required BuildContext context}) {
-     
+     Get.toNamed(startMatchandUpdateRoomCodeScreen);
 
 
   }

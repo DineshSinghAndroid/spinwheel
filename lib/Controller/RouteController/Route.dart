@@ -11,6 +11,7 @@ import '../../GamesViews/ColorPrediction/ColorBet_screen.dart';
 import '../../GamesViews/ColorPrediction/color_prediction_home_screen.dart';
 import '../../GamesViews/JackpotGame/jackpot_game_screen.dart';
 import '../../GamesViews/LudoOffline/ludo_ui/LudoOfflineBottomNavigationBarScreen/ludo_offline_bottom_bar_screen.dart';
+import '../../GamesViews/LudoOffline/ludo_ui/LudoOfflineHomeScreen/joinOrCreateGame/StartGameScreen/start_matchand_update_room_code_screen.dart';
 import '../../GamesViews/Spinner/spinner_gameScreen.dart';
 import '../../CommonScreens/Onboarding/app_onboarding_screen.dart';
 import '../../adminviews/admin_dashboard_screen.dart';
@@ -71,6 +72,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case ludoGameHomeScreen:
       return MaterialPageRoute(
           builder: (context) => LudoOfflineBottomNavBarScreen());
+     case startMatchandUpdateRoomCodeScreen:
+      return MaterialPageRoute(
+          builder: (context) => StartMatchandUpdateRoomCodeScreen());
     /******************************************************************Jackpot Game routes *********************************************/
     case jackpotGameScreen:
       return MaterialPageRoute(builder: (context) => JackpotGameScreen());

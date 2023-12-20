@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
+import 'package:spinwheel/Controller/Utils/contactUs.dart';
 
 import '../../../../Controller/Helper/BuildText/BuildText.dart';
 import '../../../../Controller/Utils/Colors/custom_color.dart';
@@ -15,11 +16,7 @@ class SelectGameType extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: (){
-
-      },
-
-        child:Lottie.asset('assets/ludoOffline/supportLottie.json')),
+      floatingActionButton: Contactus.contactUsFloatingButton(),
       appBar: PreferredSize(
         preferredSize: Size(Get.width, 80),
         child: Container(
@@ -97,4 +94,5 @@ class SelectGameType extends StatelessWidget {
       ),
     );
   }
+
 }

@@ -393,7 +393,7 @@ class ApiControllerGames {
         if (response?.data != null && response?.statusCode == 200) {
           result = JoinOpenMatchesModel.fromJson(response?.data);
 
-          ToastCustom.showToast(msg: result.message ?? "");
+          // ToastCustom.showToast(msg: result.message ?? "");
           return result;
         }
       } catch (e) {
